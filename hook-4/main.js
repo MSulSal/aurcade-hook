@@ -52,23 +52,23 @@ const sideCharacterAssets = {
 };
 
 const sideCharacterRosters = {
-  "index.html": ["pacman", "ryu", "chunli", "alex"],
-  "leaderboards.html": ["pacman", "ryu", "dudley", "chunli"],
+  "index.html": ["ryu", "chunli", "alex", "pacman"],
+  "leaderboards.html": ["dudley", "ryu", "chunli", "alex"],
   "games.html": ["ryu", "chunli", "alex", "dudley"],
-  "venues.html": ["alex", "chunli", "pacman", "ryu"],
+  "venues.html": ["alex", "chunli", "ryu", "dudley"],
   "events.html": ["alex", "chunli", "dudley", "ryu"],
-  "community.html": ["dudley", "chunli", "ryu", "pacman"],
-  "resources.html": ["ryu", "alex", "pacman", "chunli"],
+  "community.html": ["dudley", "chunli", "ryu", "alex"],
+  "resources.html": ["ryu", "alex", "chunli", "dudley"],
 };
 
 const sideSceneBudget = {
   "index.html": 3,
-  "leaderboards.html": 3,
+  "leaderboards.html": 2,
   "games.html": 4,
-  "venues.html": 3,
-  "events.html": 3,
-  "community.html": 3,
-  "resources.html": 3,
+  "venues.html": 2,
+  "events.html": 2,
+  "community.html": 2,
+  "resources.html": 2,
 };
 
 function pad(value) {
@@ -621,60 +621,89 @@ function initializeSideCharacters() {
     selectedNodes.push(pool[0]);
   }
 
+  const availableRoster = roster.filter(
+    (candidate, index) => sideCharacterAssets[candidate] && roster.indexOf(candidate) === index,
+  );
+  if (availableRoster.length === 0) {
+    return;
+  }
   let rosterCursor = 0;
   let previousFighter = "";
+  const usedFighters = new Set();
+
+  function hasUniqueCapacity() {
+    return usedFighters.size < availableRoster.length;
+  }
+
+  function commitFighter(candidate) {
+    previousFighter = candidate;
+    usedFighters.add(candidate);
+    return candidate;
+  }
 
   function pickFallbackFighter() {
-    for (let pass = 0; pass < roster.length; pass += 1) {
-      const candidate = roster[(rosterCursor + pass) % roster.length];
-      if (!sideCharacterAssets[candidate]) {
+    for (let pass = 0; pass < availableRoster.length; pass += 1) {
+      const candidate = availableRoster[(rosterCursor + pass) % availableRoster.length];
+      if (hasUniqueCapacity() && usedFighters.has(candidate)) {
         continue;
       }
-      if (candidate === previousFighter && roster.length > 1) {
+      if (candidate === previousFighter && availableRoster.length > 1) {
         continue;
       }
-      rosterCursor = (rosterCursor + pass + 1) % roster.length;
-      previousFighter = candidate;
-      return candidate;
+      rosterCursor = (rosterCursor + pass + 1) % availableRoster.length;
+      return commitFighter(candidate);
     }
-    const first = roster[0];
-    previousFighter = first;
-    return first;
+
+    for (let pass = 0; pass < availableRoster.length; pass += 1) {
+      const candidate = availableRoster[(rosterCursor + pass) % availableRoster.length];
+      if (candidate === previousFighter && availableRoster.length > 1) {
+        continue;
+      }
+      rosterCursor = (rosterCursor + pass + 1) % availableRoster.length;
+      return commitFighter(candidate);
+    }
+
+    return commitFighter(availableRoster[0]);
   }
 
   function pickByTitle(title) {
     const weightedCandidates = [];
     if (/(game|profile|fighter|screens|browse games)/.test(title)) {
-      weightedCandidates.push("ryu", "chunli", "alex");
+      weightedCandidates.push("ryu", "chunli", "alex", "dudley");
     }
     if (/(score|record|leader|rank|high score|newest)/.test(title)) {
-      weightedCandidates.push("pacman", "dudley", "ryu");
+      weightedCandidates.push("dudley", "ryu", "alex", "pacman");
     }
     if (/(event|tournament|calendar|bracket|ladder)/.test(title)) {
-      weightedCandidates.push("alex", "chunli", "dudley");
+      weightedCandidates.push("alex", "chunli", "dudley", "ryu");
     }
     if (/(forum|community|discussion|posts|news)/.test(title)) {
-      weightedCandidates.push("dudley", "chunli", "ryu");
+      weightedCandidates.push("dudley", "chunli", "ryu", "alex");
     }
     if (/(location|venue|city|state|gallery|map)/.test(title)) {
-      weightedCandidates.push("alex", "chunli", "pacman");
+      weightedCandidates.push("alex", "chunli", "ryu", "dudley");
     }
     if (/(about|resource|project|system|collection)/.test(title)) {
-      weightedCandidates.push("ryu", "alex", "chunli");
+      weightedCandidates.push("ryu", "alex", "chunli", "dudley");
+    }
+    if (/(pac-?man|galaga|maze|ghost)/.test(title)) {
+      weightedCandidates.push("pacman", "blinky", "inky");
     }
 
     for (const candidate of weightedCandidates) {
       if (!sideCharacterAssets[candidate]) {
         continue;
       }
-      if (!roster.includes(candidate)) {
+      if (!availableRoster.includes(candidate)) {
         continue;
       }
-      if (candidate === previousFighter && weightedCandidates.length > 1) {
+      if (hasUniqueCapacity() && usedFighters.has(candidate)) {
         continue;
       }
-      previousFighter = candidate;
-      return candidate;
+      if (candidate === previousFighter && availableRoster.length > 1) {
+        continue;
+      }
+      return commitFighter(candidate);
     }
 
     return pickFallbackFighter();
@@ -683,10 +712,18 @@ function initializeSideCharacters() {
   const resolvedScenes = selectedNodes
     .map((entry, index) => {
       const explicit = (entry.node.dataset.sceneFighter || "").toLowerCase();
-      const fighter =
-        page === "games.html" && sideCharacterAssets[explicit]
-          ? explicit
-          : pickByTitle(entry.title || `scene-${index + 1}`);
+      let fighter = "";
+
+      if (page === "games.html" && sideCharacterAssets[explicit]) {
+        fighter = explicit;
+        if (hasUniqueCapacity() && usedFighters.has(fighter)) {
+          fighter = pickFallbackFighter();
+        } else {
+          commitFighter(fighter);
+        }
+      } else {
+        fighter = pickByTitle(entry.title || `scene-${index + 1}`);
+      }
 
       const asset = sideCharacterAssets[fighter];
       if (!asset) {
@@ -709,18 +746,25 @@ function initializeSideCharacters() {
   const popupLayer = document.createElement("div");
   popupLayer.className = "side-popups";
   popupLayer.innerHTML = [
-    '<div class="side-character side-left" aria-hidden="true">',
+    '<div class="side-character side-left slot-a" aria-hidden="true">',
+    '  <img alt="" />',
+    "</div>",
+    '<div class="side-character side-right slot-b" aria-hidden="true">',
     '  <img alt="" />',
     "</div>",
   ].join("");
   document.body.appendChild(popupLayer);
 
-  const fighterNode = popupLayer.querySelector(".side-character");
-  const imageNode = popupLayer.querySelector(".side-character img");
-  if (!fighterNode || !imageNode) {
+  const characterNodes = [...popupLayer.querySelectorAll(".side-character")];
+  if (characterNodes.length === 0) {
     return;
   }
-  imageNode.decoding = "async";
+  characterNodes.forEach((node) => {
+    const image = node.querySelector("img");
+    if (image) {
+      image.decoding = "async";
+    }
+  });
 
   Object.values(sideCharacterAssets).forEach((asset) => {
     if (!asset || !asset.src) {
@@ -731,7 +775,8 @@ function initializeSideCharacters() {
     preloadImage.src = asset.src;
   });
 
-  let activeIndex = -1;
+  let activeSceneIndex = -1;
+  let activeSlotIndex = -1;
   let hasUserScrolled = false;
   const initialScrollY = window.scrollY || window.pageYOffset || 0;
   const introThreshold = 72;
@@ -740,6 +785,7 @@ function initializeSideCharacters() {
   let queuedSceneIndex = -1;
   let queueTimer = null;
   let rafHandle = null;
+  let transitionToken = 0;
 
   function updateCharacterEconomy() {
     const shellNode = document.querySelector(".site-shell");
@@ -768,8 +814,13 @@ function initializeSideCharacters() {
   }
 
   function hideCharacters() {
-    fighterNode.classList.remove("is-visible", "is-bobbing", "is-entering");
-    activeIndex = -1;
+    characterNodes.forEach((node) => {
+      node.classList.remove("is-visible", "is-bobbing", "is-entering", "is-exiting");
+      node.style.zIndex = "0";
+      delete node.dataset.transitionToken;
+    });
+    activeSceneIndex = -1;
+    activeSlotIndex = -1;
     queuedSceneIndex = -1;
     if (queueTimer) {
       window.clearTimeout(queueTimer);
@@ -778,7 +829,7 @@ function initializeSideCharacters() {
   }
 
   function setScene(index) {
-    if (index === activeIndex) {
+    if (index === activeSceneIndex) {
       return;
     }
 
@@ -793,7 +844,7 @@ function initializeSideCharacters() {
     }
 
     const now = window.performance?.now ? window.performance.now() : Date.now();
-    if (sceneSwitchDelay > 0 && activeIndex >= 0 && now - lastSceneSwitchAt < sceneSwitchDelay) {
+    if (sceneSwitchDelay > 0 && activeSceneIndex >= 0 && now - lastSceneSwitchAt < sceneSwitchDelay) {
       queuedSceneIndex = index;
       if (!queueTimer) {
         const delay = Math.max(16, sceneSwitchDelay - (now - lastSceneSwitchAt));
@@ -809,15 +860,43 @@ function initializeSideCharacters() {
       return;
     }
 
-    imageNode.src = asset.src;
-    imageNode.alt = scene.fighterName || asset.name || scene.fighter;
-    imageNode.style.setProperty("--fighter-scale", String((asset.scale || 1.2) * (scene.emphasis || 1)));
-    fighterNode.classList.remove("side-left", "side-right");
-    fighterNode.classList.add(index % 2 === 0 ? "side-left" : "side-right");
-    enterCharacter(fighterNode);
-    fighterNode.classList.add("is-visible");
-    fighterNode.classList.toggle("is-bobbing", !reduceMotion);
-    activeIndex = index;
+    const nextSlotIndex = activeSlotIndex < 0 ? 0 : (activeSlotIndex + 1) % characterNodes.length;
+    const nextSlot = characterNodes[nextSlotIndex];
+    const nextImage = nextSlot?.querySelector("img");
+    if (!nextSlot || !nextImage) {
+      return;
+    }
+
+    const previousSlot = activeSlotIndex >= 0 ? characterNodes[activeSlotIndex] : null;
+    const token = String(++transitionToken);
+
+    if (previousSlot) {
+      previousSlot.dataset.transitionToken = token;
+      previousSlot.classList.remove("is-bobbing", "is-entering");
+      previousSlot.classList.add("is-exiting");
+      previousSlot.style.zIndex = "1";
+      window.setTimeout(() => {
+        if (previousSlot.dataset.transitionToken !== token) {
+          return;
+        }
+        previousSlot.classList.remove("is-visible", "is-exiting");
+        previousSlot.style.zIndex = "0";
+      }, 460);
+    }
+
+    nextSlot.dataset.transitionToken = token;
+    nextImage.src = asset.src;
+    nextImage.alt = scene.fighterName || asset.name || scene.fighter;
+    nextImage.style.setProperty("--fighter-scale", String((asset.scale || 1.2) * (scene.emphasis || 1)));
+    nextSlot.classList.remove("side-left", "side-right", "is-exiting", "is-visible", "is-bobbing");
+    nextSlot.classList.add(index % 2 === 0 ? "side-left" : "side-right");
+    enterCharacter(nextSlot);
+    nextSlot.classList.add("is-visible");
+    nextSlot.classList.toggle("is-bobbing", !reduceMotion);
+    nextSlot.style.zIndex = "2";
+
+    activeSlotIndex = nextSlotIndex;
+    activeSceneIndex = index;
     lastSceneSwitchAt = window.performance?.now ? window.performance.now() : Date.now();
   }
 
