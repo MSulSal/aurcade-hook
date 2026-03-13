@@ -1752,6 +1752,10 @@ tr[data-game-id].is-selected td {
     gap: 0.5rem;
   }
 
+  .page-index .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .panel {
     padding: 0.46rem;
   }
@@ -1783,9 +1787,9 @@ tr[data-game-id].is-selected td {
   }
 
   .site-header {
-    height: 86px;
+    height: 96px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100% auto;
     background-position: center;
     background-color: #081321;
   }
@@ -1794,16 +1798,34 @@ tr[data-game-id].is-selected td {
     content: "Arcade Locations, World Records and More!";
     position: absolute;
     left: 50%;
-    bottom: 2px;
+    bottom: 1px;
     transform: translateX(-50%);
     font-family: "VT323", "Courier New", monospace;
-    font-size: 1rem;
+    font-size: 0.86rem;
     color: #ffe88a;
-    line-height: 1;
-    white-space: nowrap;
-    padding: 0.02rem 0.28rem;
+    line-height: 0.98;
+    white-space: normal;
+    text-align: center;
+    width: calc(100% - 10px);
+    padding: 0.08rem 0.24rem;
     background: rgba(7, 16, 30, 0.78);
     border: 1px solid rgba(128, 211, 255, 0.35);
+  }
+
+  .scoreboard,
+  .data-table {
+    min-width: 0;
+  }
+
+  .scoreboard th,
+  .data-table th {
+    font-size: 0.5rem;
+  }
+
+  .scoreboard td,
+  .data-table td {
+    font-size: 0.94rem;
+    padding: 0.24rem 0.24rem;
   }
 }
 
