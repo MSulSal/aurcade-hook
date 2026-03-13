@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade - Detail</title>
+    <meta name="description" content="Aurcade detail view for events, forums, locations, and score submissions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>DETAIL VIEW :: GAME :: LOCATION :: EVENT :: PUBLIC FORUMS</p>
+      <p class="status">UPDATED: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel"></header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="leaderboards.html" href="./leaderboards.html">Newest Scores</a>
+        <a data-page="games.html" href="./games.html">Browse Games</a>
+        <a data-page="venues.html" href="./venues.html">Browse Locations</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a data-page="community.html" href="./community.html">Public Forums</a>
+        <a data-page="resources.html" href="./resources.html">About Us</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
+      </nav>
+
+      <section class="ticker bevel" aria-label="Detail ticker">
+        <div class="ticker-track">
+          <span>ARCADE LOCATIONS, WORLD RECORDS AND MORE!</span>
+          <span>DETAIL VIEW</span>
+          <span>PUBLIC FORUMS</span>
+          <span>UPCOMING EVENTS</span>
+          <span>ARCADE LOCATIONS, WORLD RECORDS AND MORE!</span>
+          <span>DETAIL VIEW</span>
+          <span>PUBLIC FORUMS</span>
+          <span>UPCOMING EVENTS</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Quick Links</h2>
+            <ul class="rail-list">
+              <li><a href="./games.html">Browse Games</a></li>
+              <li><a href="./venues.html">Browse Locations</a></li>
+              <li><a href="./events.html">Events</a></li>
+              <li><a href="./community.html">Public Forums</a></li>
+              <li><a href="./leaderboards.html">Newest Scores</a></li>
+            </ul>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2 data-detail-title>Detail</h2>
+              <p data-detail-subtitle>Record</p>
+            </div>
+            <div class="panel-hero">
+              <img
+                data-detail-image
+                src="https://www.aurcade.com/games/screens/00001227m.jpg"
+                alt="Detail preview"
+              />
+            </div>
+            <p data-detail-summary>Detail information.</p>
+            <div class="table-wrap">
+              <table class="data-table">
+                <tbody data-detail-fields></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Related Links</h2>
+            <ul class="todo-list" data-detail-links></ul>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./leaderboards.html">Newest Scores</a> |
+          <a href="./games.html">Browse Games</a> |
+          <a href="./venues.html">Browse Locations</a> |
+          <a href="./events.html">Events</a> |
+          <a href="./community.html">Public Forums</a> |
+          <a href="./resources.html">About Us</a>
+        </p>
+        <p class="small">Aurcade. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./data/site-data.js"></script>
+    <script src="./main.js"></script>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const type = (params.get("type") || "event").toLowerCase();
+        const id = (params.get("id") || "").toLowerCase();
+        const data = window.AURCADE_DATA || {};
+
+        const titleNode = document.querySelector("[data-detail-title]");
+        const subtitleNode = document.querySelector("[data-detail-subtitle]");
+        const imageNode = document.querySelector("[data-detail-image]");
+        const summaryNode = document.querySelector("[data-detail-summary]");
+        const fieldsNode = document.querySelector("[data-detail-fields]");
+        const linksNode = document.querySelector("[data-detail-links]");
+
+        if (
+          !(titleNode instanceof HTMLElement) ||
+          !(subtitleNode instanceof HTMLElement) ||
+          !(imageNode instanceof HTMLImageElement) ||
+          !(summaryNode instanceof HTMLElement) ||
+          !(fieldsNode instanceof HTMLElement) ||
+          !(linksNode instanceof HTMLElement)
+        ) {
+          return;
+        }
+
+        const forumById = Object.fromEntries((data.forums || []).map((entry) => [entry.id, entry]));
+        const eventById = Object.fromEntries((data.events || []).map((entry) => [entry.id, entry]));
+        const locationById = Object.fromEntries((data.locations || []).map((entry) => [entry.id, entry]));
+        const scoreById = Object.fromEntries((data.scores || []).map((entry) => [entry.id, entry]));
+
+        const fallback = {
+          title: "Detail",
+          subtitle: "Overview",
+          summary: "Requested item was not found.",
+          image: "https://www.aurcade.com/games/screens/00001227m.jpg",
+          fields: [
+            ["Type", type || "Unknown"],
+            ["ID", id || "Unknown"],
+          ],
+          links: [
+            { label: "Browse Games", href: "./games.html" },
+            { label: "Browse Locations", href: "./venues.html" },
+          ],
+        };
+
+        function escapeHtml(value) {
+          return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+        }
+
+        let view = fallback;
+
+        if (type === "forum" && forumById[id]) {
+          const forum = forumById[id];
+          view = {
+            title: forum.title,
+            subtitle: "Public Forums",
+            summary: "Community thread and replies.",
+            image: "https://www.aurcade.com/games/screens/00000496m.jpg",
+            fields: [
+              ["Section", forum.section],
+              ["Posts", forum.posts],
+            ],
+            links: [
+              { label: "Back to Public Forums", href: "./community.html" },
+              { label: "View Newest Scores", href: "./leaderboards.html" },
+            ],
+          };
+        } else if (type === "event" && eventById[id]) {
+          const eventEntry = eventById[id];
+          view = {
+            title: eventEntry.title,
+            subtitle: "Events",
+            summary: "Event schedule and related results.",
+            image: "https://www.aurcade.com/games/screens/00001315m.jpg",
+            fields: [
+              ["Date", eventEntry.date],
+              ["Location", eventEntry.location],
+              ["Game", eventEntry.game],
+            ],
+            links: [
+              { label: "Back to Events", href: "./events.html#upcoming-events" },
+              { label: "View Locations", href: "./venues.html" },
+            ],
+          };
+        } else if (type === "location" && locationById[id]) {
+          const location = locationById[id];
+          view = {
+            title: location.name,
+            subtitle: "Location",
+            summary: "Location profile and game coverage.",
+            image: "https://www.aurcade.com/games/screens/00000012m.jpg",
+            fields: [
+              ["Type", location.type],
+              ["City", location.city],
+              ["State", location.state],
+              ["Games", location.games],
+            ],
+            links: [
+              { label: "Back to Browse Locations", href: "./venues.html" },
+              { label: "View Newest Scores", href: "./leaderboards.html" },
+            ],
+          };
+        } else if (type === "score" && scoreById[id]) {
+          const scoreEntry = scoreById[id];
+          view = {
+            title: scoreEntry.game,
+            subtitle: "Score Entry",
+            summary: "Score details and ranking context.",
+            image: "https://www.aurcade.com/games/screens/00010823m.jpg",
+            fields: [
+              ["Player", scoreEntry.player],
+              ["Location", scoreEntry.location],
+              ["Score", scoreEntry.score],
+              ["Rank", scoreEntry.rank],
+              ["% Achieved", scoreEntry.percent],
+            ],
+            links: [
+              { label: "Back to Newest Scores", href: "./leaderboards.html#newest-score-feed" },
+              { label: "Browse Games", href: "./games.html" },
+            ],
+          };
+        } else if (type === "submission") {
+          const tag = params.get("tag") || "Unknown";
+          const game = params.get("game") || "Unknown";
+          const score = params.get("score") || "Unknown";
+          const location = params.get("location") || "Unknown";
+          const notes = params.get("notes") || "None";
+
+          view = {
+            title: "Newest Scores",
+            subtitle: "Submission",
+            summary: "Submission details captured for review.",
+            image: "https://www.aurcade.com/games/screens/00010604m.jpg",
+            fields: [
+              ["Player Tag", tag],
+              ["Game", game],
+              ["Score", score],
+              ["Location", location],
+              ["Notes", notes],
+            ],
+            links: [
+              { label: "Submit Another Score", href: "./community.html#submit-run" },
+              { label: "View Newest Scores", href: "./leaderboards.html" },
+            ],
+          };
+        }
+
+        titleNode.textContent = view.title;
+        subtitleNode.textContent = view.subtitle;
+        summaryNode.textContent = view.summary;
+        imageNode.src = view.image;
+        imageNode.alt = view.title;
+        document.title = `Aurcade - ${view.title}`;
+
+        fieldsNode.innerHTML = view.fields
+          .map((row) => `<tr><th>${escapeHtml(row[0])}</th><td>${escapeHtml(row[1])}</td></tr>`)
+          .join("");
+        linksNode.replaceChildren();
+        view.links.forEach((link) => {
+          const item = document.createElement("li");
+          const anchor = document.createElement("a");
+          anchor.href = link.href;
+          anchor.textContent = link.label;
+          item.appendChild(anchor);
+          linksNode.appendChild(item);
+        });
+      })();
+    </script>
+  </body>
+</html>

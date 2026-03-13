@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Forum ticker">
         <div class="ticker-track">
@@ -110,25 +110,25 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>General Arcade Discussion</td>
+                    <td><a href="./detail.html?type=forum&id=unknown-cabinet">General Arcade Discussion</a></td>
                     <td>231</td>
                     <td>1202</td>
                     <td>Today 08:12 PM</td>
                   </tr>
                   <tr>
-                    <td>Scoreboards and Records</td>
+                    <td><a href="./detail.html?type=forum&id=mk2-world-record">Scoreboards and Records</a></td>
                     <td>134</td>
                     <td>899</td>
                     <td>Today 07:48 PM</td>
                   </tr>
                   <tr>
-                    <td>Events and Meetups</td>
+                    <td><a href="./detail.html?type=event&id=upcoming-events">Events and Meetups</a></td>
                     <td>88</td>
                     <td>542</td>
                     <td>Today 07:12 PM</td>
                   </tr>
                   <tr>
-                    <td>Location and Cabinet Talk</td>
+                    <td><a href="./detail.html?type=forum&id=pole-position-repair">Location and Cabinet Talk</a></td>
                     <td>74</td>
                     <td>409</td>
                     <td>Today 06:51 PM</td>
@@ -200,29 +200,31 @@
 
           <section id="submit-run" class="panel bevel" data-scene-fighter="sue" data-scene-fighter-name="Sue">
             <h2>Newest Scores</h2>
-            <form class="form-grid">
+            <form class="form-grid" action="./detail.html" method="get">
+              <input type="hidden" name="type" value="submission" />
+              <input type="hidden" name="id" value="score-submission" />
               <div>
                 <label for="tag">Player Tag</label>
-                <input id="tag" type="text" placeholder="Tag" />
+                <input id="tag" name="tag" type="text" placeholder="Tag" />
               </div>
               <div>
                 <label for="game">Game</label>
-                <input id="game" type="text" placeholder="Game title" />
+                <input id="game" name="game" type="text" placeholder="Game title" />
               </div>
               <div>
                 <label for="score">Score</label>
-                <input id="score" type="text" placeholder="Numeric score" />
+                <input id="score" name="score" type="text" placeholder="Numeric score" />
               </div>
               <div>
                 <label for="location">Location</label>
-                <input id="location" type="text" placeholder="Location name" />
+                <input id="location" name="location" type="text" placeholder="Location name" />
               </div>
               <div class="full">
                 <label for="notes">Notes</label>
-                <textarea id="notes" placeholder="Evidence and settings notes"></textarea>
+                <textarea id="notes" name="notes" placeholder="Evidence and settings notes"></textarea>
               </div>
               <div class="full">
-                <button class="pixel-btn" type="button">SUBMIT</button>
+                <button class="pixel-btn" type="submit">SUBMIT</button>
               </div>
             </form>
           </section>
@@ -243,9 +245,13 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
 
 
 

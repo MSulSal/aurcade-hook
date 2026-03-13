@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Score ticker">
         <div class="ticker-track">
@@ -97,7 +97,7 @@
         </aside>
 
         <main>
-          <section class="panel bevel" data-scene-fighter="inky" data-scene-fighter-name="Inky">
+          <section id="newest-score-feed" class="panel bevel" data-scene-fighter="inky" data-scene-fighter-name="Inky">
             <div class="section-head">
               <h2>Newest Score Feed</h2>
               <p>Visible rows: <span data-filter-count="scores">0</span></p>
@@ -122,7 +122,7 @@
                 </thead>
                 <tbody>
                   <tr data-score-row data-tags="world,first" data-search-text="satan's hollow matty thomas ground kontrol">
-                    <td>SATAN'S HOLLOW</td>
+                    <td><a href="./detail.html?type=score&id=satans-hollow-wr">SATAN'S HOLLOW</a></td>
                     <td>Matty Thomas</td>
                     <td>Ground Kontrol</td>
                     <td>1,000,000</td>
@@ -130,7 +130,7 @@
                     <td>100.00%</td>
                   </tr>
                   <tr data-score-row data-tags="world,first" data-search-text="arkanoid colin c brown cidercade dallas">
-                    <td>ARKANOID</td>
+                    <td><a href="./detail.html?type=score&id=arkanoid-wr">ARKANOID</a></td>
                     <td>Colin C Brown</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>85,920</td>
@@ -138,7 +138,7 @@
                     <td>100.00%</td>
                   </tr>
                   <tr data-score-row data-tags="world,first" data-search-text="mortal kombat ii craig roach arcade ufo">
-                    <td>MORTAL KOMBAT II</td>
+                    <td><a href="./detail.html?type=score&id=mk2-wr">MORTAL KOMBAT II</a></td>
                     <td>Craig Roach</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>5,004,780</td>
@@ -146,7 +146,7 @@
                     <td>100.00%</td>
                   </tr>
                   <tr data-score-row data-tags="second" data-search-text="pole position andrew iwaszko quarterworld">
-                    <td>POLE POSITION</td>
+                    <td><a href="./detail.html?type=score&id=pole-position-2nd">POLE POSITION</a></td>
                     <td>Andrew Iwaszko</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>58,600</td>
@@ -154,7 +154,7 @@
                     <td>96.31%</td>
                   </tr>
                   <tr data-score-row data-tags="second" data-search-text="q*bert andrew iwaszko quarterworld">
-                    <td>Q*BERT</td>
+                    <td><a href="./detail.html?type=score&id=qbert-2nd">Q*BERT</a></td>
                     <td>Andrew Iwaszko</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>2,946,700</td>
@@ -162,7 +162,7 @@
                     <td>95.28%</td>
                   </tr>
                   <tr data-score-row data-tags="first" data-search-text="asteroids andrew iwaszko quarterworld">
-                    <td>ASTEROIDS</td>
+                    <td><a href="./detail.html?type=score&id=asteroids-1st">ASTEROIDS</a></td>
                     <td>Andrew Iwaszko</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>3,940</td>
@@ -174,25 +174,31 @@
             </div>
           </section>
 
-          <section class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
+          <section id="newest-world-records" class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
             <div class="section-head">
               <h2>Newest World Records</h2>
               <p>Live list</p>
             </div>
             <div class="card-grid cols-3">
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Satan's Hollow world record" />
-                <h3>SATAN'S HOLLOW</h3>
+                <a class="media-link" href="./detail.html?type=score&id=satans-hollow-wr">
+                  <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Satan's Hollow world record" />
+                  <h3>SATAN'S HOLLOW</h3>
+                </a>
                 <p class="meta">Matty Thomas - 1,000,000</p>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Arkanoid world record" />
-                <h3>ARKANOID</h3>
+                <a class="media-link" href="./detail.html?type=score&id=arkanoid-wr">
+                  <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Arkanoid world record" />
+                  <h3>ARKANOID</h3>
+                </a>
                 <p class="meta">Colin C Brown - 85,920</p>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Mortal Kombat II world record" />
-                <h3>MORTAL KOMBAT II</h3>
+                <a class="media-link" href="./detail.html?type=score&id=mk2-wr">
+                  <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Mortal Kombat II world record" />
+                  <h3>MORTAL KOMBAT II</h3>
+                </a>
                 <p class="meta">Craig Roach - 5,004,780</p>
               </article>
             </div>
@@ -214,9 +220,13 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Events ticker">
         <div class="ticker-track">
@@ -87,31 +87,37 @@
         </aside>
 
         <main>
-          <section class="panel bevel" data-scene-fighter="inky" data-scene-fighter-name="Inky">
+          <section id="upcoming-events" class="panel bevel" data-scene-fighter="inky" data-scene-fighter-name="Inky">
             <div class="section-head">
               <h2>Upcoming Events</h2>
               <p>Schedule</p>
             </div>
             <div class="card-grid cols-3">
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved! game" />
-                <h3>Events have moved!</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=events-moved">
+                  <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved! game" />
+                  <h3>Events have moved!</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Upcoming Events" />
-                <h3>Upcoming Events</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=upcoming-events">
+                  <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Upcoming Events" />
+                  <h3>Upcoming Events</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Recent Events" />
-                <h3>Recent Events</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=recent-events">
+                  <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Recent Events" />
+                  <h3>Recent Events</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
             </div>
           </section>
 
-          <section class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
+          <section id="recent-events" class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
             <div class="section-head">
               <h2>Recent Events</h2>
               <p>Results</p>
@@ -129,21 +135,21 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Friday Classics Rush</td>
+                    <td><a href="./detail.html?type=event&id=friday-classics-rush">Friday Classics Rush</a></td>
                     <td>KEV</td>
                     <td>Ground Kontrol</td>
                     <td>GALAGA</td>
                     <td>156,934</td>
                   </tr>
                   <tr>
-                    <td>Saturday Maze Challenge</td>
+                    <td><a href="./detail.html?type=event&id=saturday-maze-challenge">Saturday Maze Challenge</a></td>
                     <td>GBU</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>MS. PAC-MAN</td>
                     <td>129,022</td>
                   </tr>
                   <tr>
-                    <td>Main Stage Fighter Night</td>
+                    <td><a href="./detail.html?type=event&id=main-stage-fighter-night">Main Stage Fighter Night</a></td>
                     <td>Craig Roach</td>
                     <td>Galloping Ghost Arcade</td>
                     <td>MORTAL KOMBAT II</td>
@@ -162,15 +168,15 @@
             <div class="game-grid">
               <article class="game-card">
                 <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Recent Events" />
-                <h3>Friday Classics Rush</h3>
+                <h3><a href="./detail.html?type=event&id=friday-classics-rush">Friday Classics Rush</a></h3>
               </article>
               <article class="game-card">
                 <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Recent Events" />
-                <h3>Saturday Maze Challenge</h3>
+                <h3><a href="./detail.html?type=event&id=saturday-maze-challenge">Saturday Maze Challenge</a></h3>
               </article>
               <article class="game-card">
                 <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Recent Events" />
-                <h3>Main Stage Fighter Night</h3>
+                <h3><a href="./detail.html?type=event&id=main-stage-fighter-night">Main Stage Fighter Night</a></h3>
               </article>
             </div>
           </section>
@@ -191,9 +197,13 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Game ticker">
         <div class="ticker-track">
@@ -106,15 +106,36 @@
               </div>
               <div>
                 <label for="genre">Genre</label>
-                <input id="genre" type="text" placeholder="Part of genre name" />
+                <input
+                  id="genre"
+                  data-search-group="games"
+                  data-search-target="[data-game-row]"
+                  data-search-key="genre"
+                  type="text"
+                  placeholder="Part of genre name"
+                />
               </div>
               <div>
                 <label for="manu">Manufacturer</label>
-                <input id="manu" type="text" placeholder="Part of manufacturer name" />
+                <input
+                  id="manu"
+                  data-search-group="games"
+                  data-search-target="[data-game-row]"
+                  data-search-key="manufacturer"
+                  type="text"
+                  placeholder="Part of manufacturer name"
+                />
               </div>
               <div>
                 <label for="year">Year</label>
-                <input id="year-input" type="text" placeholder="Part of year" />
+                <input
+                  id="year-input"
+                  data-search-group="games"
+                  data-search-target="[data-game-row]"
+                  data-search-key="year"
+                  type="text"
+                  placeholder="Part of year"
+                />
               </div>
               <div class="full">
                 <label>Type</label>
@@ -146,49 +167,49 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-game-row data-game-id="class1981" data-tags="arcade" data-search-text="ms. pac-man / galaga class of 1981 namco 1981">
+                  <tr id="game-class1981" data-game-row data-game-id="class1981" data-tags="arcade" data-search-text="ms. pac-man / galaga class of 1981 namco 1981 maze shooter">
                     <td>1</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></td>
+                    <td><a class="game-link" href="#game-class1981" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></td>
                     <td>323</td>
                     <td>Namco</td>
                     <td>1981</td>
                     <td>Arcade</td>
                   </tr>
-                  <tr data-game-row data-game-id="mspacman" data-tags="arcade" data-search-text="ms. pac-man bally midway 1981">
+                  <tr id="game-mspacman" data-game-row data-game-id="mspacman" data-tags="arcade" data-search-text="ms. pac-man bally midway 1981 maze">
                     <td>2</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="mspacman">MS. PAC-MAN</a></td>
+                    <td><a class="game-link" href="#game-mspacman" data-game-link="mspacman">MS. PAC-MAN</a></td>
                     <td>293</td>
                     <td>Bally Midway</td>
                     <td>1981</td>
                     <td>Arcade</td>
                   </tr>
-                  <tr data-game-row data-game-id="galaga" data-tags="arcade" data-search-text="galaga namco 1981">
+                  <tr id="game-galaga" data-game-row data-game-id="galaga" data-tags="arcade" data-search-text="galaga namco 1981 shooter">
                     <td>3</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="galaga">GALAGA</a></td>
+                    <td><a class="game-link" href="#game-galaga" data-game-link="galaga">GALAGA</a></td>
                     <td>291</td>
                     <td>Namco</td>
                     <td>1981</td>
                     <td>Arcade</td>
                   </tr>
-                  <tr data-game-row data-game-id="pacman" data-tags="arcade" data-search-text="pac-man namco 1980">
+                  <tr id="game-pacman" data-game-row data-game-id="pacman" data-tags="arcade" data-search-text="pac-man namco 1980 maze">
                     <td>4</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="pacman">PAC-MAN</a></td>
+                    <td><a class="game-link" href="#game-pacman" data-game-link="pacman">PAC-MAN</a></td>
                     <td>245</td>
                     <td>Namco</td>
                     <td>1980</td>
                     <td>Arcade</td>
                   </tr>
-                  <tr data-game-row data-game-id="donkeykong" data-tags="arcade" data-search-text="donkey kong nintendo 1981">
+                  <tr id="game-donkeykong" data-game-row data-game-id="donkeykong" data-tags="arcade" data-search-text="donkey kong nintendo 1981 platform">
                     <td>5</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="donkeykong">DONKEY KONG</a></td>
+                    <td><a class="game-link" href="#game-donkeykong" data-game-link="donkeykong">DONKEY KONG</a></td>
                     <td>194</td>
                     <td>Nintendo</td>
                     <td>1981</td>
                     <td>Arcade</td>
                   </tr>
-                  <tr data-game-row data-game-id="sf2ww" data-tags="arcade" data-search-text="street fighter ii the world warrior capcom 1991">
+                  <tr id="game-sf2ww" data-game-row data-game-id="sf2ww" data-tags="arcade" data-search-text="street fighter ii the world warrior capcom 1991 fighting">
                     <td>6</td>
-                    <td><a class="game-link" href="#game-profile" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></td>
+                    <td><a class="game-link" href="#game-sf2ww" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></td>
                     <td>142</td>
                     <td>Capcom</td>
                     <td>1991</td>
@@ -207,27 +228,27 @@
             <div class="game-grid">
               <article class="game-card" data-game-id="class1981">
                 <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></h3>
+                <h3><a class="game-link" href="#game-class1981" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></h3>
               </article>
               <article class="game-card" data-game-id="mspacman">
                 <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="mspacman">MS. PAC-MAN</a></h3>
+                <h3><a class="game-link" href="#game-mspacman" data-game-link="mspacman">MS. PAC-MAN</a></h3>
               </article>
               <article class="game-card" data-game-id="galaga">
                 <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="galaga">GALAGA</a></h3>
+                <h3><a class="game-link" href="#game-galaga" data-game-link="galaga">GALAGA</a></h3>
               </article>
               <article class="game-card" data-game-id="sf2ww">
                 <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter II screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></h3>
+                <h3><a class="game-link" href="#game-sf2ww" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></h3>
               </article>
-              <article class="game-card" data-game-id="sf3strike">
+              <article id="game-sf3strike" class="game-card" data-game-id="sf3strike">
                 <img src="https://www.aurcade.com/games/screens/00000537m.jpg" alt="Street Fighter III: 3rd Strike screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="sf3strike">STREET FIGHTER III: 3RD STRIKE</a></h3>
+                <h3><a class="game-link" href="#game-sf3strike" data-game-link="sf3strike">STREET FIGHTER III: 3RD STRIKE</a></h3>
               </article>
-              <article class="game-card" data-game-id="kof98">
+              <article id="game-kof98" class="game-card" data-game-id="kof98">
                 <img src="https://www.aurcade.com/games/screens/00000675m.jpg" alt="King of Fighters '98, The screenshot" />
-                <h3><a class="game-link" href="#game-profile" data-game-link="kof98">KING OF FIGHTERS '98, THE</a></h3>
+                <h3><a class="game-link" href="#game-kof98" data-game-link="kof98">KING OF FIGHTERS '98, THE</a></h3>
               </article>
             </div>
           </section>
@@ -317,9 +338,14 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
+
 
 
 

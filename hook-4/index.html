@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Live feed">
         <div class="ticker-track">
@@ -78,20 +78,24 @@
           <section class="panel bevel" data-scene-fighter="blinky" data-scene-fighter-name="Blinky">
             <h2>Most Popular Games</h2>
             <ul class="rail-list">
-              <li>Ms. Pac-Man / Galaga Class Of 1981 - 323 locations</li>
-              <li>Ms. Pac-Man - 293 locations</li>
-              <li>Galaga - 291 locations</li>
-              <li>Pac-Man - 245 locations</li>
-              <li>Donkey Kong - 194 locations</li>
+              <li><a href="./games.html#game-class1981">Ms. Pac-Man / Galaga Class Of 1981 - 323 locations</a></li>
+              <li><a href="./games.html#game-mspacman">Ms. Pac-Man - 293 locations</a></li>
+              <li><a href="./games.html#game-galaga">Galaga - 291 locations</a></li>
+              <li><a href="./games.html#game-pacman">Pac-Man - 245 locations</a></li>
+              <li><a href="./games.html#game-donkeykong">Donkey Kong - 194 locations</a></li>
             </ul>
             <div class="card-grid cols-2">
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 marquee" />
-                <p class="meta">Class Of 1981</p>
+                <a class="media-link" href="./games.html#game-class1981">
+                  <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 marquee" />
+                  <p class="meta">Class Of 1981</p>
+                </a>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man marquee" />
-                <p class="meta">Ms. Pac-Man</p>
+                <a class="media-link" href="./games.html#game-mspacman">
+                  <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man marquee" />
+                  <p class="meta">Ms. Pac-Man</p>
+                </a>
               </article>
             </div>
           </section>
@@ -99,10 +103,10 @@
           <section class="panel bevel">
             <h2>Recent Posts</h2>
             <ul class="todo-list">
-              <li>I have no idea what this is called or from</li>
-              <li>Mortal Kombat II New World Record?</li>
-              <li>Arcade in New York 1987 photo thread</li>
-              <li>Pole Position board repair notes</li>
+              <li><a href="./detail.html?type=forum&id=unknown-cabinet">I have no idea what this is called or from</a></li>
+              <li><a href="./detail.html?type=forum&id=mk2-world-record">Mortal Kombat II New World Record?</a></li>
+              <li><a href="./detail.html?type=forum&id=nyc-1987-photo-thread">Arcade in New York 1987 photo thread</a></li>
+              <li><a href="./detail.html?type=forum&id=pole-position-repair">Pole Position board repair notes</a></li>
             </ul>
           </section>
         </aside>
@@ -122,23 +126,29 @@
               </div>
             </article>
 
-            <article class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
+            <article id="newest-world-records" class="panel bevel" data-scene-fighter="pinky" data-scene-fighter-name="Pinky">
               <div class="section-head">
                 <h2>Newest World Records</h2>
                 <p>Ranked entries</p>
               </div>
               <div class="card-grid cols-3">
                 <article class="card">
-                  <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Satan's Hollow thumbnail" />
-                  <p class="meta">Satan's Hollow</p>
+                  <a class="media-link" href="./leaderboards.html#newest-world-records">
+                    <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Satan's Hollow thumbnail" />
+                    <p class="meta">Satan's Hollow</p>
+                  </a>
                 </article>
                 <article class="card">
-                  <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Arkanoid thumbnail" />
-                  <p class="meta">Arkanoid</p>
+                  <a class="media-link" href="./leaderboards.html#newest-world-records">
+                    <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Arkanoid thumbnail" />
+                    <p class="meta">Arkanoid</p>
+                  </a>
                 </article>
                 <article class="card">
-                  <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Mortal Kombat II thumbnail" />
-                  <p class="meta">Mortal Kombat II</p>
+                  <a class="media-link" href="./leaderboards.html#newest-world-records">
+                    <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Mortal Kombat II thumbnail" />
+                    <p class="meta">Mortal Kombat II</p>
+                  </a>
                 </article>
               </div>
               <div class="table-wrap">
@@ -176,31 +186,37 @@
             </article>
           </section>
 
-          <section class="panel bevel" data-scene-fighter="sue" data-scene-fighter-name="Sue">
+          <section id="upcoming-events" class="panel bevel" data-scene-fighter="sue" data-scene-fighter-name="Sue">
             <div class="section-head">
               <h2>Upcoming Events</h2>
               <p>Full Events Calendar</p>
             </div>
             <div class="card-grid cols-3">
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved! event game" />
-                <h3>Events have moved!</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=events-moved">
+                  <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved! event game" />
+                  <h3>Events have moved!</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Upcoming Events" />
-                <h3>Upcoming Events</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=upcoming-events">
+                  <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Upcoming Events" />
+                  <h3>Upcoming Events</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
               <article class="card">
-                <img src="https://www.aurcade.com/games/screens/00000009m.jpg" alt="Recent Events" />
-                <h3>Recent Events</h3>
-                <p class="meta">Events for all locations is now supported and can be found here.</p>
+                <a class="media-link" href="./detail.html?type=event&id=recent-events">
+                  <img src="https://www.aurcade.com/games/screens/00000009m.jpg" alt="Recent Events" />
+                  <h3>Recent Events</h3>
+                  <p class="meta">Events for all locations is now supported and can be found here.</p>
+                </a>
               </article>
             </div>
           </section>
 
-          <section class="panel bevel" data-scene-fighter="pacman" data-scene-fighter-name="Pac-Man">
+          <section id="recent-scores" class="panel bevel" data-scene-fighter="pacman" data-scene-fighter-name="Pac-Man">
             <div class="section-head">
               <h2>Recent Scores</h2>
               <p>Newest scores by location</p>
@@ -255,35 +271,27 @@
             </div>
           </section>
 
-          <section class="panel bevel">
+          <section id="public-forums" class="panel bevel">
             <div class="section-head">
-              <h2>Most Popular Screens</h2>
-              <p>Most Popular Games</p>
+              <h2>Public Forums</h2>
+              <p>Latest discussion</p>
             </div>
             <div class="game-grid">
               <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 screenshot" />
-                <h3>Class Of 1981</h3>
+                <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="General arcade discussion thread" />
+                <h3><a href="./detail.html?type=forum&id=unknown-cabinet">I have no idea what this is called or from</a></h3>
               </article>
               <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man screenshot" />
-                <h3>Ms. Pac-Man</h3>
+                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Mortal Kombat II thread" />
+                <h3><a href="./detail.html?type=forum&id=mk2-world-record">Mortal Kombat II New World Record?</a></h3>
               </article>
               <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screenshot" />
-                <h3>Galaga</h3>
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Arcade photo thread" />
+                <h3><a href="./detail.html?type=forum&id=nyc-1987-photo-thread">Arcade in New York 1987 photo thread</a></h3>
               </article>
               <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00000009m.jpg" alt="Donkey Kong screenshot" />
-                <h3>Donkey Kong</h3>
-              </article>
-              <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter II screenshot" />
-                <h3>Street Fighter II</h3>
-              </article>
-              <article class="game-card">
-                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="NHL Open Ice screenshot" />
-                <h3>NHL Open Ice</h3>
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Repair notes thread" />
+                <h3><a href="./detail.html?type=forum&id=pole-position-repair">Pole Position board repair notes</a></h3>
               </article>
             </div>
           </section>
@@ -304,9 +312,13 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
         <a data-page="events.html" href="./events.html">Events</a>
         <a data-page="community.html" href="./community.html">Public Forums</a>
         <a data-page="resources.html" href="./resources.html">About Us</a>
-        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+        <a class="cta-link" href="./leaderboards.html">Newest Scores</a>
       </nav>
       <section class="ticker bevel" aria-label="Location feed">
         <div class="ticker-track">
@@ -77,11 +77,25 @@
               </div>
               <div>
                 <label for="loc-city">City</label>
-                <input id="loc-city" type="text" placeholder="City" />
+                <input
+                  id="loc-city"
+                  data-search-group="locations"
+                  data-search-target="[data-location-row]"
+                  data-search-key="city"
+                  type="text"
+                  placeholder="City"
+                />
               </div>
               <div>
                 <label for="loc-state">State</label>
-                <input id="loc-state" type="text" placeholder="State" />
+                <input
+                  id="loc-state"
+                  data-search-group="locations"
+                  data-search-target="[data-location-row]"
+                  data-search-key="state"
+                  type="text"
+                  placeholder="State"
+                />
               </div>
             </form>
           </section>
@@ -126,36 +140,36 @@
                 </thead>
                 <tbody>
                   <tr data-location-row data-tags="arcade" data-search-text="ground kontrol arcade portland or">
-                    <td>Ground Kontrol</td>
+                    <td><a href="./detail.html?type=location&id=ground-kontrol">Ground Kontrol</a></td>
                     <td>Arcade</td>
                     <td>Portland</td>
                     <td>OR</td>
                     <td>82</td>
                   </tr>
                   <tr data-location-row data-tags="bar" data-search-text="cidercade dallas arcade bar tx">
-                    <td>Galloping Ghost Arcade</td>
+                    <td><a href="./detail.html?type=location&id=cidercade-dallas">Cidercade Dallas</a></td>
                     <td>Arcade Bar</td>
                     <td>Dallas</td>
                     <td>TX</td>
                     <td>140</td>
                   </tr>
                   <tr data-location-row data-tags="arcade" data-search-text="quarterworld arcade portland or">
-                    <td>Galloping Ghost Arcade</td>
+                    <td><a href="./detail.html?type=location&id=quarterworld-portland">QuarterWorld</a></td>
                     <td>Arcade</td>
                     <td>Portland</td>
                     <td>OR</td>
                     <td>65</td>
                   </tr>
                   <tr data-location-row data-tags="arcade" data-search-text="arcade ufo arcade austin tx">
-                    <td>Galloping Ghost Arcade</td>
+                    <td><a href="./detail.html?type=location&id=arcade-ufo-austin">Arcade UFO</a></td>
                     <td>Arcade</td>
                     <td>Austin</td>
                     <td>TX</td>
                     <td>57</td>
                   </tr>
                   <tr data-location-row data-tags="family" data-search-text="player 1 video game bar orlando fl">
-                    <td>Galloping Ghost Arcade</td>
-                    <td>Arcade</td>
+                    <td><a href="./detail.html?type=location&id=player-1-orlando">Player 1 Video Game Bar</a></td>
+                    <td>Family</td>
                     <td>Orlando</td>
                     <td>FL</td>
                     <td>72</td>
@@ -172,11 +186,11 @@
             </div>
             <div class="card-grid cols-2">
               <article class="card">
-                <h3>Ground Kontrol</h3>
+                <h3><a href="./detail.html?type=location&id=ground-kontrol">Ground Kontrol</a></h3>
                 <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screen at location" />
               </article>
               <article class="card">
-                <h3>Galloping Ghost Arcade</h3>
+                <h3><a href="./detail.html?type=location&id=galloping-ghost-brookfield">Galloping Ghost Arcade</a></h3>
                 <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter screen at location" />
               </article>
             </div>
@@ -198,9 +212,13 @@
       </footer>
     </div>
 
+    <script src="./data/site-data.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
+
+
+
 
 
 

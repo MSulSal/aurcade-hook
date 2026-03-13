@@ -1,89 +1,114 @@
 const yearNodes = document.querySelectorAll("[data-year]");
 const updatedNodes = document.querySelectorAll("[data-last-updated]");
 const navNodes = document.querySelectorAll("[data-page]");
+const siteData = window.AURCADE_DATA || {};
 
 const groupState = new Map();
 const sideCharacterAssets = {
-  mario: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/mario/main.png",
+  ryu: {
+    src: "assets/fighters/mvc/ryu.png",
+    scale: 1.02,
+    name: "Ryu",
+  },
+  chunli: {
+    src: "assets/fighters/mvc/chunli.png",
+    scale: 1.02,
+    name: "Chun-Li",
+  },
+  dante: {
+    src: "assets/fighters/mvc/dante.png",
     scale: 1.04,
-    name: "Mario",
+    name: "Dante",
   },
-  donkeykong: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/donkey_kong/main.png",
-    scale: 1.06,
-    name: "Donkey Kong",
-  },
-  link: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/link/main.png",
+  morrigan: {
+    src: "assets/fighters/mvc/morrigan.png",
     scale: 1.03,
-    name: "Link",
+    name: "Morrigan",
   },
-  samus: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/samus/main.png",
-    scale: 1.06,
-    name: "Samus",
+  zero: {
+    src: "assets/fighters/mvc/zero.png",
+    scale: 1.03,
+    name: "Zero",
   },
-  yoshi: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/yoshi/main.png",
+  x: {
+    src: "assets/fighters/mvc/x.png",
+    scale: 1.04,
+    name: "X",
+  },
+  striderhiryu: {
+    src: "assets/fighters/mvc/striderhiryu.png",
+    scale: 1.02,
+    name: "Strider Hiryu",
+  },
+  monsterhunter: {
+    src: "assets/fighters/mvc/monsterhunter.png",
+    scale: 1.03,
+    name: "Monster Hunter",
+  },
+  captainamerica: {
+    src: "assets/fighters/mvc/captainamerica.png",
+    scale: 1.02,
+    name: "Captain America",
+  },
+  spiderman: {
+    src: "assets/fighters/mvc/spiderman.png",
+    scale: 1.03,
+    name: "Spider-Man",
+  },
+  ironman: {
+    src: "assets/fighters/mvc/ironman.png",
+    scale: 1.02,
+    name: "Iron Man",
+  },
+  hulk: {
+    src: "assets/fighters/mvc/hulk.png",
     scale: 1.05,
-    name: "Yoshi",
+    name: "Hulk",
   },
-  kirby: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/kirby/main.png",
-    scale: 1.04,
-    name: "Kirby",
-  },
-  fox: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/fox/main.png",
+  doctorstrange: {
+    src: "assets/fighters/mvc/doctorstrange.png",
     scale: 1.03,
-    name: "Fox",
+    name: "Doctor Strange",
   },
-  pikachu: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/pikachu/main.png",
+  thanos: {
+    src: "assets/fighters/mvc/thanos.png",
     scale: 1.05,
-    name: "Pikachu",
+    name: "Thanos",
   },
-  luigi: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/luigi/main.png",
-    scale: 1.03,
-    name: "Luigi",
-  },
-  ness: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/ness/main.png",
-    scale: 1.03,
-    name: "Ness",
-  },
-  captainfalcon: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/captain_falcon/main.png",
+  venom: {
+    src: "assets/fighters/mvc/venom.png",
     scale: 1.04,
-    name: "Captain Falcon",
+    name: "Venom",
   },
-  jigglypuff: {
-    src: "https://www.smashbros.com/assets_v2/img/fighter/jigglypuff/main.png",
-    scale: 1.04,
-    name: "Jigglypuff",
+  blackpanther: {
+    src: "assets/fighters/mvc/blackpanther.png",
+    scale: 1.03,
+    name: "Black Panther",
   },
 };
 
-const sideCharacterRosters = {
-  "index.html": ["mario", "link", "kirby", "pikachu"],
-  "leaderboards.html": ["ness", "captainfalcon", "fox", "luigi"],
-  "games.html": ["link", "samus", "fox", "pikachu"],
-  "venues.html": ["yoshi", "donkeykong", "luigi", "mario"],
-  "events.html": ["captainfalcon", "fox", "samus", "ness"],
-  "community.html": ["luigi", "ness", "kirby", "jigglypuff"],
-  "resources.html": ["mario", "link", "donkeykong", "yoshi"],
+const sideCharacterWheels = {
+  left: ["ryu", "chunli", "dante", "morrigan", "zero", "x", "striderhiryu", "monsterhunter"],
+  right: ["captainamerica", "spiderman", "ironman", "hulk", "doctorstrange", "thanos", "venom", "blackpanther"],
 };
 
-const sideSceneBudget = {
-  "index.html": 3,
-  "leaderboards.html": 2,
-  "games.html": 4,
-  "venues.html": 2,
-  "events.html": 2,
-  "community.html": 2,
-  "resources.html": 2,
+const sideCharacterJapanese = {
+  ryu: "\u30ea\u30e5\u30a6",
+  chunli: "\u6625\u9e97",
+  dante: "\u30c0\u30f3\u30c6",
+  morrigan: "\u30e2\u30ea\u30ac\u30f3",
+  zero: "\u30bc\u30ed",
+  x: "\u30a8\u30c3\u30af\u30b9",
+  striderhiryu: "\u30b9\u30c8\u30e9\u30a4\u30c0\u30fc\u98db\u7adc",
+  monsterhunter: "\u30e2\u30f3\u30b9\u30bf\u30fc\u30cf\u30f3\u30bf\u30fc",
+  captainamerica: "\u30ad\u30e3\u30d7\u30c6\u30f3\u30fb\u30a2\u30e1\u30ea\u30ab",
+  spiderman: "\u30b9\u30d1\u30a4\u30c0\u30fc\u30de\u30f3",
+  ironman: "\u30a2\u30a4\u30a2\u30f3\u30de\u30f3",
+  hulk: "\u30cf\u30eb\u30af",
+  doctorstrange: "\u30c9\u30af\u30bf\u30fc\u30fb\u30b9\u30c8\u30ec\u30f3\u30b8",
+  thanos: "\u30b5\u30ce\u30b9",
+  venom: "\u30f4\u30a7\u30ce\u30e0",
+  blackpanther: "\u30d6\u30e9\u30c3\u30af\u30d1\u30f3\u30b5\u30fc",
 };
 
 function pad(value) {
@@ -126,7 +151,7 @@ function getState(groupName) {
   if (!groupState.has(groupName)) {
     groupState.set(groupName, {
       filter: "all",
-      query: "",
+      queries: {},
     });
   }
   return groupState.get(groupName);
@@ -147,7 +172,8 @@ function applyFilters(groupName) {
     const searchText = (item.dataset.searchText || item.textContent || "").toLowerCase();
 
     const passesFilter = state.filter === "all" || tags.includes(state.filter);
-    const passesQuery = state.query === "" || searchText.includes(state.query);
+    const activeQueries = Object.values(state.queries || {}).filter((value) => value && value !== "");
+    const passesQuery = activeQueries.every((query) => searchText.includes(query));
     const visible = passesFilter && passesQuery;
 
     item.hidden = !visible;
@@ -193,13 +219,31 @@ function initializeGroups() {
     }
     groups.add(groupName);
     const state = getState(groupName);
-    state.query = (input.value || "").trim().toLowerCase();
+    const queryKey = input.dataset.searchKey || input.id || "q";
+    state.queries[queryKey] = (input.value || "").trim().toLowerCase();
 
     input.addEventListener("input", () => {
-      state.query = (input.value || "").trim().toLowerCase();
+      state.queries[queryKey] = (input.value || "").trim().toLowerCase();
       applyFilters(groupName);
     });
   });
+
+  const globalQuery = (new URLSearchParams(window.location.search).get("q") || "").trim();
+  if (globalQuery !== "") {
+    const page = getCurrentPage();
+    const prefillTarget =
+      page === "venues.html" ? document.getElementById("loc-name") : document.getElementById("name");
+
+    if (prefillTarget instanceof HTMLInputElement && prefillTarget.value.trim() === "") {
+      prefillTarget.value = globalQuery;
+      const groupName = prefillTarget.dataset.searchGroup || "";
+      if (groupName !== "") {
+        const state = getState(groupName);
+        const queryKey = prefillTarget.dataset.searchKey || prefillTarget.id || "q";
+        state.queries[queryKey] = globalQuery.toLowerCase();
+      }
+    }
+  }
 
   groups.forEach((groupName) => {
     const state = getState(groupName);
@@ -249,6 +293,73 @@ function initializeHeader() {
     if (node.dataset.page === page) {
       node.classList.add("active");
     }
+  });
+}
+
+function initializeGlobalSearch() {
+  const utilityStrip = document.querySelector(".utility-strip");
+  if (!(utilityStrip instanceof HTMLElement)) {
+    return;
+  }
+
+  const existing = utilityStrip.querySelector(".global-search");
+  if (existing) {
+    return;
+  }
+
+  const searchForm = document.createElement("form");
+  searchForm.className = "global-search";
+  searchForm.method = "get";
+  searchForm.action = "./games.html";
+  searchForm.innerHTML = [
+    '<label for="global-search-input">Search</label>',
+    '<input id="global-search-input" name="q" type="search" autocomplete="off" placeholder="Game, location, event, forum..." />',
+    '<button type="submit">Go</button>',
+  ].join("");
+  utilityStrip.appendChild(searchForm);
+
+  const params = new URLSearchParams(window.location.search);
+  const incomingQuery = (params.get("q") || "").trim();
+  const input = searchForm.querySelector("input");
+  if (input instanceof HTMLInputElement && incomingQuery !== "") {
+    input.value = incomingQuery;
+  }
+
+  const gameText = Object.values(siteData.games || {})
+    .map((game) => `${game.name || ""} ${game.maker || ""} ${game.genre || ""}`.toLowerCase())
+    .join(" ");
+  const locationText = (siteData.locations || [])
+    .map((location) => `${location.name || ""} ${location.city || ""} ${location.state || ""}`.toLowerCase())
+    .join(" ");
+  const eventText = (siteData.events || [])
+    .map((eventEntry) => `${eventEntry.title || ""} ${eventEntry.location || ""} ${eventEntry.game || ""}`.toLowerCase())
+    .join(" ");
+  const forumText = (siteData.forums || [])
+    .map((topic) => `${topic.title || ""} ${topic.section || ""}`.toLowerCase())
+    .join(" ");
+
+  searchForm.addEventListener("submit", (event) => {
+    const formInput = searchForm.querySelector('input[name="q"]');
+    if (!(formInput instanceof HTMLInputElement)) {
+      return;
+    }
+    const query = formInput.value.trim().toLowerCase();
+    if (query === "") {
+      return;
+    }
+
+    let target = "./games.html";
+    if (locationText.includes(query)) {
+      target = "./venues.html";
+    } else if (eventText.includes(query)) {
+      target = "./events.html";
+    } else if (forumText.includes(query)) {
+      target = "./community.html";
+    } else if (gameText.includes(query)) {
+      target = "./games.html";
+    }
+
+    searchForm.action = target;
   });
 }
 
@@ -330,7 +441,7 @@ function initializeGameProfiles() {
     return;
   }
 
-  const gameDb = {
+  const fallbackGameDb = {
     class1981: {
       name: "MS. PAC-MAN / GALAGA CLASS OF 1981",
       maker: "Namco",
@@ -476,6 +587,7 @@ function initializeGameProfiles() {
       ],
     },
   };
+  const gameDb = Object.keys(siteData.games || {}).length > 0 ? siteData.games : fallbackGameDb;
 
   const profileSection = document.getElementById("game-profile");
   if (!profileSection) {
@@ -556,8 +668,12 @@ function initializeGameProfiles() {
   }
 
   document.querySelectorAll("[data-game-link]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
+    const gameId = link.dataset.gameLink || "";
+    if (gameDb[gameId]) {
+      link.setAttribute("href", `#game-${gameId}`);
+    }
+
+    link.addEventListener("click", () => {
       const gameId = link.dataset.gameLink || "";
       if (!gameDb[gameId]) {
         return;
@@ -582,443 +698,249 @@ function initializeGameProfiles() {
   const initialHash = (window.location.hash || "").replace("#game-", "");
   const initialGame = gameDb[initialHash] ? initialHash : "sf2ww";
   renderGame(initialGame);
+
+  window.addEventListener("hashchange", () => {
+    const hashGame = (window.location.hash || "").replace("#game-", "");
+    if (gameDb[hashGame]) {
+      renderGame(hashGame);
+    }
+  });
 }
 
 function initializeSideCharacters() {
-  if (window.matchMedia("(max-width: 1120px)").matches) {
+  if (window.matchMedia("(max-width: 1260px)").matches) {
     return;
   }
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const page = getCurrentPage();
-  const roster = sideCharacterRosters[page] || [
-    "mario",
-    "link",
-    "samus",
-    "kirby",
-    "fox",
-    "pikachu",
-    "luigi",
-    "ness",
-  ];
-  const sceneLimit = Math.max(
-    1,
-    Math.min(
-      sideSceneBudget[page] || 3,
-      [...document.querySelectorAll(".page-grid main .panel, .page-grid aside .panel")].length,
-    ),
-  );
-
-  const panels = [...document.querySelectorAll(".page-grid main .panel, .page-grid aside .panel")]
-    .map((node) => {
-      const rect = node.getBoundingClientRect();
-      if (rect.height < 120) {
-        return null;
-      }
-      return {
-        node,
-        rect,
-        title:
-          (node.querySelector("h2, h3")?.textContent || node.getAttribute("aria-label") || "")
-            .trim()
-            .toLowerCase(),
-      };
-    })
-    .filter(Boolean);
-
-  const primaryPanels = panels.filter((entry) => entry.node.closest("main"));
-  const pool = primaryPanels.length >= 3 ? primaryPanels : panels;
-  const selectedNodes = [];
-  const selectedSet = new Set();
-
-  for (let step = 0; step < sceneLimit; step += 1) {
-    const rawIndex = Math.round(((step + 0.45) * pool.length) / sceneLimit - 1);
-    const index = Math.max(0, Math.min(pool.length - 1, rawIndex));
-    const candidate = pool[index];
-    if (!candidate || selectedSet.has(candidate.node)) {
-      continue;
-    }
-    selectedSet.add(candidate.node);
-    selectedNodes.push(candidate);
-  }
-
-  if (selectedNodes.length === 0 && pool[0]) {
-    selectedNodes.push(pool[0]);
-  }
-
-  const availableRoster = roster.filter(
-    (candidate, index) => sideCharacterAssets[candidate] && roster.indexOf(candidate) === index,
-  );
-  if (availableRoster.length === 0) {
-    return;
-  }
-  let rosterCursor = 0;
-  let previousFighter = "";
-  const usedFighters = new Set();
-
-  function hasUniqueCapacity() {
-    return usedFighters.size < availableRoster.length;
-  }
-
-  function commitFighter(candidate) {
-    previousFighter = candidate;
-    usedFighters.add(candidate);
-    return candidate;
-  }
-
-  function pickFallbackFighter() {
-    for (let pass = 0; pass < availableRoster.length; pass += 1) {
-      const candidate = availableRoster[(rosterCursor + pass) % availableRoster.length];
-      if (hasUniqueCapacity() && usedFighters.has(candidate)) {
-        continue;
-      }
-      if (candidate === previousFighter && availableRoster.length > 1) {
-        continue;
-      }
-      rosterCursor = (rosterCursor + pass + 1) % availableRoster.length;
-      return commitFighter(candidate);
-    }
-
-    for (let pass = 0; pass < availableRoster.length; pass += 1) {
-      const candidate = availableRoster[(rosterCursor + pass) % availableRoster.length];
-      if (candidate === previousFighter && availableRoster.length > 1) {
-        continue;
-      }
-      rosterCursor = (rosterCursor + pass + 1) % availableRoster.length;
-      return commitFighter(candidate);
-    }
-
-    return commitFighter(availableRoster[0]);
-  }
-
-  function pickByTitle(title) {
-    const weightedCandidates = [];
-    if (/(game|profile|fighter|screens|browse games)/.test(title)) {
-      weightedCandidates.push("link", "samus", "fox", "mario");
-    }
-    if (/(score|record|leader|rank|high score|newest)/.test(title)) {
-      weightedCandidates.push("ness", "captainfalcon", "fox", "luigi");
-    }
-    if (/(event|tournament|calendar|bracket|ladder)/.test(title)) {
-      weightedCandidates.push("captainfalcon", "fox", "samus", "ness");
-    }
-    if (/(forum|community|discussion|posts|news)/.test(title)) {
-      weightedCandidates.push("luigi", "ness", "kirby", "jigglypuff");
-    }
-    if (/(location|venue|city|state|gallery|map)/.test(title)) {
-      weightedCandidates.push("yoshi", "donkeykong", "luigi", "mario");
-    }
-    if (/(about|resource|project|system|collection)/.test(title)) {
-      weightedCandidates.push("mario", "link", "donkeykong", "yoshi");
-    }
-    if (/(pac-?man|galaga|maze|ghost)/.test(title)) {
-      weightedCandidates.push("pikachu", "kirby", "fox");
-    }
-
-    for (const candidate of weightedCandidates) {
-      if (!sideCharacterAssets[candidate]) {
-        continue;
-      }
-      if (!availableRoster.includes(candidate)) {
-        continue;
-      }
-      if (hasUniqueCapacity() && usedFighters.has(candidate)) {
-        continue;
-      }
-      if (candidate === previousFighter && availableRoster.length > 1) {
-        continue;
-      }
-      return commitFighter(candidate);
-    }
-
-    return pickFallbackFighter();
-  }
-
-  const resolvedScenes = selectedNodes
-    .map((entry, index) => {
-      const explicit = (entry.node.dataset.sceneFighter || "").toLowerCase();
-      let fighter = "";
-
-      if (page === "games.html" && sideCharacterAssets[explicit]) {
-        fighter = explicit;
-        if (hasUniqueCapacity() && usedFighters.has(fighter)) {
-          fighter = pickFallbackFighter();
-        } else {
-          commitFighter(fighter);
-        }
-      } else {
-        fighter = pickByTitle(entry.title || `scene-${index + 1}`);
-      }
-
-      const asset = sideCharacterAssets[fighter];
-      if (!asset) {
-        return null;
-      }
-
-      return {
-        node: entry.node,
-        fighter,
-        fighterName: asset.name || fighter,
-        emphasis: entry.node.closest(".hero-grid") ? 1.07 : 1,
-      };
-    })
-    .filter(Boolean);
-
-  if (resolvedScenes.length === 0) {
+  const leftRoster = [...new Set(sideCharacterWheels.left)].filter((key) => sideCharacterAssets[key]);
+  const rightRoster = [...new Set(sideCharacterWheels.right)].filter((key) => sideCharacterAssets[key]);
+  if (leftRoster.length === 0 || rightRoster.length === 0) {
     return;
   }
 
-  const popupLayer = document.createElement("div");
-  popupLayer.className = "side-popups";
-  popupLayer.innerHTML = [
-    '<div class="side-character side-left slot-a" aria-hidden="true">',
-    '  <img alt="" />',
-    "</div>",
-    '<div class="side-character side-right slot-b" aria-hidden="true">',
-    '  <img alt="" />',
-    "</div>",
+  const hud = document.createElement("div");
+  hud.className = "selector-hud";
+  hud.innerHTML = [
+    '<aside class="selector-wheel wheel-left" data-wheel="left" aria-label="Left character wheel">',
+    '  <div class="wheel-row">',
+    '    <div class="selector-card" data-wheel-card="left">',
+    '      <img class="silhouette" alt="" />',
+    '      <img class="sprite" alt="" />',
+    '      <span class="name-ring name-ring-front" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="left"></span><span class="name-ring-text" data-wheel-ring-front-clone="left"></span></span>',
+    "      </span>",
+    '      <span class="holo-layer" aria-hidden="true"></span>',
+    '    </div>',
+    '  </div>',
+    '</aside>',
+    '<aside class="selector-wheel wheel-right" data-wheel="right" aria-label="Right character wheel">',
+    '  <div class="wheel-row">',
+    '    <div class="selector-card" data-wheel-card="right">',
+    '      <img class="silhouette" alt="" />',
+    '      <img class="sprite" alt="" />',
+    '      <span class="name-ring name-ring-front" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="right"></span><span class="name-ring-text" data-wheel-ring-front-clone="right"></span></span>',
+    "      </span>",
+    '      <span class="holo-layer" aria-hidden="true"></span>',
+    '    </div>',
+    '  </div>',
+    '</aside>',
   ].join("");
-  document.body.appendChild(popupLayer);
+  document.body.appendChild(hud);
 
-  const characterNodes = [...popupLayer.querySelectorAll(".side-character")];
-  if (characterNodes.length === 0) {
+  const wheelNodes = {
+    left: hud.querySelector('[data-wheel="left"]'),
+    right: hud.querySelector('[data-wheel="right"]'),
+  };
+
+  const wheelSlots = {
+    left: {
+      card: hud.querySelector('[data-wheel-card="left"]'),
+      sprite: hud.querySelector('[data-wheel-card="left"] .sprite'),
+      silhouette: hud.querySelector('[data-wheel-card="left"] .silhouette'),
+      ringFront: hud.querySelector('[data-wheel-ring-front="left"]'),
+      ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="left"]'),
+      holo: hud.querySelector('[data-wheel-card="left"] .holo-layer'),
+    },
+    right: {
+      card: hud.querySelector('[data-wheel-card="right"]'),
+      sprite: hud.querySelector('[data-wheel-card="right"] .sprite'),
+      silhouette: hud.querySelector('[data-wheel-card="right"] .silhouette'),
+      ringFront: hud.querySelector('[data-wheel-ring-front="right"]'),
+      ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="right"]'),
+      holo: hud.querySelector('[data-wheel-card="right"] .holo-layer'),
+    },
+  };
+
+  if (
+    !(wheelNodes.left instanceof HTMLElement) ||
+    !(wheelNodes.right instanceof HTMLElement) ||
+    !(wheelSlots.left.card instanceof HTMLElement) ||
+    !(wheelSlots.right.card instanceof HTMLElement) ||
+    !(wheelSlots.left.sprite instanceof HTMLImageElement) ||
+    !(wheelSlots.left.silhouette instanceof HTMLImageElement) ||
+    !(wheelSlots.right.sprite instanceof HTMLImageElement) ||
+    !(wheelSlots.right.silhouette instanceof HTMLImageElement) ||
+    !(wheelSlots.left.ringFront instanceof Element) ||
+    !(wheelSlots.left.ringFrontClone instanceof Element) ||
+    !(wheelSlots.right.ringFront instanceof Element) ||
+    !(wheelSlots.right.ringFrontClone instanceof Element) ||
+    !(wheelSlots.left.holo instanceof HTMLElement) ||
+    !(wheelSlots.right.holo instanceof HTMLElement)
+  ) {
+    hud.remove();
     return;
   }
-  characterNodes.forEach((node) => {
-    const image = node.querySelector("img");
-    if (image) {
-      image.decoding = "async";
-    }
-  });
 
-  Object.values(sideCharacterAssets).forEach((asset) => {
-    if (!asset || !asset.src) {
+  function preloadUrl(url) {
+    if (!url) {
       return;
     }
-    const preloadImage = new Image();
-    preloadImage.decoding = "async";
-    preloadImage.src = asset.src;
-  });
-
-  let activeSceneIndex = -1;
-  let activeSlotIndex = -1;
-  let hasUserScrolled = false;
-  const initialScrollY = window.scrollY || window.pageYOffset || 0;
-  const introThreshold = 72;
-  const sceneSwitchDelay = reduceMotion ? 0 : 220;
-  let lastSceneSwitchAt = 0;
-  let queuedSceneIndex = -1;
-  let queueTimer = null;
-  let rafHandle = null;
-  let transitionToken = 0;
-
-  function updateCharacterEconomy() {
-    const shellNode = document.querySelector(".site-shell");
-    const shellWidth = shellNode?.getBoundingClientRect().width || window.innerWidth;
-    const gutter = Math.max(0, (window.innerWidth - shellWidth) / 2);
-
-    const compact = gutter < 120;
-    const roomy = gutter > 210;
-    const sizeFactor = roomy ? 1 : compact ? 0.8 : 0.9;
-    const visibleShift = roomy ? 11 : compact ? 2 : 7;
-    const alpha = roomy ? 0.97 : compact ? 0.78 : 0.88;
-
-    popupLayer.style.setProperty("--side-size-factor", String(sizeFactor));
-    popupLayer.style.setProperty("--side-visible-shift", `${visibleShift}%`);
-    popupLayer.style.setProperty("--side-alpha", alpha.toFixed(2));
+    const image = new Image();
+    image.decoding = "async";
+    image.src = url;
   }
 
-  function enterCharacter(node) {
+  Object.values(sideCharacterAssets).forEach((asset) => preloadUrl(asset?.src));
+  const state = {
+    left: 0,
+    right: 0,
+  };
+
+  function normalizeIndex(index, length) {
+    return ((index % length) + length) % length;
+  }
+
+  function pulseCard(node) {
+    if (reduceMotion) {
+      return;
+    }
     node.classList.remove("is-entering");
-    // Triggering layout reflow ensures the class animation restarts on each scene change.
     void node.offsetWidth;
     node.classList.add("is-entering");
     window.setTimeout(() => {
       node.classList.remove("is-entering");
-    }, 460);
+    }, 360);
   }
 
-  function hideCharacters() {
-    characterNodes.forEach((node) => {
-      node.classList.remove("is-visible", "is-bobbing", "is-entering", "is-exiting");
-      node.style.zIndex = "0";
-      delete node.dataset.transitionToken;
-    });
-    activeSceneIndex = -1;
-    activeSlotIndex = -1;
-    queuedSceneIndex = -1;
-    if (queueTimer) {
-      window.clearTimeout(queueTimer);
-      queueTimer = null;
-    }
-  }
-
-  function setScene(index) {
-    if (index === activeSceneIndex) {
+  function renderCharacter(side, index) {
+    const roster = side === "left" ? leftRoster : rightRoster;
+    const slot = wheelSlots[side];
+    if (!slot || roster.length === 0) {
       return;
     }
 
-    const scene = resolvedScenes[index] || resolvedScenes[0];
-    if (!scene) {
-      return;
-    }
-
-    const asset = sideCharacterAssets[scene.fighter];
+    const normalized = normalizeIndex(index, roster.length);
+    state[side] = normalized;
+    const characterKey = roster[normalized];
+    const asset = sideCharacterAssets[characterKey];
     if (!asset) {
       return;
     }
 
-    const now = window.performance?.now ? window.performance.now() : Date.now();
-    if (sceneSwitchDelay > 0 && activeSceneIndex >= 0 && now - lastSceneSwitchAt < sceneSwitchDelay) {
-      queuedSceneIndex = index;
-      if (!queueTimer) {
-        const delay = Math.max(16, sceneSwitchDelay - (now - lastSceneSwitchAt));
-        queueTimer = window.setTimeout(() => {
-          queueTimer = null;
-          const next = queuedSceneIndex;
-          queuedSceneIndex = -1;
-          if (next >= 0) {
-            setScene(next);
-          }
-        }, delay);
-      }
+    slot.sprite.src = asset.src;
+    slot.sprite.alt = asset.name || characterKey;
+    slot.silhouette.src = asset.src;
+    slot.silhouette.alt = "";
+    slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.04));
+    slot.card.style.setProperty("--fighter-image", `url("${asset.src}")`);
+    const ringLabelEn = (asset.name || characterKey).toUpperCase();
+    const ringLabelJp = sideCharacterJapanese[characterKey] || ringLabelEn;
+    const ringText = ` ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  * `;
+    slot.ringFront.textContent = ringText;
+    slot.ringFrontClone.textContent = ringText;
+    const ringSpeed = `${18 + Math.floor(Math.random() * 7)}s`;
+    const ringDelay = `-${Math.floor(Math.random() * 6)}s`;
+    slot.card.style.setProperty("--ring-speed", ringSpeed);
+    slot.card.style.setProperty("--ring-delay", ringDelay);
+    pulseCard(slot.card);
+  }
+
+  function transitionCharacter(side, index) {
+    const slot = wheelSlots[side];
+    if (!slot || reduceMotion) {
+      renderCharacter(side, index);
       return;
     }
 
-    const nextSlotIndex = activeSlotIndex < 0 ? 0 : (activeSlotIndex + 1) % characterNodes.length;
-    const nextSlot = characterNodes[nextSlotIndex];
-    const nextImage = nextSlot?.querySelector("img");
-    if (!nextSlot || !nextImage) {
+    slot.ringFront.textContent = "";
+    slot.ringFrontClone.textContent = "";
+    slot.card.classList.add("is-fading");
+    window.setTimeout(() => {
+      renderCharacter(side, index);
+      slot.card.classList.remove("is-fading");
+    }, 320);
+  }
+
+  function stepCharacter(side, direction) {
+    transitionCharacter(side, state[side] + direction);
+  }
+
+  function randomNextIndex(rosterLength, currentIndex) {
+    if (rosterLength <= 1) {
+      return currentIndex;
+    }
+    let next = currentIndex;
+    while (next === currentIndex) {
+      next = Math.floor(Math.random() * rosterLength);
+    }
+    return next;
+  }
+
+  window.addEventListener("keydown", (event) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+    const target = event.target;
+    if (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      (target instanceof HTMLElement && target.isContentEditable)
+    ) {
       return;
     }
 
-    const previousSlot = activeSlotIndex >= 0 ? characterNodes[activeSlotIndex] : null;
-    const token = String(++transitionToken);
-
-    if (previousSlot) {
-      previousSlot.dataset.transitionToken = token;
-      previousSlot.classList.remove("is-bobbing", "is-entering");
-      previousSlot.classList.add("is-exiting");
-      previousSlot.style.zIndex = "1";
-      window.setTimeout(() => {
-        if (previousSlot.dataset.transitionToken !== token) {
-          return;
-        }
-        previousSlot.classList.remove("is-visible", "is-exiting");
-        previousSlot.style.zIndex = "0";
-      }, 460);
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      stepCharacter("left", -1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      stepCharacter("right", 1);
     }
-
-    nextSlot.dataset.transitionToken = token;
-    nextImage.src = asset.src;
-    nextImage.alt = scene.fighterName || asset.name || scene.fighter;
-    nextImage.style.setProperty("--fighter-scale", String((asset.scale || 1.2) * (scene.emphasis || 1)));
-    nextSlot.classList.remove("side-left", "side-right", "is-exiting", "is-visible", "is-bobbing");
-    nextSlot.classList.add(index % 2 === 0 ? "side-left" : "side-right");
-    enterCharacter(nextSlot);
-    nextSlot.classList.add("is-visible");
-    nextSlot.classList.toggle("is-bobbing", !reduceMotion);
-    nextSlot.style.zIndex = "2";
-
-    activeSlotIndex = nextSlotIndex;
-    activeSceneIndex = index;
-    lastSceneSwitchAt = window.performance?.now ? window.performance.now() : Date.now();
-  }
-
-  function pickBestSceneIndex() {
-    let selectedIndex = -1;
-    let highestRatio = 0;
-    visibility.forEach((ratio, index) => {
-      if (ratio > highestRatio) {
-        highestRatio = ratio;
-        selectedIndex = index;
-      }
-    });
-
-    if (selectedIndex >= 0) {
-      return selectedIndex;
-    }
-
-    let fallbackIndex = 0;
-    let bestDistance = Number.POSITIVE_INFINITY;
-    const anchorY = window.innerHeight * 0.48;
-    resolvedScenes.forEach((scene, index) => {
-      const rect = scene.node.getBoundingClientRect();
-      const centerY = rect.top + rect.height / 2;
-      const distance = Math.abs(centerY - anchorY);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        fallbackIndex = index;
-      }
-    });
-    return fallbackIndex;
-  }
-
-  function updateSceneFromScrollState() {
-    const currentY = window.scrollY || window.pageYOffset || 0;
-    if (!hasUserScrolled && Math.abs(currentY - initialScrollY) > 24) {
-      hasUserScrolled = true;
-    }
-
-    if (!hasUserScrolled || currentY <= introThreshold) {
-      hideCharacters();
-      return;
-    }
-
-    setScene(pickBestSceneIndex());
-  }
-
-  function scheduleSceneUpdate() {
-    if (rafHandle) {
-      return;
-    }
-    rafHandle = window.requestAnimationFrame(() => {
-      rafHandle = null;
-      updateSceneFromScrollState();
-    });
-  }
-
-  const visibility = new Map();
-  resolvedScenes.forEach((scene, index) => {
-    scene.node.dataset.sceneIndex = String(index);
-    visibility.set(index, 0);
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const index = Number(entry.target.dataset.sceneIndex || "-1");
-        if (Number.isNaN(index)) {
-          return;
-        }
+  const initialLeft = Math.floor(Math.random() * leftRoster.length);
+  let initialRight = Math.floor(Math.random() * rightRoster.length);
+  if (leftRoster.length > 0 && rightRoster.length > 0) {
+    let guard = 0;
+    while (rightRoster[initialRight] === leftRoster[initialLeft] && guard < 24) {
+      initialRight = Math.floor(Math.random() * rightRoster.length);
+      guard += 1;
+    }
+  }
 
-        visibility.set(index, entry.isIntersecting ? entry.intersectionRatio : 0);
-      });
+  renderCharacter("left", initialLeft);
+  renderCharacter("right", initialRight);
 
-      scheduleSceneUpdate();
-    },
-    {
-      root: null,
-      threshold: [0, 0.15, 0.35, 0.55, 0.75],
-      rootMargin: "-24% 0px -40% 0px",
-    },
-  );
-
-  resolvedScenes.forEach((scene) => {
-    observer.observe(scene.node);
-  });
-
-  updateCharacterEconomy();
-  window.addEventListener("scroll", scheduleSceneUpdate, { passive: true });
-  window.addEventListener("resize", () => {
-    updateCharacterEconomy();
-    scheduleSceneUpdate();
-  });
-  updateSceneFromScrollState();
+  if (!reduceMotion) {
+    const randomWheelLoopMs = 5600;
+    window.setInterval(() => {
+      const side = Math.random() < 0.5 ? "left" : "right";
+      const rosterLength = side === "left" ? leftRoster.length : rightRoster.length;
+      const next = randomNextIndex(rosterLength, state[side]);
+      transitionCharacter(side, next);
+    }, randomWheelLoopMs);
+  }
 }
 
 initializeHeader();
+initializeGlobalSearch();
 initializeGroups();
 initializeVotes();
 initializeContentViews();
 initializeGameProfiles();
 initializeSideCharacters();
+
+
