@@ -4,61 +4,76 @@ const navNodes = document.querySelectorAll("[data-page]");
 
 const groupState = new Map();
 const sideCharacterAssets = {
-  ryu: {
-    src: "./assets/fighters/ryu3.gif",
-    scale: 1.12,
-    name: "Ryu",
+  mario: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/mario/main.png",
+    scale: 1.04,
+    name: "Mario",
   },
-  chunli: {
-    src: "./assets/fighters/chun3.gif",
-    scale: 1.16,
-    name: "Chun-Li",
+  donkeykong: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/donkey_kong/main.png",
+    scale: 1.06,
+    name: "Donkey Kong",
   },
-  alex: {
-    src: "./assets/fighters/alex.gif",
-    scale: 1.15,
-    name: "Alex",
+  link: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/link/main.png",
+    scale: 1.03,
+    name: "Link",
   },
-  dudley: {
-    src: "./assets/fighters/dudley.gif",
-    scale: 1.14,
-    name: "Dudley",
+  samus: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/samus/main.png",
+    scale: 1.06,
+    name: "Samus",
   },
-  pacman: {
-    src: "https://www.aurcade.com/icons/iconPacman.gif",
+  yoshi: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/yoshi/main.png",
     scale: 1.05,
-    name: "Pac-Man",
+    name: "Yoshi",
   },
-  blinky: {
-    src: "https://www.aurcade.com/icons/iconGhost2.gif",
-    scale: 1.05,
-    name: "Blinky",
+  kirby: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/kirby/main.png",
+    scale: 1.04,
+    name: "Kirby",
   },
-  pinky: {
-    src: "https://www.aurcade.com/icons/iconGhost3.gif",
-    scale: 1.05,
-    name: "Pinky",
+  fox: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/fox/main.png",
+    scale: 1.03,
+    name: "Fox",
   },
-  inky: {
-    src: "https://www.aurcade.com/icons/iconGhost1.gif",
+  pikachu: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/pikachu/main.png",
     scale: 1.05,
-    name: "Inky",
+    name: "Pikachu",
   },
-  sue: {
-    src: "https://www.aurcade.com/icons/iconGhost4.gif",
-    scale: 1.05,
-    name: "Sue",
+  luigi: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/luigi/main.png",
+    scale: 1.03,
+    name: "Luigi",
+  },
+  ness: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/ness/main.png",
+    scale: 1.03,
+    name: "Ness",
+  },
+  captainfalcon: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/captain_falcon/main.png",
+    scale: 1.04,
+    name: "Captain Falcon",
+  },
+  jigglypuff: {
+    src: "https://www.smashbros.com/assets_v2/img/fighter/jigglypuff/main.png",
+    scale: 1.04,
+    name: "Jigglypuff",
   },
 };
 
 const sideCharacterRosters = {
-  "index.html": ["ryu", "chunli", "alex", "pacman"],
-  "leaderboards.html": ["dudley", "ryu", "chunli", "alex"],
-  "games.html": ["ryu", "chunli", "alex", "dudley"],
-  "venues.html": ["alex", "chunli", "ryu", "dudley"],
-  "events.html": ["alex", "chunli", "dudley", "ryu"],
-  "community.html": ["dudley", "chunli", "ryu", "alex"],
-  "resources.html": ["ryu", "alex", "chunli", "dudley"],
+  "index.html": ["mario", "link", "kirby", "pikachu"],
+  "leaderboards.html": ["ness", "captainfalcon", "fox", "luigi"],
+  "games.html": ["link", "samus", "fox", "pikachu"],
+  "venues.html": ["yoshi", "donkeykong", "luigi", "mario"],
+  "events.html": ["captainfalcon", "fox", "samus", "ness"],
+  "community.html": ["luigi", "ness", "kirby", "jigglypuff"],
+  "resources.html": ["mario", "link", "donkeykong", "yoshi"],
 };
 
 const sideSceneBudget = {
@@ -575,7 +590,16 @@ function initializeSideCharacters() {
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const page = getCurrentPage();
-  const roster = sideCharacterRosters[page] || ["ryu", "chunli", "alex", "dudley", "pacman"];
+  const roster = sideCharacterRosters[page] || [
+    "mario",
+    "link",
+    "samus",
+    "kirby",
+    "fox",
+    "pikachu",
+    "luigi",
+    "ness",
+  ];
   const sceneLimit = Math.max(
     1,
     Math.min(
@@ -669,25 +693,25 @@ function initializeSideCharacters() {
   function pickByTitle(title) {
     const weightedCandidates = [];
     if (/(game|profile|fighter|screens|browse games)/.test(title)) {
-      weightedCandidates.push("ryu", "chunli", "alex", "dudley");
+      weightedCandidates.push("link", "samus", "fox", "mario");
     }
     if (/(score|record|leader|rank|high score|newest)/.test(title)) {
-      weightedCandidates.push("dudley", "ryu", "alex", "pacman");
+      weightedCandidates.push("ness", "captainfalcon", "fox", "luigi");
     }
     if (/(event|tournament|calendar|bracket|ladder)/.test(title)) {
-      weightedCandidates.push("alex", "chunli", "dudley", "ryu");
+      weightedCandidates.push("captainfalcon", "fox", "samus", "ness");
     }
     if (/(forum|community|discussion|posts|news)/.test(title)) {
-      weightedCandidates.push("dudley", "chunli", "ryu", "alex");
+      weightedCandidates.push("luigi", "ness", "kirby", "jigglypuff");
     }
     if (/(location|venue|city|state|gallery|map)/.test(title)) {
-      weightedCandidates.push("alex", "chunli", "ryu", "dudley");
+      weightedCandidates.push("yoshi", "donkeykong", "luigi", "mario");
     }
     if (/(about|resource|project|system|collection)/.test(title)) {
-      weightedCandidates.push("ryu", "alex", "chunli", "dudley");
+      weightedCandidates.push("mario", "link", "donkeykong", "yoshi");
     }
     if (/(pac-?man|galaga|maze|ghost)/.test(title)) {
-      weightedCandidates.push("pacman", "blinky", "inky");
+      weightedCandidates.push("pikachu", "kirby", "fox");
     }
 
     for (const candidate of weightedCandidates) {
