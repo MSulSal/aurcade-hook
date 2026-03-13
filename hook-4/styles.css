@@ -62,12 +62,15 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 6;
+  --side-size-factor: 0.9;
+  --side-visible-shift: 7%;
+  --side-alpha: 0.88;
 }
 
 .side-character {
   position: fixed;
   bottom: clamp(-14px, 0.4vh, 8px);
-  width: clamp(220px, 25vw, 520px);
+  width: clamp(180px, calc(24vw * var(--side-size-factor)), 460px);
   opacity: 0;
   transition:
     opacity 220ms ease-out,
@@ -126,15 +129,15 @@ body::after {
 }
 
 .side-character.is-visible {
-  opacity: 0.98;
+  opacity: var(--side-alpha);
 }
 
 .side-character.side-left.is-visible {
-  transform: translateX(-8%) scale(1) rotate(-0.75deg);
+  transform: translateX(calc(-1 * var(--side-visible-shift))) scale(1) rotate(-0.75deg);
 }
 
 .side-character.side-right.is-visible {
-  transform: translateX(8%) scale(1) rotate(0.75deg);
+  transform: translateX(var(--side-visible-shift)) scale(1) rotate(0.75deg);
 }
 
 .side-character.is-entering {

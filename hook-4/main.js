@@ -7,39 +7,68 @@ const sideCharacterAssets = {
   ryu: {
     src: "./assets/fighters/ryu3.gif",
     scale: 1.12,
+    name: "Ryu",
   },
   chunli: {
     src: "./assets/fighters/chun3.gif",
     scale: 1.16,
+    name: "Chun-Li",
   },
   alex: {
     src: "./assets/fighters/alex.gif",
     scale: 1.15,
+    name: "Alex",
   },
   dudley: {
     src: "./assets/fighters/dudley.gif",
     scale: 1.14,
+    name: "Dudley",
   },
   pacman: {
     src: "https://www.aurcade.com/icons/iconPacman.gif",
     scale: 1.05,
+    name: "Pac-Man",
   },
   blinky: {
     src: "https://www.aurcade.com/icons/iconGhost2.gif",
     scale: 1.05,
+    name: "Blinky",
   },
   pinky: {
     src: "https://www.aurcade.com/icons/iconGhost3.gif",
     scale: 1.05,
+    name: "Pinky",
   },
   inky: {
     src: "https://www.aurcade.com/icons/iconGhost1.gif",
     scale: 1.05,
+    name: "Inky",
   },
   sue: {
     src: "https://www.aurcade.com/icons/iconGhost4.gif",
     scale: 1.05,
+    name: "Sue",
   },
+};
+
+const sideCharacterRosters = {
+  "index.html": ["pacman", "ryu", "chunli", "alex"],
+  "leaderboards.html": ["pacman", "ryu", "dudley", "chunli"],
+  "games.html": ["ryu", "chunli", "alex", "dudley"],
+  "venues.html": ["alex", "chunli", "pacman", "ryu"],
+  "events.html": ["alex", "chunli", "dudley", "ryu"],
+  "community.html": ["dudley", "chunli", "ryu", "pacman"],
+  "resources.html": ["ryu", "alex", "pacman", "chunli"],
+};
+
+const sideSceneBudget = {
+  "index.html": 3,
+  "leaderboards.html": 3,
+  "games.html": 4,
+  "venues.html": 3,
+  "events.html": 3,
+  "community.html": 3,
+  "resources.html": 3,
 };
 
 function pad(value) {
@@ -545,18 +574,130 @@ function initializeSideCharacters() {
     return;
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const page = getCurrentPage();
+  const roster = sideCharacterRosters[page] || ["ryu", "chunli", "alex", "dudley", "pacman"];
+  const sceneLimit = Math.max(
+    1,
+    Math.min(
+      sideSceneBudget[page] || 3,
+      [...document.querySelectorAll(".page-grid main .panel, .page-grid aside .panel")].length,
+    ),
+  );
 
-  const resolvedScenes = [...document.querySelectorAll(".page-grid .panel[data-scene-fighter]")]
+  const panels = [...document.querySelectorAll(".page-grid main .panel, .page-grid aside .panel")]
     .map((node) => {
       const rect = node.getBoundingClientRect();
-      const fighter = (node.dataset.sceneFighter || "").toLowerCase();
-      if (rect.height < 120 || !fighter || !sideCharacterAssets[fighter]) {
+      if (rect.height < 120) {
         return null;
       }
       return {
         node,
+        rect,
+        title:
+          (node.querySelector("h2, h3")?.textContent || node.getAttribute("aria-label") || "")
+            .trim()
+            .toLowerCase(),
+      };
+    })
+    .filter(Boolean);
+
+  const primaryPanels = panels.filter((entry) => entry.node.closest("main"));
+  const pool = primaryPanels.length >= 3 ? primaryPanels : panels;
+  const selectedNodes = [];
+  const selectedSet = new Set();
+
+  for (let step = 0; step < sceneLimit; step += 1) {
+    const rawIndex = Math.round(((step + 0.45) * pool.length) / sceneLimit - 1);
+    const index = Math.max(0, Math.min(pool.length - 1, rawIndex));
+    const candidate = pool[index];
+    if (!candidate || selectedSet.has(candidate.node)) {
+      continue;
+    }
+    selectedSet.add(candidate.node);
+    selectedNodes.push(candidate);
+  }
+
+  if (selectedNodes.length === 0 && pool[0]) {
+    selectedNodes.push(pool[0]);
+  }
+
+  let rosterCursor = 0;
+  let previousFighter = "";
+
+  function pickFallbackFighter() {
+    for (let pass = 0; pass < roster.length; pass += 1) {
+      const candidate = roster[(rosterCursor + pass) % roster.length];
+      if (!sideCharacterAssets[candidate]) {
+        continue;
+      }
+      if (candidate === previousFighter && roster.length > 1) {
+        continue;
+      }
+      rosterCursor = (rosterCursor + pass + 1) % roster.length;
+      previousFighter = candidate;
+      return candidate;
+    }
+    const first = roster[0];
+    previousFighter = first;
+    return first;
+  }
+
+  function pickByTitle(title) {
+    const weightedCandidates = [];
+    if (/(game|profile|fighter|screens|browse games)/.test(title)) {
+      weightedCandidates.push("ryu", "chunli", "alex");
+    }
+    if (/(score|record|leader|rank|high score|newest)/.test(title)) {
+      weightedCandidates.push("pacman", "dudley", "ryu");
+    }
+    if (/(event|tournament|calendar|bracket|ladder)/.test(title)) {
+      weightedCandidates.push("alex", "chunli", "dudley");
+    }
+    if (/(forum|community|discussion|posts|news)/.test(title)) {
+      weightedCandidates.push("dudley", "chunli", "ryu");
+    }
+    if (/(location|venue|city|state|gallery|map)/.test(title)) {
+      weightedCandidates.push("alex", "chunli", "pacman");
+    }
+    if (/(about|resource|project|system|collection)/.test(title)) {
+      weightedCandidates.push("ryu", "alex", "chunli");
+    }
+
+    for (const candidate of weightedCandidates) {
+      if (!sideCharacterAssets[candidate]) {
+        continue;
+      }
+      if (!roster.includes(candidate)) {
+        continue;
+      }
+      if (candidate === previousFighter && weightedCandidates.length > 1) {
+        continue;
+      }
+      previousFighter = candidate;
+      return candidate;
+    }
+
+    return pickFallbackFighter();
+  }
+
+  const resolvedScenes = selectedNodes
+    .map((entry, index) => {
+      const explicit = (entry.node.dataset.sceneFighter || "").toLowerCase();
+      const fighter =
+        page === "games.html" && sideCharacterAssets[explicit]
+          ? explicit
+          : pickByTitle(entry.title || `scene-${index + 1}`);
+
+      const asset = sideCharacterAssets[fighter];
+      if (!asset) {
+        return null;
+      }
+
+      return {
+        node: entry.node,
         fighter,
-        fighterName: node.dataset.sceneFighterName || fighter,
+        fighterName: asset.name || fighter,
+        emphasis: entry.node.closest(".hero-grid") ? 1.07 : 1,
       };
     })
     .filter(Boolean);
@@ -594,11 +735,27 @@ function initializeSideCharacters() {
   let hasUserScrolled = false;
   const initialScrollY = window.scrollY || window.pageYOffset || 0;
   const introThreshold = 72;
-  const sceneSwitchDelay = reduceMotion ? 0 : 180;
+  const sceneSwitchDelay = reduceMotion ? 0 : 220;
   let lastSceneSwitchAt = 0;
   let queuedSceneIndex = -1;
   let queueTimer = null;
   let rafHandle = null;
+
+  function updateCharacterEconomy() {
+    const shellNode = document.querySelector(".site-shell");
+    const shellWidth = shellNode?.getBoundingClientRect().width || window.innerWidth;
+    const gutter = Math.max(0, (window.innerWidth - shellWidth) / 2);
+
+    const compact = gutter < 120;
+    const roomy = gutter > 210;
+    const sizeFactor = roomy ? 1 : compact ? 0.8 : 0.9;
+    const visibleShift = roomy ? 11 : compact ? 2 : 7;
+    const alpha = roomy ? 0.97 : compact ? 0.78 : 0.88;
+
+    popupLayer.style.setProperty("--side-size-factor", String(sizeFactor));
+    popupLayer.style.setProperty("--side-visible-shift", `${visibleShift}%`);
+    popupLayer.style.setProperty("--side-alpha", alpha.toFixed(2));
+  }
 
   function enterCharacter(node) {
     node.classList.remove("is-entering");
@@ -653,8 +810,8 @@ function initializeSideCharacters() {
     }
 
     imageNode.src = asset.src;
-    imageNode.alt = scene.fighterName;
-    imageNode.style.setProperty("--fighter-scale", String(asset.scale || 1.2));
+    imageNode.alt = scene.fighterName || asset.name || scene.fighter;
+    imageNode.style.setProperty("--fighter-scale", String((asset.scale || 1.2) * (scene.emphasis || 1)));
     fighterNode.classList.remove("side-left", "side-right");
     fighterNode.classList.add(index % 2 === 0 ? "side-left" : "side-right");
     enterCharacter(fighterNode);
@@ -739,7 +896,7 @@ function initializeSideCharacters() {
     {
       root: null,
       threshold: [0, 0.15, 0.35, 0.55, 0.75],
-      rootMargin: "-28% 0px -35% 0px",
+      rootMargin: "-24% 0px -40% 0px",
     },
   );
 
@@ -747,8 +904,12 @@ function initializeSideCharacters() {
     observer.observe(scene.node);
   });
 
+  updateCharacterEconomy();
   window.addEventListener("scroll", scheduleSceneUpdate, { passive: true });
-  window.addEventListener("resize", scheduleSceneUpdate, { passive: true });
+  window.addEventListener("resize", () => {
+    updateCharacterEconomy();
+    scheduleSceneUpdate();
+  });
   updateSceneFromScrollState();
 }
 
