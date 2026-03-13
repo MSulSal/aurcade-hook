@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade Hook 2 - Retro Arcade Portal</title>
+    <meta
+      name="description"
+      content="Hook 2: a retro-first Aurcade concept inspired by classic arcade and directory-style web portals."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-bar">
+      <p>AURCADE NETWORK :: LIVE SCORES FOR REAL-WORLD MACHINES</p>
+      <p class="utility-right">UPDATED DAILY :: PLAYER + VENUE READY</p>
+    </header>
+
+    <div class="site-wrap">
+      <header class="masthead bevel">
+        <div class="logo-block">
+          <p class="logo-eyebrow">RETRO COMPETITION SYSTEM</p>
+          <h1>AURCADE</h1>
+          <p class="logo-sub">BEAT THE ROOM. OWN THE BOARD.</p>
+        </div>
+        <div class="masthead-meta">
+          <p><span class="meta-label">ACTIVE MACHINES:</span> 1,902</p>
+          <p><span class="meta-label">VENUES:</span> 476</p>
+          <p><span class="meta-label">SCORES LOGGED:</span> 241,992</p>
+        </div>
+      </header>
+
+      <nav class="top-nav bevel" aria-label="Primary">
+        <a href="#leaderboard">Leaderboards</a>
+        <a href="#events">Events</a>
+        <a href="#venues">Venues</a>
+        <a href="#operators">Operators</a>
+        <a href="#contact">Book A Pilot</a>
+      </nav>
+
+      <section class="marquee bevel" aria-label="Network feed">
+        <div class="marquee-track">
+          <span>NEW CHALLENGE: PAC-MAN PERFECT MAZE BONUS</span>
+          <span>WEEKEND LADDER: PINBALL MULTI-VENUE KNOCKOUT</span>
+          <span>NOW LIVE: QR SCORE CHECK-IN + VENUE BADGES</span>
+          <span>TOP TAG THIS WEEK: #ARCADENIGHT</span>
+          <span>NEW CHALLENGE: PAC-MAN PERFECT MAZE BONUS</span>
+          <span>WEEKEND LADDER: PINBALL MULTI-VENUE KNOCKOUT</span>
+          <span>NOW LIVE: QR SCORE CHECK-IN + VENUE BADGES</span>
+          <span>TOP TAG THIS WEEK: #ARCADENIGHT</span>
+        </div>
+      </section>
+
+      <div class="layout">
+        <aside class="left-rail">
+          <section class="panel bevel">
+            <h2>Browse Platforms</h2>
+            <ul class="link-list">
+              <li><a href="#">Arcade Classics</a></li>
+              <li><a href="#">Pinball Tables</a></li>
+              <li><a href="#">Light-Gun Cabinets</a></li>
+              <li><a href="#">Racing Machines</a></li>
+              <li><a href="#">Fighting Games</a></li>
+              <li><a href="#">Puzzle + Skill Games</a></li>
+              <li><a href="#">Ticket Redemption</a></li>
+              <li><a href="#">Featured Challenges</a></li>
+            </ul>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Popular Venues</h2>
+            <ul class="link-list">
+              <li><a href="#">Ground Kontrol - Portland</a></li>
+              <li><a href="#">Cidercade - Dallas</a></li>
+              <li><a href="#">Quarterworld - Portland</a></li>
+              <li><a href="#">Arcade UFO - Austin</a></li>
+              <li><a href="#">Player 1 - Orlando</a></li>
+            </ul>
+          </section>
+        </aside>
+
+        <main class="center-column">
+          <section class="panel hero-panel bevel">
+            <h2>THE COMPETITION PORTAL FOR MODERN RETRO ARCADES</h2>
+            <p>
+              Aurcade turns every high score into a repeat-visit mechanic.
+              Players chase ranks, venues run events, and communities keep coming
+              back to the same machines.
+            </p>
+            <div class="hero-links">
+              <a class="pixel-btn" href="#contact">START PILOT</a>
+              <a class="pixel-btn alt" href="#operators">VIEW OPERATOR VALUE</a>
+            </div>
+          </section>
+
+          <section id="leaderboard" class="panel bevel">
+            <header class="panel-head">
+              <h2>Live Leaderboard Snapshot</h2>
+              <p class="blink">NOW TRACKING</p>
+            </header>
+            <table class="score-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Game</th>
+                  <th>Venue</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>01</td>
+                  <td>KEV</td>
+                  <td>Galaga</td>
+                  <td>Ground Kontrol</td>
+                  <td>156,934</td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td>GBU</td>
+                  <td>Pac-Man</td>
+                  <td>Cidercade</td>
+                  <td>129,022</td>
+                </tr>
+                <tr>
+                  <td>03</td>
+                  <td>RAF</td>
+                  <td>Donkey Kong</td>
+                  <td>Quarterworld</td>
+                  <td>81,918</td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>GUN</td>
+                  <td>NBA Jam</td>
+                  <td>Arcade UFO</td>
+                  <td>80,000</td>
+                </tr>
+                <tr>
+                  <td>05</td>
+                  <td>NAM</td>
+                  <td>Mortal Kombat II</td>
+                  <td>Player 1</td>
+                  <td>50,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="events" class="panel bevel">
+            <header class="panel-head">
+              <h2>Upcoming Event Ladder</h2>
+              <p>LAST REFRESH <span id="refresh-time">--:--</span></p>
+            </header>
+            <div class="event-grid">
+              <article>
+                <h3>Friday Night Fighters</h3>
+                <p>Head-to-head bracket for classic fighters.</p>
+                <p class="tag">12 venues participating</p>
+              </article>
+              <article>
+                <h3>Pinball Weekend Sprint</h3>
+                <p>Three-day score grind across linked locations.</p>
+                <p class="tag">8 cities active</p>
+              </article>
+              <article>
+                <h3>Family High Score Hour</h3>
+                <p>Beginner-friendly points challenge with rewards.</p>
+                <p class="tag">Perfect for FEC traffic</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="operators" class="panel bevel">
+            <h2>Why Operators Say Yes</h2>
+            <ul class="value-list">
+              <li>Higher return visits through recurring score challenges.</li>
+              <li>Built-in social moments from local and regional rankings.</li>
+              <li>Simple event structure that works with existing staff.</li>
+              <li>Clear promotion hooks for low and high attendance days.</li>
+            </ul>
+          </section>
+        </main>
+
+        <aside class="right-rail">
+          <section id="venues" class="panel bevel">
+            <h2>This Week In Arcades</h2>
+            <ul class="news-list">
+              <li><a href="#">Portland ladder broke 2,000 entries</a></li>
+              <li><a href="#">Dallas venue launch doubled score submits</a></li>
+              <li><a href="#">Seattle pinball finals sold out</a></li>
+              <li><a href="#">New machine tags now live for operators</a></li>
+              <li><a href="#">Community voting picks next monthly challenge</a></li>
+            </ul>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Now Playing</h2>
+            <p class="now-playing" id="now-playing">Track and Field</p>
+          </section>
+
+          <section id="contact" class="panel bevel contact-panel">
+            <h2>Book A 30-Day Pilot</h2>
+            <p>Bring this competition layer into your venue network.</p>
+            <form>
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+              <label for="venue">Venue</label>
+              <input id="venue" type="text" placeholder="Venue or group" />
+              <label for="city">City</label>
+              <input id="city" type="text" placeholder="City" />
+              <button type="button" class="pixel-btn">REQUEST DEMO</button>
+            </form>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="footer bevel">
+        <p>
+          <a href="#">About</a> |
+          <a href="#">Advertise</a> |
+          <a href="#">Support</a> |
+          <a href="#">Venue Signup</a>
+        </p>
+        <p class="counter">VISITOR COUNT :: <span id="counter">0004237</span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

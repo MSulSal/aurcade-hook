@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade - Browse Locations</title>
+    <meta
+      name="description"
+      content="Search locations by Name, Type, City and State."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>BROWSE LOCATIONS :: NAME :: TYPE :: CITY :: STATE</p>
+      <p class="status">UPDATED: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade logo" />
+          <div>
+            <h1>BROWSE LOCATIONS</h1>
+            <p>Please Refine Your Search Critera</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Visible Locations:</span> <span data-filter-count="locations">0</span></p>
+          <p><span class="label">Type:</span> Arcade / Bar / Family</p>
+          <p><span class="label">Search:</span> Name, Type, City, State</p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="leaderboards.html" href="./leaderboards.html">Newest Scores</a>
+        <a data-page="games.html" href="./games.html">Browse Games</a>
+        <a data-page="venues.html" href="./venues.html">Browse Locations</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a data-page="community.html" href="./community.html">Public Forums</a>
+        <a data-page="resources.html" href="./resources.html">About Us</a>
+        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+      </nav>
+      <section class="ticker bevel" aria-label="Location feed">
+        <div class="ticker-track">
+          <span>Ground Kontrol :: Portland, OR :: Arcade</span>
+          <span>Galloping Ghost Arcade :: Dallas, TX :: Arcade Bar</span>
+          <span>Galloping Ghost Arcade :: Portland, OR :: Arcade</span>
+          <span>Galloping Ghost Arcade :: Austin, TX :: Arcade</span>
+          <span>Ground Kontrol :: Portland, OR :: Arcade</span>
+          <span>Galloping Ghost Arcade :: Dallas, TX :: Arcade Bar</span>
+          <span>Galloping Ghost Arcade :: Portland, OR :: Arcade</span>
+          <span>Galloping Ghost Arcade :: Austin, TX :: Arcade</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Search Locations</h2>
+            <div class="panel-hero">
+              <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Browse Locations" />
+            </div>
+            <form class="form-grid">
+              <div class="full">
+                <label for="loc-name">Name</label>
+                <input id="loc-name" data-search-group="locations" data-search-target="[data-location-row]" type="search" placeholder="Part of location name" />
+              </div>
+              <div>
+                <label for="loc-city">City</label>
+                <input id="loc-city" type="text" placeholder="City" />
+              </div>
+              <div>
+                <label for="loc-state">State</label>
+                <input id="loc-state" type="text" placeholder="State" />
+              </div>
+            </form>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Type</h2>
+            <div class="filter-row">
+              <button class="filter-btn active" data-filter-group="locations" data-filter-target="[data-location-row]" data-filter-value="all" type="button">All</button>
+              <button class="filter-btn" data-filter-group="locations" data-filter-target="[data-location-row]" data-filter-value="arcade" type="button">Arcade</button>
+              <button class="filter-btn" data-filter-group="locations" data-filter-target="[data-location-row]" data-filter-value="bar" type="button">Arcade Bar</button>
+              <button class="filter-btn" data-filter-group="locations" data-filter-target="[data-location-row]" data-filter-value="family" type="button">Family</button>
+            </div>
+            <div class="card-grid cols-2">
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Browse Locations" />
+                <p class="meta">Arcade Bar</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Browse Locations" />
+                <p class="meta">Family</p>
+              </article>
+            </div>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Location Results</h2>
+              <p>Visible rows: <span data-filter-count="locations">0</span></p>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Games</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-location-row data-tags="arcade" data-search-text="ground kontrol arcade portland or">
+                    <td>Ground Kontrol</td>
+                    <td>Arcade</td>
+                    <td>Portland</td>
+                    <td>OR</td>
+                    <td>82</td>
+                  </tr>
+                  <tr data-location-row data-tags="bar" data-search-text="cidercade dallas arcade bar tx">
+                    <td>Galloping Ghost Arcade</td>
+                    <td>Arcade Bar</td>
+                    <td>Dallas</td>
+                    <td>TX</td>
+                    <td>140</td>
+                  </tr>
+                  <tr data-location-row data-tags="arcade" data-search-text="quarterworld arcade portland or">
+                    <td>Galloping Ghost Arcade</td>
+                    <td>Arcade</td>
+                    <td>Portland</td>
+                    <td>OR</td>
+                    <td>65</td>
+                  </tr>
+                  <tr data-location-row data-tags="arcade" data-search-text="arcade ufo arcade austin tx">
+                    <td>Galloping Ghost Arcade</td>
+                    <td>Arcade</td>
+                    <td>Austin</td>
+                    <td>TX</td>
+                    <td>57</td>
+                  </tr>
+                  <tr data-location-row data-tags="family" data-search-text="player 1 video game bar orlando fl">
+                    <td>Galloping Ghost Arcade</td>
+                    <td>Arcade</td>
+                    <td>Orlando</td>
+                    <td>FL</td>
+                    <td>72</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Location Gallery</h2>
+              <p>Browse Locations</p>
+            </div>
+            <div class="card-grid cols-2">
+              <article class="card">
+                <h3>Ground Kontrol</h3>
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screen at location" />
+              </article>
+              <article class="card">
+                <h3>Galloping Ghost Arcade</h3>
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter screen at location" />
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./leaderboards.html">Newest Scores</a> |
+          <a href="./games.html">Browse Games</a> |
+          <a href="./venues.html">Browse Locations</a> |
+          <a href="./events.html">Events</a> |
+          <a href="./community.html">Public Forums</a> |
+          <a href="./resources.html">About Us</a>
+        </p>
+        <p class="small">Aurcade. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

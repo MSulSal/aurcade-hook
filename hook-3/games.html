@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade Sample Site - Games</title>
+    <meta
+      name="description"
+      content="Arcade game catalog sample for Aurcade with real game imagery and retro-first UX."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-field" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>AURCADE GAME DIRECTORY SAMPLE</p>
+      <p class="status">LAST REFRESH: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade mark" />
+          <div>
+            <h1>GAME CATALOG</h1>
+            <p>Sample content model for searchable score-enabled titles.</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Catalog Scope:</span> Classic + Modern Arcade</p>
+          <p><span class="label">Filter Mode:</span> Genre/format</p>
+          <p><span class="label">Visible Games:</span> <span data-results-count>0</span></p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="games.html" href="./games.html">Games</a>
+        <a data-page="venues.html" href="./venues.html">Venues</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a class="cta-link" href="./venues.html#pilot">Book Pilot</a>
+      </nav>
+
+      <section class="ticker bevel" aria-label="Game feed">
+        <div class="ticker-track">
+          <span>WEEKLY FOCUS: SHOOTER CHAIN COMBO CHALLENGES</span>
+          <span>NEW THIS MONTH: FIGHTER BRACKETS AT 12 VENUES</span>
+          <span>RUNNING NOW: FAMILY CLASSICS BEGINNER LADDER</span>
+          <span>WEEKLY FOCUS: SHOOTER CHAIN COMBO CHALLENGES</span>
+          <span>NEW THIS MONTH: FIGHTER BRACKETS AT 12 VENUES</span>
+          <span>RUNNING NOW: FAMILY CLASSICS BEGINNER LADDER</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Catalog Notes</h2>
+            <ul class="key-list">
+              <li>Screenshots link to live Aurcade game pages.</li>
+              <li>Each card can map to real score tables.</li>
+              <li>Genre tags support quick event planning.</li>
+            </ul>
+          </section>
+          <section class="panel bevel">
+            <h2>Suggested Filters</h2>
+            <ul class="rail-list">
+              <li>Classics for nostalgia nights</li>
+              <li>Fighters for tournament draw</li>
+              <li>Sports/racing for quick replay loops</li>
+              <li>Puzzle for broad family participation</li>
+            </ul>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <h2>Find Games By Format</h2>
+            <div class="filter-row" role="toolbar" aria-label="Game filters">
+              <button class="filter-btn active" data-filter="all" type="button">All</button>
+              <button class="filter-btn" data-filter="classic" type="button">Classic</button>
+              <button class="filter-btn" data-filter="shooter" type="button">Shooter</button>
+              <button class="filter-btn" data-filter="fighter" type="button">Fighter</button>
+              <button class="filter-btn" data-filter="sports" type="button">Sports</button>
+              <button class="filter-btn" data-filter="racer" type="button">Racer</button>
+              <button class="filter-btn" data-filter="puzzle" type="button">Puzzle</button>
+            </div>
+            <p class="result-count">Visible cards: <span data-results-count>0</span></p>
+
+            <div class="game-grid">
+              <article class="game-card" data-genre="classic,platform">
+                <img src="https://www.aurcade.com/games/screens/00000009m.jpg" alt="Donkey Kong screenshot" />
+                <h3>Donkey Kong</h3>
+                <p class="meta">Platform | Nintendo | 1981</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Platform</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/donkey-kong" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="classic,puzzle">
+                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man screenshot" />
+                <h3>Ms. Pac-Man</h3>
+                <p class="meta">Maze | Midway | 1981</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Puzzle</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/ms-pac-man" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="classic,shooter">
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screenshot" />
+                <h3>Galaga</h3>
+                <p class="meta">Shooter | Namco | 1981</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Shooter</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/galaga" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="puzzle,classic">
+                <img src="https://www.aurcade.com/games/screens/00000022m.jpg" alt="Arkanoid screenshot" />
+                <h3>Arkanoid</h3>
+                <p class="meta">Brick Breaker | Taito | 1986</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Puzzle</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/arkanoid" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="classic,racer">
+                <img src="https://www.aurcade.com/games/screens/00000156m.jpg" alt="Out Run screenshot" />
+                <h3>Out Run</h3>
+                <p class="meta">Racing | Sega | 1986</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Racer</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/outrun" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="classic,shooter">
+                <img src="https://aurcade.com/games/screens/00000200m.jpg" alt="Space Invaders screenshot" />
+                <h3>Space Invaders</h3>
+                <p class="meta">Shooter | Taito | 1978</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Shooter</span>
+                </div>
+                <div class="links">
+                  <a href="https://aurcade.com/games/space-invaders" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="classic,puzzle">
+                <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 screenshot" />
+                <h3>Ms. Pac-Man/Galaga Class of 1981</h3>
+                <p class="meta">Collection | Midway | 2000</p>
+                <div class="tag-row">
+                  <span class="tag">Classic</span><span class="tag">Puzzle</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/ms-pac-man-galaga-class-of-1981" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="fighter,classic">
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter II screenshot" />
+                <h3>Street Fighter II: The World Warrior</h3>
+                <p class="meta">Fighter | Capcom | 1991</p>
+                <div class="tag-row">
+                  <span class="tag">Fighter</span><span class="tag">Classic</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/street-fighter-ii-the-world-warrior" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="fighter,classic">
+                <img src="https://aurcade.com/games/screens/00000005m.jpg" alt="Marvel vs Capcom 2 screenshot" />
+                <h3>Marvel vs. Capcom 2</h3>
+                <p class="meta">Fighter | Capcom | 2000</p>
+                <div class="tag-row">
+                  <span class="tag">Fighter</span><span class="tag">Tournament</span>
+                </div>
+                <div class="links">
+                  <a href="https://aurcade.com/games/marvel-vs-capcom-2" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="fighter,action">
+                <img src="https://www.aurcade.com/games/screens/00001037m.jpg" alt="Mega Man screenshot" />
+                <h3>Mega Man: The Power Battle</h3>
+                <p class="meta">Action/Fighter | Capcom | 1995</p>
+                <div class="tag-row">
+                  <span class="tag">Action</span><span class="tag">Fighter</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/mega-man-the-power-battle" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+
+              <article class="game-card" data-genre="sports,classic">
+                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="NHL Open Ice screenshot" />
+                <h3>NHL Open Ice 2 on 2 Challenge</h3>
+                <p class="meta">Sports | Midway | 1996</p>
+                <div class="tag-row">
+                  <span class="tag">Sports</span><span class="tag">Multiplayer</span>
+                </div>
+                <div class="links">
+                  <a href="https://www.aurcade.com/games/nhl-open-ice-2-on-2-challenge" target="_blank" rel="noreferrer">Open in Aurcade</a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./games.html">Games</a> |
+          <a href="./venues.html">Venues</a> |
+          <a href="./events.html">Events</a>
+        </p>
+        <p class="small">Sample concept build. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

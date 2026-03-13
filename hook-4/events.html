@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade - Events</title>
+    <meta
+      name="description"
+      content="Events for all locations, including upcoming local and regional events."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>EVENTS :: LOCAL, REGIONAL, LADDER, BRACKET</p>
+      <p class="status">UPDATED: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade logo" />
+          <div>
+            <h1>EVENTS</h1>
+            <p>Events for all locations is now supported and can be found here.</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Status:</span> Events have moved!</p>
+          <p><span class="label">Coverage:</span> All locations</p>
+          <p><span class="label">Calendar:</span> Upcoming Events</p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="leaderboards.html" href="./leaderboards.html">Newest Scores</a>
+        <a data-page="games.html" href="./games.html">Browse Games</a>
+        <a data-page="venues.html" href="./venues.html">Browse Locations</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a data-page="community.html" href="./community.html">Public Forums</a>
+        <a data-page="resources.html" href="./resources.html">About Us</a>
+        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+      </nav>
+      <section class="ticker bevel" aria-label="Events ticker">
+        <div class="ticker-track">
+          <span>EVENTS HAVE MOVED!</span>
+          <span>EVENTS FOR ALL LOCATIONS IS NOW SUPPORTED</span>
+          <span>UPCOMING EVENTS CALENDAR</span>
+          <span>EVENTS HAVE MOVED!</span>
+          <span>EVENTS FOR ALL LOCATIONS IS NOW SUPPORTED</span>
+          <span>UPCOMING EVENTS CALENDAR</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Event Navigation</h2>
+            <div class="panel-hero">
+              <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved!" />
+            </div>
+            <ul class="rail-list">
+              <li>Upcoming Events</li>
+              <li>Recent Events</li>
+              <li>Local Events</li>
+              <li>Regional Events</li>
+            </ul>
+          </section>
+          <section class="panel bevel">
+            <h2>Event Types</h2>
+            <ul class="key-list">
+              <li>Ladder</li>
+              <li>Bracket</li>
+              <li>League</li>
+              <li>Tournament</li>
+            </ul>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Upcoming Events</h2>
+              <p>Schedule</p>
+            </div>
+            <div class="card-grid cols-3">
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Events have moved! game" />
+                <h3>Events have moved!</h3>
+                <p class="meta">Events for all locations is now supported and can be found here.</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00001315m.jpg" alt="Upcoming Events" />
+                <h3>Upcoming Events</h3>
+                <p class="meta">Events for all locations is now supported and can be found here.</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Recent Events" />
+                <h3>Recent Events</h3>
+                <p class="meta">Events for all locations is now supported and can be found here.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Recent Events</h2>
+              <p>Results</p>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Winner</th>
+                    <th>Location</th>
+                    <th>Game</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Friday Classics Rush</td>
+                    <td>KEV</td>
+                    <td>Ground Kontrol</td>
+                    <td>GALAGA</td>
+                    <td>156,934</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday Maze Challenge</td>
+                    <td>GBU</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>MS. PAC-MAN</td>
+                    <td>129,022</td>
+                  </tr>
+                  <tr>
+                    <td>Main Stage Fighter Night</td>
+                    <td>Craig Roach</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>MORTAL KOMBAT II</td>
+                    <td>5,004,780</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Recent Events</h2>
+              <p>Recent Scores</p>
+            </div>
+            <div class="game-grid">
+              <article class="game-card">
+                <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Recent Events" />
+                <h3>Friday Classics Rush</h3>
+              </article>
+              <article class="game-card">
+                <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Recent Events" />
+                <h3>Saturday Maze Challenge</h3>
+              </article>
+              <article class="game-card">
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Recent Events" />
+                <h3>Main Stage Fighter Night</h3>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./leaderboards.html">Newest Scores</a> |
+          <a href="./games.html">Browse Games</a> |
+          <a href="./venues.html">Browse Locations</a> |
+          <a href="./events.html">Events</a> |
+          <a href="./community.html">Public Forums</a> |
+          <a href="./resources.html">About Us</a>
+        </p>
+        <p class="small">Aurcade. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

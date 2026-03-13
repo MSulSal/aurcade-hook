@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade - Newest Scores</title>
+    <meta
+      name="description"
+      content="This page shows the 50 most recent scores verified."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>NEWEST SCORES :: GAME :: PLAYER(S) :: LOCATION :: SCORE :: RANK :: % ACHIEVED</p>
+      <p class="status">UPDATED: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade logo" />
+          <div>
+            <h1>NEWEST SCORES</h1>
+            <p>This page shows the 50 most recent scores verified.</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Newest World Records:</span> 3</p>
+          <p><span class="label">Latest Verified:</span> RUN-8842</p>
+          <p><span class="label">Page Type:</span> Rankings</p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="leaderboards.html" href="./leaderboards.html">Newest Scores</a>
+        <a data-page="games.html" href="./games.html">Browse Games</a>
+        <a data-page="venues.html" href="./venues.html">Browse Locations</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a data-page="community.html" href="./community.html">Public Forums</a>
+        <a data-page="resources.html" href="./resources.html">About Us</a>
+        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+      </nav>
+      <section class="ticker bevel" aria-label="Score ticker">
+        <div class="ticker-track">
+          <span>SATAN'S HOLLOW :: MATTY THOMAS :: 1,000,000 :: 1ST</span>
+          <span>ARKANOID :: COLIN C BROWN :: 85,920 :: 1ST</span>
+          <span>MORTAL KOMBAT II :: CRAIG ROACH :: 5,004,780 :: 1ST</span>
+          <span>POLE POSITION :: ANDREW IWASZKO :: 58,600 :: 2ND</span>
+          <span>SATAN'S HOLLOW :: MATTY THOMAS :: 1,000,000 :: 1ST</span>
+          <span>ARKANOID :: COLIN C BROWN :: 85,920 :: 1ST</span>
+          <span>MORTAL KOMBAT II :: CRAIG ROACH :: 5,004,780 :: 1ST</span>
+          <span>POLE POSITION :: ANDREW IWASZKO :: 58,600 :: 2ND</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Score Filters</h2>
+            <ul class="key-list">
+              <li>Newest Scores</li>
+              <li>Newest World Records</li>
+              <li>Most Popular Games</li>
+              <li>By Location</li>
+            </ul>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Ranking Labels</h2>
+            <ul class="rail-list">
+              <li>World Record!</li>
+              <li>1st</li>
+              <li>2nd</li>
+              <li>3rd</li>
+            </ul>
+            <div class="card-grid cols-2">
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="World record game marquee" />
+                <p class="meta">Top Record</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Ranked game marquee" />
+                <p class="meta">Newest Entry</p>
+              </article>
+            </div>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Newest Score Feed</h2>
+              <p>Visible rows: <span data-filter-count="scores">0</span></p>
+            </div>
+            <div class="filter-row">
+              <button class="filter-btn active" data-filter-group="scores" data-filter-target="[data-score-row]" data-filter-value="all" type="button">All</button>
+              <button class="filter-btn" data-filter-group="scores" data-filter-target="[data-score-row]" data-filter-value="world" type="button">World Record!</button>
+              <button class="filter-btn" data-filter-group="scores" data-filter-target="[data-score-row]" data-filter-value="first" type="button">1st</button>
+              <button class="filter-btn" data-filter-group="scores" data-filter-target="[data-score-row]" data-filter-value="second" type="button">2nd</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Game</th>
+                    <th>Player(s)</th>
+                    <th>Location</th>
+                    <th>Score</th>
+                    <th>Rank</th>
+                    <th>% Achieved</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-score-row data-tags="world,first" data-search-text="satan's hollow matty thomas ground kontrol">
+                    <td>SATAN'S HOLLOW</td>
+                    <td>Matty Thomas</td>
+                    <td>Ground Kontrol</td>
+                    <td>1,000,000</td>
+                    <td class="status-open">World Record!</td>
+                    <td>100.00%</td>
+                  </tr>
+                  <tr data-score-row data-tags="world,first" data-search-text="arkanoid colin c brown cidercade dallas">
+                    <td>ARKANOID</td>
+                    <td>Colin C Brown</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>85,920</td>
+                    <td class="status-open">World Record!</td>
+                    <td>100.00%</td>
+                  </tr>
+                  <tr data-score-row data-tags="world,first" data-search-text="mortal kombat ii craig roach arcade ufo">
+                    <td>MORTAL KOMBAT II</td>
+                    <td>Craig Roach</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>5,004,780</td>
+                    <td class="status-open">World Record!</td>
+                    <td>100.00%</td>
+                  </tr>
+                  <tr data-score-row data-tags="second" data-search-text="pole position andrew iwaszko quarterworld">
+                    <td>POLE POSITION</td>
+                    <td>Andrew Iwaszko</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>58,600</td>
+                    <td>2nd</td>
+                    <td>96.31%</td>
+                  </tr>
+                  <tr data-score-row data-tags="second" data-search-text="q*bert andrew iwaszko quarterworld">
+                    <td>Q*BERT</td>
+                    <td>Andrew Iwaszko</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>2,946,700</td>
+                    <td>2nd</td>
+                    <td>95.28%</td>
+                  </tr>
+                  <tr data-score-row data-tags="first" data-search-text="asteroids andrew iwaszko quarterworld">
+                    <td>ASTEROIDS</td>
+                    <td>Andrew Iwaszko</td>
+                    <td>Galloping Ghost Arcade</td>
+                    <td>3,940</td>
+                    <td>1st</td>
+                    <td>100.00%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Newest World Records</h2>
+              <p>Live list</p>
+            </div>
+            <div class="card-grid cols-3">
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00010823m.jpg" alt="Satan's Hollow world record" />
+                <h3>SATAN'S HOLLOW</h3>
+                <p class="meta">Matty Thomas - 1,000,000</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00010604m.jpg" alt="Arkanoid world record" />
+                <h3>ARKANOID</h3>
+                <p class="meta">Colin C Brown - 85,920</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Mortal Kombat II world record" />
+                <h3>MORTAL KOMBAT II</h3>
+                <p class="meta">Craig Roach - 5,004,780</p>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./leaderboards.html">Newest Scores</a> |
+          <a href="./games.html">Browse Games</a> |
+          <a href="./venues.html">Browse Locations</a> |
+          <a href="./events.html">Events</a> |
+          <a href="./community.html">Public Forums</a> |
+          <a href="./resources.html">About Us</a>
+        </p>
+        <p class="small">Aurcade. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

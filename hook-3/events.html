@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade Sample Site - Events</title>
+    <meta
+      name="description"
+      content="Event and competition sample page for Aurcade: schedule, rules, and ladder outcomes."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-field" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>AURCADE EVENT SYSTEM SAMPLE</p>
+      <p class="status">LAST REFRESH: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade mark" />
+          <div>
+            <h1>EVENTS + LADDERS</h1>
+            <p>Competition scheduling and score visibility designed for scale.</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Cadence:</span> Weekly + monthly ladders</p>
+          <p><span class="label">Formats:</span> Solo, bracket, venue team</p>
+          <p><span class="label">Payouts:</span> Venue-defined rewards</p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="games.html" href="./games.html">Games</a>
+        <a data-page="venues.html" href="./venues.html">Venues</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a class="cta-link" href="./venues.html#pilot">Book Pilot</a>
+      </nav>
+
+      <section class="ticker bevel" aria-label="Event feed">
+        <div class="ticker-track">
+          <span>THIS WEEK: 42 ACTIVE VENUE CHALLENGES</span>
+          <span>TOP GROWTH FORMAT: 2-HOUR SCORE RUSH WINDOWS</span>
+          <span>COMMUNITY PICK: CLASSICS + PINBALL COMBO WEEKEND</span>
+          <span>THIS WEEK: 42 ACTIVE VENUE CHALLENGES</span>
+          <span>TOP GROWTH FORMAT: 2-HOUR SCORE RUSH WINDOWS</span>
+          <span>COMMUNITY PICK: CLASSICS + PINBALL COMBO WEEKEND</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Event Building Blocks</h2>
+            <ul class="key-list">
+              <li>Game pool + machine list</li>
+              <li>Scoring window and reset policy</li>
+              <li>Prize rules and tie-break logic</li>
+              <li>Venue promotion playbook</li>
+            </ul>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Promotion Cadence</h2>
+            <ul class="key-list">
+              <li>T-7 days: announce ladder</li>
+              <li>T-3 days: highlight target games</li>
+              <li>T-1 day: remind via local social</li>
+              <li>T+1 day: publish winners + next challenge</li>
+            </ul>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Upcoming Event Schedule</h2>
+              <p>Sample view for operator + player audiences</p>
+            </div>
+            <div class="event-grid">
+              <article class="event-card">
+                <p class="date">MAR 19 - MAR 21</p>
+                <h3>Galaga Accuracy Ladder</h3>
+                <p>Single-game challenge across 11 venues.</p>
+                <span class="tag">Shooter</span>
+              </article>
+              <article class="event-card">
+                <p class="date">MAR 22</p>
+                <h3>Street Fighter Bracket Night</h3>
+                <p>Double elimination with score and bracket sync.</p>
+                <span class="tag">Fighter</span>
+              </article>
+              <article class="event-card">
+                <p class="date">MAR 26 - MAR 28</p>
+                <h3>Retro Weekend Sprint</h3>
+                <p>Multi-title points race for mixed-skill players.</p>
+                <span class="tag">Classics</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <div class="section-head">
+              <h2>Latest Ladder Results</h2>
+              <p>Leaderboard visibility drives replay behavior</p>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Winner</th>
+                    <th>Venue</th>
+                    <th>Game</th>
+                    <th>Top Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Friday Classics Rush</td>
+                    <td>KEV</td>
+                    <td>Ground Kontrol</td>
+                    <td>Galaga</td>
+                    <td>156,934</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday Maze Challenge</td>
+                    <td>GBU</td>
+                    <td>Cidercade Dallas</td>
+                    <td>Ms. Pac-Man</td>
+                    <td>129,022</td>
+                  </tr>
+                  <tr>
+                    <td>Fighter Night Main Event</td>
+                    <td>Craig Roach</td>
+                    <td>Arcade UFO</td>
+                    <td>Mortal Kombat II</td>
+                    <td>5,004,780</td>
+                  </tr>
+                  <tr>
+                    <td>Sunday Team Sports Run</td>
+                    <td>NAM</td>
+                    <td>Player 1</td>
+                    <td>NHL Open Ice</td>
+                    <td>50,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel">
+            <h2>Event Rules Framework</h2>
+            <ul class="rules-list">
+              <li>Every event uses a clear score submission window.</li>
+              <li>Top score per player per machine counts for standings.</li>
+              <li>Ties resolve by earliest verified score timestamp.</li>
+              <li>Venue moderators can flag or validate suspicious entries.</li>
+              <li>Closing recap automatically publishes winners and next steps.</li>
+            </ul>
+            <div class="actions">
+              <a class="pixel-btn" href="./venues.html#pilot">RUN A PILOT LADDER</a>
+              <a class="pixel-btn alt" href="./games.html">SELECT EVENT GAMES</a>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./games.html">Games</a> |
+          <a href="./venues.html">Venues</a> |
+          <a href="./events.html">Events</a>
+        </p>
+        <p class="small">Sample concept build. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

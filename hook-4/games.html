@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade - Browse Games</title>
+    <meta
+      name="description"
+      content="Search for games by name, genre, manufacturer and year."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="utility-strip">
+      <p>BROWSE GAMES :: NAME :: GENRE :: MANUFACTURER :: YEAR :: TYPE</p>
+      <p class="status">UPDATED: <span data-last-updated>--</span></p>
+    </header>
+
+    <div class="site-shell">
+      <header class="site-header bevel">
+        <div class="brand">
+          <img src="https://www.aurcade.com/images/logo-tool.png" alt="Aurcade logo" />
+          <div>
+            <h1>BROWSE GAMES</h1>
+            <p>Search Needs Filter... Badly.</p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <p><span class="label">Current Results:</span> <span data-filter-count="games">0</span></p>
+          <p><span class="label">Total Games:</span> 1902</p>
+          <p><span class="label">View:</span> Profile + Screens</p>
+        </div>
+      </header>
+
+      <nav class="main-nav bevel" aria-label="Primary">
+        <a data-page="index.html" href="./index.html">Home</a>
+        <a data-page="leaderboards.html" href="./leaderboards.html">Newest Scores</a>
+        <a data-page="games.html" href="./games.html">Browse Games</a>
+        <a data-page="venues.html" href="./venues.html">Browse Locations</a>
+        <a data-page="events.html" href="./events.html">Events</a>
+        <a data-page="community.html" href="./community.html">Public Forums</a>
+        <a data-page="resources.html" href="./resources.html">About Us</a>
+        <a class="cta-link" href="./community.html#submit-run">Newest Scores</a>
+      </nav>
+      <section class="ticker bevel" aria-label="Game ticker">
+        <div class="ticker-track">
+          <span>CLASS OF 1981 :: MS. PAC-MAN / GALAGA :: NAMCO</span>
+          <span>MS. PAC-MAN :: BALLY MIDWAY :: 1981</span>
+          <span>GALAGA :: NAMCO :: 1981</span>
+          <span>PAC-MAN :: NAMCO :: 1980</span>
+          <span>DONKEY KONG :: NINTENDO :: 1981</span>
+          <span>CLASS OF 1981 :: MS. PAC-MAN / GALAGA :: NAMCO</span>
+          <span>MS. PAC-MAN :: BALLY MIDWAY :: 1981</span>
+          <span>GALAGA :: NAMCO :: 1981</span>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <aside>
+          <section class="panel bevel">
+            <h2>Not Logged In</h2>
+            <div class="panel-hero">
+              <img src="https://www.aurcade.com/images/player.jpg" alt="Default player icon" />
+            </div>
+            <ul class="key-list">
+              <li><a href="#">Login Now</a></li>
+              <li><a href="#">Create Account</a></li>
+            </ul>
+          </section>
+          <section class="panel bevel">
+            <h2>Type</h2>
+            <ul class="rail-list">
+              <li>Arcade</li>
+              <li>Pinball</li>
+              <li>Redemption</li>
+              <li>Console</li>
+            </ul>
+            <div class="card-grid cols-2">
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Browse Games" />
+                <p class="meta">Arcade</p>
+              </article>
+              <article class="card">
+                <img src="https://www.aurcade.com/games/screens/00000009m.jpg" alt="Browse Games" />
+                <p class="meta">Classics</p>
+              </article>
+            </div>
+          </section>
+        </aside>
+
+        <main>
+          <section class="panel bevel" data-scene-fighter="ryu" data-scene-fighter-name="Ryu">
+            <h2>Search Games</h2>
+            <form class="form-grid">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" data-search-group="games" data-search-target="[data-game-row]" type="search" placeholder="Part of game name" />
+              </div>
+              <div>
+                <label for="genre">Genre</label>
+                <input id="genre" type="text" placeholder="Part of genre name" />
+              </div>
+              <div>
+                <label for="manu">Manufacturer</label>
+                <input id="manu" type="text" placeholder="Part of manufacturer name" />
+              </div>
+              <div>
+                <label for="year">Year</label>
+                <input id="year-input" type="text" placeholder="Part of year" />
+              </div>
+              <div class="full">
+                <label>Type</label>
+                <div class="filter-row">
+                  <button class="filter-btn active" data-filter-group="games" data-filter-target="[data-game-row]" data-filter-value="all" type="button">All</button>
+                  <button class="filter-btn" data-filter-group="games" data-filter-target="[data-game-row]" data-filter-value="arcade" type="button">Arcade</button>
+                  <button class="filter-btn" data-filter-group="games" data-filter-target="[data-game-row]" data-filter-value="pinball" type="button">Pinball</button>
+                  <button class="filter-btn" data-filter-group="games" data-filter-target="[data-game-row]" data-filter-value="console" type="button">Console</button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel bevel" data-scene-fighter="chunli" data-scene-fighter-name="Chun-Li">
+            <div class="section-head">
+              <h2>Game Results</h2>
+              <p>Please Refine Your Search Critera</p>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Locations</th>
+                    <th>Manufacturer</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-game-row data-game-id="class1981" data-tags="arcade" data-search-text="ms. pac-man / galaga class of 1981 namco 1981">
+                    <td>1</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></td>
+                    <td>323</td>
+                    <td>Namco</td>
+                    <td>1981</td>
+                    <td>Arcade</td>
+                  </tr>
+                  <tr data-game-row data-game-id="mspacman" data-tags="arcade" data-search-text="ms. pac-man bally midway 1981">
+                    <td>2</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="mspacman">MS. PAC-MAN</a></td>
+                    <td>293</td>
+                    <td>Bally Midway</td>
+                    <td>1981</td>
+                    <td>Arcade</td>
+                  </tr>
+                  <tr data-game-row data-game-id="galaga" data-tags="arcade" data-search-text="galaga namco 1981">
+                    <td>3</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="galaga">GALAGA</a></td>
+                    <td>291</td>
+                    <td>Namco</td>
+                    <td>1981</td>
+                    <td>Arcade</td>
+                  </tr>
+                  <tr data-game-row data-game-id="pacman" data-tags="arcade" data-search-text="pac-man namco 1980">
+                    <td>4</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="pacman">PAC-MAN</a></td>
+                    <td>245</td>
+                    <td>Namco</td>
+                    <td>1980</td>
+                    <td>Arcade</td>
+                  </tr>
+                  <tr data-game-row data-game-id="donkeykong" data-tags="arcade" data-search-text="donkey kong nintendo 1981">
+                    <td>5</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="donkeykong">DONKEY KONG</a></td>
+                    <td>194</td>
+                    <td>Nintendo</td>
+                    <td>1981</td>
+                    <td>Arcade</td>
+                  </tr>
+                  <tr data-game-row data-game-id="sf2ww" data-tags="arcade" data-search-text="street fighter ii the world warrior capcom 1991">
+                    <td>6</td>
+                    <td><a class="game-link" href="#game-profile" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></td>
+                    <td>142</td>
+                    <td>Capcom</td>
+                    <td>1991</td>
+                    <td>Arcade</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel bevel" data-scene-fighter="alex" data-scene-fighter-name="Alex">
+            <div class="section-head">
+              <h2>Game Screens</h2>
+              <p>Most Popular Games</p>
+            </div>
+            <div class="game-grid">
+              <article class="game-card" data-game-id="class1981">
+                <img src="https://www.aurcade.com/games/screens/00000496m.jpg" alt="Class of 1981 screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="class1981">MS. PAC-MAN / GALAGA CLASS OF 1981</a></h3>
+              </article>
+              <article class="game-card" data-game-id="mspacman">
+                <img src="https://www.aurcade.com/games/screens/00000011m.jpg" alt="Ms Pac-Man screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="mspacman">MS. PAC-MAN</a></h3>
+              </article>
+              <article class="game-card" data-game-id="galaga">
+                <img src="https://www.aurcade.com/games/screens/00000012m.jpg" alt="Galaga screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="galaga">GALAGA</a></h3>
+              </article>
+              <article class="game-card" data-game-id="sf2ww">
+                <img src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Street Fighter II screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="sf2ww">STREET FIGHTER II: THE WORLD WARRIOR</a></h3>
+              </article>
+              <article class="game-card" data-game-id="sf3strike">
+                <img src="https://www.aurcade.com/games/screens/00000537m.jpg" alt="Street Fighter III: 3rd Strike screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="sf3strike">STREET FIGHTER III: 3RD STRIKE</a></h3>
+              </article>
+              <article class="game-card" data-game-id="kof98">
+                <img src="https://www.aurcade.com/games/screens/00000675m.jpg" alt="King of Fighters '98, The screenshot" />
+                <h3><a class="game-link" href="#game-profile" data-game-link="kof98">KING OF FIGHTERS '98, THE</a></h3>
+              </article>
+            </div>
+          </section>
+
+          <section id="game-profile" class="panel bevel" data-scene-fighter="dudley" data-scene-fighter-name="Dudley">
+            <div class="section-head">
+              <h2 data-game-profile-title>Details</h2>
+              <p data-game-profile-subtitle>High Scores</p>
+            </div>
+            <div class="split-grid game-profile-grid">
+              <article class="panel bevel">
+                <h2>Details</h2>
+                <div class="panel-hero">
+                  <img data-game-profile-image src="https://www.aurcade.com/games/screens/00001227m.jpg" alt="Game profile image" />
+                </div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <tbody>
+                      <tr>
+                        <th>Made By</th>
+                        <td data-game-profile-maker>Capcom</td>
+                      </tr>
+                      <tr>
+                        <th>Year</th>
+                        <td data-game-profile-year>1991</td>
+                      </tr>
+                      <tr>
+                        <th>Type</th>
+                        <td data-game-profile-type>Arcade</td>
+                      </tr>
+                      <tr>
+                        <th>Locations</th>
+                        <td data-game-profile-locations>142</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="panel bevel">
+                <h2>High Scores</h2>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Score</th>
+                        <th>Player</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody data-game-profile-scores></tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <article class="panel bevel">
+              <h2>Locations Where You Can Play</h2>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Location</th>
+                    </tr>
+                  </thead>
+                  <tbody data-game-profile-locations-table></tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer bevel">
+        <p>
+          <a href="./index.html">Home</a> |
+          <a href="./leaderboards.html">Newest Scores</a> |
+          <a href="./games.html">Browse Games</a> |
+          <a href="./venues.html">Browse Locations</a> |
+          <a href="./events.html">Events</a> |
+          <a href="./community.html">Public Forums</a> |
+          <a href="./resources.html">About Us</a>
+        </p>
+        <p class="small">Aurcade. (c) <span data-year></span></p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

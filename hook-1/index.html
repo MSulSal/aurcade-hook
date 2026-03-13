@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurcade Client Hook Concept</title>
+    <meta
+      name="description"
+      content="A conversion-first, retro-modern web concept designed to hook Aurcade as a client."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;700&family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-mark"></span>
+        <span class="brand-text">AURCADE // CLIENT HOOK</span>
+      </a>
+      <nav class="menu" aria-label="Primary">
+        <a href="#why">Why This Works</a>
+        <a href="#build">Build Plan</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="fx-toggle" type="button" data-scan-toggle>
+        CRT FX: ON
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero container reveal">
+        <div class="hero-copy">
+          <p class="kicker">Designed to win arcades, bars, and FECs</p>
+          <h1>Turn Every Cabinet Into A Daily Competition</h1>
+          <p class="lede">
+            This concept leans into Aurcade's core strength: high scores as a
+            social engine. It blends scoreboard nostalgia, modern UX clarity,
+            and venue-ready conversion paths.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Launch A Pilot</a>
+            <a class="btn btn-ghost" href="#build">See 30-Day Plan</a>
+          </div>
+          <div class="hero-metrics">
+            <article class="metric-card">
+              <p class="metric-value countup" data-target="4">0</p>
+              <p class="metric-label">Core User Loops</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-value countup" data-target="30">0</p>
+              <p class="metric-label">Day Pilot Window</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-value countup" data-target="24">0</p>
+              <p class="metric-label">Hour Content Cycle</p>
+            </article>
+          </div>
+        </div>
+
+        <aside class="scoreboard-frame" aria-label="Leaderboard preview">
+          <header class="scoreboard-header">
+            <span class="status-dot"></span>
+            <p>LIVE FLOOR LEADERBOARD</p>
+          </header>
+          <div class="scoreboard-meta">
+            <p class="machine">MACHINE: GALAGA DX</p>
+            <p class="venue">VENUE: PORTLAND PINBALL MAP</p>
+          </div>
+          <ol class="score-list">
+            <li>
+              <span class="rank">01</span><span class="name">KEV</span
+              ><span class="score">156,934</span>
+            </li>
+            <li>
+              <span class="rank">02</span><span class="name">ASS</span
+              ><span class="score">150,986</span>
+            </li>
+            <li>
+              <span class="rank">03</span><span class="name">GBU</span
+              ><span class="score">129,022</span>
+            </li>
+            <li>
+              <span class="rank">04</span><span class="name">RAF</span
+              ><span class="score">81,918</span>
+            </li>
+            <li>
+              <span class="rank">05</span><span class="name">GUN</span
+              ><span class="score">80,000</span>
+            </li>
+          </ol>
+          <p class="scoreboard-foot">NEXT RESET: 02:39:17</p>
+        </aside>
+      </section>
+
+      <section class="ticker-wrap" aria-label="Live activity feed">
+        <div class="ticker-track">
+          <span>NEW CHALLENGE: PAC-MAN PERFECT MAZE BONUS</span>
+          <span>WEEKEND EVENT: MULTI-VENUE PINBALL LADDER</span>
+          <span>FEATURE DROP: QR SCORE SUBMIT + VENUE PROFILE</span>
+          <span>TOP COMMUNITY TAG: #ARCADENIGHT</span>
+          <span>NEW CHALLENGE: PAC-MAN PERFECT MAZE BONUS</span>
+          <span>WEEKEND EVENT: MULTI-VENUE PINBALL LADDER</span>
+          <span>FEATURE DROP: QR SCORE SUBMIT + VENUE PROFILE</span>
+          <span>TOP COMMUNITY TAG: #ARCADENIGHT</span>
+        </div>
+      </section>
+
+      <section id="why" class="container section reveal">
+        <header class="section-head">
+          <p class="kicker">Why this hooks</p>
+          <h2>Built Around Aurcade's Real Flywheel</h2>
+        </header>
+        <div class="loop-grid">
+          <article class="loop-card">
+            <h3>1. Player Loop</h3>
+            <p>
+              Quick score entry, instant ranking, and local bragging rights keep
+              players returning to the same machine.
+            </p>
+          </article>
+          <article class="loop-card">
+            <h3>2. Venue Loop</h3>
+            <p>
+              Operators get fresh weekly events and machine-specific traffic
+              without adding staffing overhead.
+            </p>
+          </article>
+          <article class="loop-card">
+            <h3>3. Community Loop</h3>
+            <p>
+              Public leaderboards, venue pages, and social-ready moments create
+              shareable content every day.
+            </p>
+          </article>
+          <article class="loop-card">
+            <h3>4. Growth Loop</h3>
+            <p>
+              Every high score becomes a discovery point that attracts both
+              players and new partner venues.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section reveal">
+        <header class="section-head">
+          <p class="kicker">Experience Direction</p>
+          <h2>Retro Soul, Modern Funnel</h2>
+        </header>
+        <div class="panel-grid">
+          <article class="panel">
+            <h3>Arcade-native visuals</h3>
+            <p>
+              Pixel fonts, scanline texture, cabinet-inspired framing, and high
+              contrast score tables.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Operator-friendly UX</h3>
+            <p>
+              Clean task paths, fast loading layouts, and practical controls for
+              promotions, events, and score moderation.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Mobile-first participation</h3>
+            <p>
+              Players should join contests, claim scores, and share highlights
+              in seconds from their phones.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="build" class="container section reveal">
+        <header class="section-head">
+          <p class="kicker">30-Day Pilot Plan</p>
+          <h2>Execution Roadmap</h2>
+        </header>
+        <div class="roadmap">
+          <article class="roadmap-step">
+            <p class="step-label">Week 1</p>
+            <h3>Visual System + Message</h3>
+            <p>
+              Lock typography, color tokens, key component styles, and conversion
+              copy tuned for venues and players.
+            </p>
+          </article>
+          <article class="roadmap-step">
+            <p class="step-label">Week 2</p>
+            <h3>Leaderboard + Venue Templates</h3>
+            <p>
+              Build responsive page templates for game pages, venue pages, and
+              event ladders.
+            </p>
+          </article>
+          <article class="roadmap-step">
+            <p class="step-label">Week 3</p>
+            <h3>Growth Mechanics</h3>
+            <p>
+              Add event signup funnels, referral prompts, and share-focused score
+              cards with strong analytics hooks.
+            </p>
+          </article>
+          <article class="roadmap-step">
+            <p class="step-label">Week 4</p>
+            <h3>Polish + Launch Pack</h3>
+            <p>
+              Performance tuning, accessibility pass, QA matrix, and handoff docs
+              for immediate rollout.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="container section reveal">
+        <div class="contact-panel">
+          <p class="kicker">Ready to move</p>
+          <h2>Let's ship a pilot Aurcade can feel in one glance</h2>
+          <p>
+            This repo is now the base. Next pass can become a full multi-page
+            prototype with real IA, UX copy, and componentized frontend code.
+          </p>
+          <a class="btn btn-primary" href="mailto:hello@yourstudio.com"
+            >Start The Conversation</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Concept build for Aurcade outreach.</p>
+      <p>(c) <span id="year"></span> Arcade Growth Lab</p>
+    </footer>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
