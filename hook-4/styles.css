@@ -336,16 +336,31 @@ a:focus-visible {
 }
 
 .utility-strip::before {
-  content: "Not Logged In - Login Now or Create Account";
-  width: 100%;
-  color: #ffe88a;
-  font-family: "VT323", "Courier New", monospace;
-  font-size: 1.25rem;
-  margin-bottom: 0.18rem;
+  content: none;
 }
 
 .utility-strip p {
   margin: 0;
+}
+
+.utility-strip .auth-row {
+  width: 100%;
+  color: #ffe88a;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.25rem;
+  margin-bottom: 0.14rem;
+}
+
+.utility-strip .auth-row a {
+  color: #c9f5ff;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(201, 245, 255, 0.62);
+}
+
+.utility-strip .auth-row a:hover,
+.utility-strip .auth-row a:focus-visible {
+  color: #fff5a8;
+  border-bottom-color: rgba(255, 245, 168, 0.84);
 }
 
 .utility-strip .status {
@@ -471,6 +486,20 @@ a:focus-visible {
   gap: 0.32rem;
   flex-wrap: wrap;
   border-color: #5ebded;
+}
+
+.nav-toggle {
+  display: none;
+  width: 100%;
+  border: 2px outset #7bcfff;
+  background: linear-gradient(180deg, #84edff, #55c5f0);
+  color: #04203f;
+  font-family: "Silkscreen", "Courier New", monospace;
+  font-size: 0.66rem;
+  padding: 0.52rem 0.6rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
 }
 
 .main-nav a {
@@ -1427,7 +1456,7 @@ tr[data-game-id].is-selected td {
 }
 
 @media (max-width: 980px) {
-  .utility-strip::before {
+  .utility-strip .auth-row {
     font-size: 1.12rem;
   }
 
@@ -1453,6 +1482,31 @@ tr[data-game-id].is-selected td {
 
   .feature-item {
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 731px) {
+  .main-nav.is-collapsed {
+    display: block;
+  }
+
+  .main-nav.is-collapsed .nav-toggle {
+    display: block;
+  }
+
+  .main-nav.is-collapsed a {
+    display: none;
+  }
+
+  .main-nav.is-collapsed.is-open a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .main-nav.is-collapsed.is-open a + a {
+    margin-top: 0.26rem;
   }
 }
 
@@ -1504,7 +1558,7 @@ tr[data-game-id].is-selected td {
     padding: 0.35rem 0.5rem;
   }
 
-  .utility-strip::before {
+  .utility-strip .auth-row {
     font-size: 1.02rem;
   }
 
@@ -1664,6 +1718,32 @@ tr[data-game-id].is-selected td {
   .scoreboard,
   .data-table {
     min-width: 460px;
+  }
+}
+
+@media (max-width: 530px) {
+  .site-header {
+    height: 86px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: #081321;
+  }
+
+  .site-header::after {
+    content: "Arcade Locations, World Records and More!";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    transform: translateX(-50%);
+    font-family: "VT323", "Courier New", monospace;
+    font-size: 1rem;
+    color: #ffe88a;
+    line-height: 1;
+    white-space: nowrap;
+    padding: 0.02rem 0.28rem;
+    background: rgba(7, 16, 30, 0.78);
+    border: 1px solid rgba(128, 211, 255, 0.35);
   }
 }
 

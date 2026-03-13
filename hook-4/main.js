@@ -296,6 +296,27 @@ function initializeHeader() {
   });
 }
 
+function initializeAuthRow() {
+  const utilityStrip = document.querySelector(".utility-strip");
+  if (!(utilityStrip instanceof HTMLElement)) {
+    return;
+  }
+
+  if (utilityStrip.querySelector(".auth-row")) {
+    return;
+  }
+
+  const row = document.createElement("p");
+  row.className = "auth-row";
+  row.innerHTML = [
+    'Not Logged In - ',
+    '<a href="https://www.aurcade.com/members/default.aspx" target="_blank" rel="noreferrer">Login Now</a>',
+    " or ",
+    '<a href="https://www.aurcade.com/members/default.aspx" target="_blank" rel="noreferrer">Create Account</a>',
+  ].join("");
+  utilityStrip.prepend(row);
+}
+
 function initializeGlobalSearch() {
   const utilityStrip = document.querySelector(".utility-strip");
   if (!(utilityStrip instanceof HTMLElement)) {
@@ -361,6 +382,64 @@ function initializeGlobalSearch() {
 
     searchForm.action = target;
   });
+}
+
+function initializeMobileNav() {
+  const nav = document.querySelector(".main-nav");
+  if (!(nav instanceof HTMLElement)) {
+    return;
+  }
+
+  if (nav.querySelector(".nav-toggle")) {
+    return;
+  }
+
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "nav-toggle";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Toggle navigation");
+  toggle.textContent = "Menu";
+  nav.prepend(toggle);
+
+  const media = window.matchMedia("(max-width: 731px)");
+
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Menu";
+  }
+
+  function syncLayout() {
+    if (media.matches) {
+      nav.classList.add("is-collapsed");
+    } else {
+      nav.classList.remove("is-collapsed");
+      closeMenu();
+    }
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    toggle.textContent = isOpen ? "Close" : "Menu";
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (media.matches) {
+        closeMenu();
+      }
+    });
+  });
+
+  if (typeof media.addEventListener === "function") {
+    media.addEventListener("change", syncLayout);
+  } else if (typeof media.addListener === "function") {
+    media.addListener(syncLayout);
+  }
+
+  syncLayout();
 }
 
 function initializeContentViews() {
@@ -936,7 +1015,9 @@ function initializeSideCharacters() {
 }
 
 initializeHeader();
+initializeAuthRow();
 initializeGlobalSearch();
+initializeMobileNav();
 initializeGroups();
 initializeVotes();
 initializeContentViews();
