@@ -20,6 +20,26 @@ const sideCharacterAssets = {
     src: "./assets/fighters/dudley.gif",
     scale: 1.14,
   },
+  pacman: {
+    src: "https://www.aurcade.com/icons/iconPacman.gif",
+    scale: 1.05,
+  },
+  blinky: {
+    src: "https://www.aurcade.com/icons/iconGhost2.gif",
+    scale: 1.05,
+  },
+  pinky: {
+    src: "https://www.aurcade.com/icons/iconGhost3.gif",
+    scale: 1.05,
+  },
+  inky: {
+    src: "https://www.aurcade.com/icons/iconGhost1.gif",
+    scale: 1.05,
+  },
+  sue: {
+    src: "https://www.aurcade.com/icons/iconGhost4.gif",
+    scale: 1.05,
+  },
 };
 
 function pad(value) {
@@ -559,11 +579,26 @@ function initializeSideCharacters() {
   if (!fighterNode || !imageNode) {
     return;
   }
+  imageNode.decoding = "async";
+
+  Object.values(sideCharacterAssets).forEach((asset) => {
+    if (!asset || !asset.src) {
+      return;
+    }
+    const preloadImage = new Image();
+    preloadImage.decoding = "async";
+    preloadImage.src = asset.src;
+  });
 
   let activeIndex = -1;
   let hasUserScrolled = false;
   const initialScrollY = window.scrollY || window.pageYOffset || 0;
   const introThreshold = 72;
+  const sceneSwitchDelay = reduceMotion ? 0 : 180;
+  let lastSceneSwitchAt = 0;
+  let queuedSceneIndex = -1;
+  let queueTimer = null;
+  let rafHandle = null;
 
   function enterCharacter(node) {
     node.classList.remove("is-entering");
@@ -572,12 +607,17 @@ function initializeSideCharacters() {
     node.classList.add("is-entering");
     window.setTimeout(() => {
       node.classList.remove("is-entering");
-    }, 320);
+    }, 460);
   }
 
   function hideCharacters() {
     fighterNode.classList.remove("is-visible", "is-bobbing", "is-entering");
     activeIndex = -1;
+    queuedSceneIndex = -1;
+    if (queueTimer) {
+      window.clearTimeout(queueTimer);
+      queueTimer = null;
+    }
   }
 
   function setScene(index) {
@@ -595,6 +635,23 @@ function initializeSideCharacters() {
       return;
     }
 
+    const now = window.performance?.now ? window.performance.now() : Date.now();
+    if (sceneSwitchDelay > 0 && activeIndex >= 0 && now - lastSceneSwitchAt < sceneSwitchDelay) {
+      queuedSceneIndex = index;
+      if (!queueTimer) {
+        const delay = Math.max(16, sceneSwitchDelay - (now - lastSceneSwitchAt));
+        queueTimer = window.setTimeout(() => {
+          queueTimer = null;
+          const next = queuedSceneIndex;
+          queuedSceneIndex = -1;
+          if (next >= 0) {
+            setScene(next);
+          }
+        }, delay);
+      }
+      return;
+    }
+
     imageNode.src = asset.src;
     imageNode.alt = scene.fighterName;
     imageNode.style.setProperty("--fighter-scale", String(asset.scale || 1.2));
@@ -604,6 +661,7 @@ function initializeSideCharacters() {
     fighterNode.classList.add("is-visible");
     fighterNode.classList.toggle("is-bobbing", !reduceMotion);
     activeIndex = index;
+    lastSceneSwitchAt = window.performance?.now ? window.performance.now() : Date.now();
   }
 
   function pickBestSceneIndex() {
@@ -649,6 +707,16 @@ function initializeSideCharacters() {
     setScene(pickBestSceneIndex());
   }
 
+  function scheduleSceneUpdate() {
+    if (rafHandle) {
+      return;
+    }
+    rafHandle = window.requestAnimationFrame(() => {
+      rafHandle = null;
+      updateSceneFromScrollState();
+    });
+  }
+
   const visibility = new Map();
   resolvedScenes.forEach((scene, index) => {
     scene.node.dataset.sceneIndex = String(index);
@@ -666,7 +734,7 @@ function initializeSideCharacters() {
         visibility.set(index, entry.isIntersecting ? entry.intersectionRatio : 0);
       });
 
-      updateSceneFromScrollState();
+      scheduleSceneUpdate();
     },
     {
       root: null,
@@ -679,7 +747,8 @@ function initializeSideCharacters() {
     observer.observe(scene.node);
   });
 
-  window.addEventListener("scroll", updateSceneFromScrollState, { passive: true });
+  window.addEventListener("scroll", scheduleSceneUpdate, { passive: true });
+  window.addEventListener("resize", scheduleSceneUpdate, { passive: true });
   updateSceneFromScrollState();
 }
 
