@@ -1520,6 +1520,10 @@ tr[data-game-id].is-selected td {
     grid-template-columns: 1fr;
   }
 
+  .page-index .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
   .card-grid.cols-2 {
     grid-template-columns: 1fr;
   }
@@ -1717,11 +1721,67 @@ tr[data-game-id].is-selected td {
 
   .scoreboard,
   .data-table {
-    min-width: 460px;
+    min-width: 420px;
   }
 }
 
 @media (max-width: 530px) {
+  .utility-strip,
+  .site-shell {
+    width: 98vw;
+  }
+
+  .site-shell {
+    margin: 0.45rem auto 0.9rem;
+    padding: 4px;
+    border-width: 4px;
+  }
+
+  .main-nav {
+    padding: 0.28rem;
+  }
+
+  .nav-toggle {
+    font-size: 0.72rem;
+    padding: 0.5rem 0.55rem;
+    margin-bottom: 0.28rem;
+    letter-spacing: 0.03em;
+  }
+
+  .page-grid {
+    gap: 0.5rem;
+  }
+
+  .panel {
+    padding: 0.46rem;
+  }
+
+  .panel > h2,
+  .section-head h2 {
+    font-size: 0.64rem;
+  }
+
+  .panel p,
+  .section-head p,
+  .card .meta,
+  .tag,
+  .rail-list li,
+  .key-list li,
+  .rules-list li,
+  .todo-list li {
+    font-size: 1.02rem;
+  }
+
+  .global-search button {
+    font-size: 0.62rem;
+    padding: 0.38rem 0.5rem;
+  }
+
+  .ticker-track span {
+    font-size: 0.98rem;
+    padding: 0.3rem 0.5rem;
+  }
+
   .site-header {
     height: 86px;
     background-repeat: no-repeat;
