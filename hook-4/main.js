@@ -894,8 +894,6 @@ function initializeSideCharacters() {
     left: 0,
     right: 0,
   };
-  wheelSlots.left.entry.style.setProperty("--beam-delay", "0.04s");
-  wheelSlots.right.entry.style.setProperty("--beam-delay", "0.22s");
 
   function normalizeIndex(index, length) {
     return ((index % length) + length) % length;
@@ -950,7 +948,7 @@ function initializeSideCharacters() {
     const ringText = ` ${ringLabelEn} :: ${player} :: ${score} :: ${ringLabelJp} :: ${location} :: `;
     slot.ringFront.textContent = ringText;
     slot.ringFrontClone.textContent = ringText;
-    const ringSpeed = `${18 + Math.floor(Math.random() * 7)}s`;
+    const ringSpeed = `${28 + Math.floor(Math.random() * 9)}s`;
     const ringDelay = `-${Math.floor(Math.random() * 6)}s`;
     slot.card.style.setProperty("--ring-speed", ringSpeed);
     slot.card.style.setProperty("--ring-delay", ringDelay);
@@ -1023,7 +1021,7 @@ function initializeSideCharacters() {
   renderCharacter("right", initialRight);
 
   if (!reduceMotion) {
-    const randomWheelLoopMs = 5600;
+    const randomWheelLoopMs = 11000;
     window.setInterval(() => {
       const side = Math.random() < 0.5 ? "left" : "right";
       const rosterLength = side === "left" ? leftRoster.length : rightRoster.length;
