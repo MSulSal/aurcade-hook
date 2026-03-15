@@ -798,6 +798,7 @@ a:focus-visible {
 .page-grid > aside,
 .page-grid > main {
   display: block;
+  min-width: 0;
 }
 
 .page-grid > aside {
@@ -840,6 +841,11 @@ a:focus-visible {
     0 0 0 1px rgba(144, 223, 255, 0.18) inset,
     0 10px 16px -13px rgba(0, 0, 0, 0.75);
   overflow: hidden;
+  max-width: 100%;
+}
+
+.panel > * {
+  min-width: 0;
 }
 
 .panel > h2 {
@@ -2141,7 +2147,17 @@ tr[data-game-id].is-selected td {
 
   .scoreboard,
   .data-table {
+    width: 100%;
+    max-width: 100%;
     min-width: 0;
+    table-layout: fixed;
+  }
+
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .scoreboard th,
@@ -2153,6 +2169,10 @@ tr[data-game-id].is-selected td {
   .data-table td {
     font-size: 0.94rem;
     padding: 0.24rem 0.24rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
 }
 
