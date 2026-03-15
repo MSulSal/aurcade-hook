@@ -2,89 +2,90 @@ const yearNodes = document.querySelectorAll("[data-year]");
 const updatedNodes = document.querySelectorAll("[data-last-updated]");
 const navNodes = document.querySelectorAll("[data-page]");
 const siteData = window.AURCADE_DATA || {};
+const sideCabinetBaseSprite = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Arcade_Cabinet.png";
 
 const groupState = new Map();
 const sideCharacterAssets = {
-  mazegrid: {
-    src: "assets/fighters/aurcade-sprites/mazegrid.png",
-    scale: 1.03,
-    name: "Maze Grid",
-  },
-  comboburst: {
-    src: "assets/fighters/aurcade-sprites/comboburst.png",
-    scale: 1.04,
-    name: "Combo Burst",
-  },
-  speedlane: {
-    src: "assets/fighters/aurcade-sprites/speedlane.png",
-    scale: 1.03,
-    name: "Speed Lane",
-  },
-  pinballorbit: {
-    src: "assets/fighters/aurcade-sprites/pinballorbit.png",
-    scale: 1.04,
-    name: "Pinball Orbit",
-  },
-  cabinetcore: {
-    src: "assets/fighters/aurcade-sprites/cabinetcore.png",
-    scale: 1.03,
-    name: "Cabinet Core",
-  },
-  mapradar: {
-    src: "assets/fighters/aurcade-sprites/mapradar.png",
-    scale: 1.03,
-    name: "Map Radar",
-  },
-  wrcrown: {
-    src: "assets/fighters/aurcade-sprites/wrcrown.png",
-    scale: 1.04,
-    name: "WR Crown",
-  },
-  bracketgrid: {
-    src: "assets/fighters/aurcade-sprites/bracketgrid.png",
-    scale: 1.03,
-    name: "Bracket Grid",
-  },
-  tokenspark: {
-    src: "assets/fighters/aurcade-sprites/tokenspark.png",
-    scale: 1.03,
-    name: "Token Spark",
-  },
-  leaderpulse: {
-    src: "assets/fighters/aurcade-sprites/leaderpulse.png",
-    scale: 1.03,
-    name: "Leader Pulse",
-  },
-  eventbeacon: {
-    src: "assets/fighters/aurcade-sprites/eventbeacon.png",
-    scale: 1.03,
-    name: "Event Beacon",
-  },
-  neondojo: {
-    src: "assets/fighters/aurcade-sprites/neondojo.png",
+  class1981: {
+    screen: "https://www.aurcade.com/games/screens/00000496m.jpg",
+    player: "Andrew Iwaszko",
+    score: "2,946,700",
+    location: "Galloping Ghost Arcade",
     scale: 1.05,
-    name: "Neon Dojo",
+    name: "MS. PAC-MAN / GALAGA CLASS OF 1981",
+  },
+  mspacman: {
+    screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    player: "GBU",
+    score: "1,290,022",
+    location: "Galloping Ghost Arcade",
+    scale: 1.05,
+    name: "MS. PAC-MAN",
+  },
+  galaga: {
+    screen: "https://www.aurcade.com/games/screens/00000012m.jpg",
+    player: "KEV",
+    score: "156,934",
+    location: "Ground Kontrol",
+    scale: 1.04,
+    name: "GALAGA",
+  },
+  pacman: {
+    screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    player: "GUN",
+    score: "900,000",
+    location: "Galloping Ghost Arcade",
+    scale: 1.04,
+    name: "PAC-MAN",
+  },
+  donkeykong: {
+    screen: "https://www.aurcade.com/games/screens/00000009m.jpg",
+    player: "NAM",
+    score: "500,000",
+    location: "Ground Kontrol",
+    scale: 1.04,
+    name: "DONKEY KONG",
+  },
+  sf2ww: {
+    screen: "https://www.aurcade.com/games/screens/00001227m.jpg",
+    player: "Craig Roach",
+    score: "5,004,780",
+    location: "Galloping Ghost Arcade",
+    scale: 1.06,
+    name: "STREET FIGHTER II: THE WORLD WARRIOR",
+  },
+  sf3strike: {
+    screen: "https://www.aurcade.com/games/screens/00000537m.jpg",
+    player: "Matty Thomas",
+    score: "2,361,900",
+    location: "Galloping Ghost Arcade",
+    scale: 1.05,
+    name: "STREET FIGHTER III: 3RD STRIKE",
+  },
+  kof98: {
+    screen: "https://www.aurcade.com/games/screens/00000675m.jpg",
+    player: "Colin C Brown",
+    score: "1,882,400",
+    location: "Ground Kontrol",
+    scale: 1.05,
+    name: "KING OF FIGHTERS '98, THE",
   },
 };
 
 const sideCharacterWheels = {
-  left: ["mazegrid", "comboburst", "speedlane", "pinballorbit", "cabinetcore", "mapradar"],
-  right: ["wrcrown", "bracketgrid", "tokenspark", "leaderpulse", "eventbeacon", "neondojo"],
+  left: ["class1981", "mspacman", "galaga", "pacman"],
+  right: ["donkeykong", "sf2ww", "sf3strike", "kof98"],
 };
 
 const sideCharacterJapanese = {
-  mazegrid: "\u30e1\u30a4\u30ba\u30b0\u30ea\u30c3\u30c9",
-  comboburst: "\u30b3\u30f3\u30dc\u30d0\u30fc\u30b9\u30c8",
-  speedlane: "\u30b9\u30d4\u30fc\u30c9\u30ec\u30fc\u30f3",
-  pinballorbit: "\u30d4\u30f3\u30dc\u30fc\u30eb\u30aa\u30fc\u30d3\u30c3\u30c8",
-  cabinetcore: "\u30ad\u30e3\u30d3\u30cd\u30c3\u30c8\u30b3\u30a2",
-  mapradar: "\u30de\u30c3\u30d7\u30ec\u30fc\u30c0\u30fc",
-  wrcrown: "\u30ef\u30fc\u30eb\u30c9\u30ec\u30b3\u30fc\u30c9\u30af\u30e9\u30a6\u30f3",
-  bracketgrid: "\u30d6\u30e9\u30b1\u30c3\u30c8\u30b0\u30ea\u30c3\u30c9",
-  tokenspark: "\u30c8\u30fc\u30af\u30f3\u30b9\u30d1\u30fc\u30af",
-  leaderpulse: "\u30ea\u30fc\u30c0\u30fc\u30d1\u30eb\u30b9",
-  eventbeacon: "\u30a4\u30d9\u30f3\u30c8\u30d3\u30fc\u30b3\u30f3",
-  neondojo: "\u30cd\u30aa\u30f3\u30c9\u30fc\u30b8\u30e7\u30fc",
+  class1981: "\u30df\u30ba\u30fb\u30d1\u30c3\u30af\u30de\u30f3 /\u30ac\u30e9\u30ac \u30af\u30e9\u30b9 \u30aa\u30d6 1981",
+  mspacman: "\u30df\u30ba\u30fb\u30d1\u30c3\u30af\u30de\u30f3",
+  galaga: "\u30ac\u30e9\u30ac",
+  pacman: "\u30d1\u30c3\u30af\u30de\u30f3",
+  donkeykong: "\u30c9\u30f3\u30ad\u30fc\u30b3\u30f3\u30b0",
+  sf2ww: "\u30b9\u30c8\u30ea\u30fc\u30c8\u30d5\u30a1\u30a4\u30bf\u30fc2",
+  sf3strike: "\u30b9\u30c8\u30ea\u30fc\u30c8\u30d5\u30a1\u30a4\u30bf\u30fc3 \u30b5\u30fc\u30c9\u30b9\u30c8\u30e9\u30a4\u30af",
+  kof98: "\u30b6 \u30ad\u30f3\u30b0 \u30aa\u30d6 \u30d5\u30a1\u30a4\u30bf\u30fc\u30ba 98",
 };
 
 function pad(value) {
@@ -782,6 +783,8 @@ function initializeSideCharacters() {
     '    <div class="selector-card" data-wheel-card="left">',
     '      <img class="silhouette" alt="" />',
     '      <img class="sprite" alt="" />',
+    '      <span class="cabinet-screen" aria-hidden="true"><img class="cabinet-screen-image" data-wheel-screen="left" alt="" /></span>',
+    '      <span class="cabinet-meta" aria-hidden="true"><span class="cabinet-meta-game" data-wheel-meta-game="left"></span><span class="cabinet-meta-score" data-wheel-meta-score="left"></span></span>',
     '      <span class="name-ring name-ring-front" aria-hidden="true">',
     '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="left"></span><span class="name-ring-text" data-wheel-ring-front-clone="left"></span></span>',
     "      </span>",
@@ -794,6 +797,8 @@ function initializeSideCharacters() {
     '    <div class="selector-card" data-wheel-card="right">',
     '      <img class="silhouette" alt="" />',
     '      <img class="sprite" alt="" />',
+    '      <span class="cabinet-screen" aria-hidden="true"><img class="cabinet-screen-image" data-wheel-screen="right" alt="" /></span>',
+    '      <span class="cabinet-meta" aria-hidden="true"><span class="cabinet-meta-game" data-wheel-meta-game="right"></span><span class="cabinet-meta-score" data-wheel-meta-score="right"></span></span>',
     '      <span class="name-ring name-ring-front" aria-hidden="true">',
     '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="right"></span><span class="name-ring-text" data-wheel-ring-front-clone="right"></span></span>',
     "      </span>",
@@ -814,6 +819,9 @@ function initializeSideCharacters() {
       card: hud.querySelector('[data-wheel-card="left"]'),
       sprite: hud.querySelector('[data-wheel-card="left"] .sprite'),
       silhouette: hud.querySelector('[data-wheel-card="left"] .silhouette'),
+      screen: hud.querySelector('[data-wheel-screen="left"]'),
+      metaGame: hud.querySelector('[data-wheel-meta-game="left"]'),
+      metaScore: hud.querySelector('[data-wheel-meta-score="left"]'),
       ringFront: hud.querySelector('[data-wheel-ring-front="left"]'),
       ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="left"]'),
       holo: hud.querySelector('[data-wheel-card="left"] .holo-layer'),
@@ -822,6 +830,9 @@ function initializeSideCharacters() {
       card: hud.querySelector('[data-wheel-card="right"]'),
       sprite: hud.querySelector('[data-wheel-card="right"] .sprite'),
       silhouette: hud.querySelector('[data-wheel-card="right"] .silhouette'),
+      screen: hud.querySelector('[data-wheel-screen="right"]'),
+      metaGame: hud.querySelector('[data-wheel-meta-game="right"]'),
+      metaScore: hud.querySelector('[data-wheel-meta-score="right"]'),
       ringFront: hud.querySelector('[data-wheel-ring-front="right"]'),
       ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="right"]'),
       holo: hud.querySelector('[data-wheel-card="right"] .holo-layer'),
@@ -835,8 +846,14 @@ function initializeSideCharacters() {
     !(wheelSlots.right.card instanceof HTMLElement) ||
     !(wheelSlots.left.sprite instanceof HTMLImageElement) ||
     !(wheelSlots.left.silhouette instanceof HTMLImageElement) ||
+    !(wheelSlots.left.screen instanceof HTMLImageElement) ||
+    !(wheelSlots.left.metaGame instanceof HTMLElement) ||
+    !(wheelSlots.left.metaScore instanceof HTMLElement) ||
     !(wheelSlots.right.sprite instanceof HTMLImageElement) ||
     !(wheelSlots.right.silhouette instanceof HTMLImageElement) ||
+    !(wheelSlots.right.screen instanceof HTMLImageElement) ||
+    !(wheelSlots.right.metaGame instanceof HTMLElement) ||
+    !(wheelSlots.right.metaScore instanceof HTMLElement) ||
     !(wheelSlots.left.ringFront instanceof Element) ||
     !(wheelSlots.left.ringFrontClone instanceof Element) ||
     !(wheelSlots.right.ringFront instanceof Element) ||
@@ -857,7 +874,8 @@ function initializeSideCharacters() {
     image.src = url;
   }
 
-  Object.values(sideCharacterAssets).forEach((asset) => preloadUrl(asset?.src));
+  preloadUrl(sideCabinetBaseSprite);
+  Object.values(sideCharacterAssets).forEach((asset) => preloadUrl(asset?.screen));
   const state = {
     left: 0,
     right: 0,
@@ -894,15 +912,24 @@ function initializeSideCharacters() {
       return;
     }
 
-    slot.sprite.src = asset.src;
-    slot.sprite.alt = asset.name || characterKey;
-    slot.silhouette.src = asset.src;
+    slot.sprite.src = sideCabinetBaseSprite;
+    slot.sprite.alt = `${asset.name || characterKey} cabinet`;
+    slot.silhouette.src = sideCabinetBaseSprite;
     slot.silhouette.alt = "";
+    slot.screen.src = asset.screen || "";
+    slot.screen.alt = `${asset.name || characterKey} screenshot`;
     slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.04));
-    slot.card.style.setProperty("--fighter-image", `url("${asset.src}")`);
+    slot.card.style.setProperty("--fighter-image", `url("${sideCabinetBaseSprite}")`);
+
     const ringLabelEn = (asset.name || characterKey).toUpperCase();
     const ringLabelJp = sideCharacterJapanese[characterKey] || ringLabelEn;
-    const ringText = ` ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  *  ${ringLabelEn}  *  ${ringLabelJp}  * `;
+    const player = (asset.player || "Top Player").toUpperCase();
+    const score = asset.score || "TOP SCORE";
+    const location = (asset.location || "ARCADE").toUpperCase();
+    slot.metaGame.textContent = ringLabelEn;
+    slot.metaScore.textContent = `${player}  ${score}`;
+
+    const ringText = ` ${ringLabelEn} :: ${player} :: ${score} :: ${ringLabelJp} :: ${location} :: `;
     slot.ringFront.textContent = ringText;
     slot.ringFrontClone.textContent = ringText;
     const ringSpeed = `${18 + Math.floor(Math.random() * 7)}s`;
@@ -919,8 +946,6 @@ function initializeSideCharacters() {
       return;
     }
 
-    slot.ringFront.textContent = "";
-    slot.ringFrontClone.textContent = "";
     slot.card.classList.add("is-fading");
     window.setTimeout(() => {
       renderCharacter(side, index);
