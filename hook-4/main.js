@@ -780,6 +780,9 @@ function initializeSideCharacters() {
     '<aside class="selector-wheel wheel-left" data-wheel="left" aria-label="Left character wheel">',
     '  <div class="wheel-row">',
     '    <div class="selector-card" data-wheel-card="left">',
+    '      <span class="name-ring name-ring-top" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-top="left"></span><span class="name-ring-text" data-wheel-ring-top-clone="left"></span></span>',
+    "      </span>",
     '      <span class="popcorn-entry" data-wheel-entry="left" aria-hidden="true">',
     '        <span class="popcorn-plane" data-wheel-plane="left">',
     '          <img class="silhouette" alt="" />',
@@ -789,8 +792,8 @@ function initializeSideCharacters() {
     '          <span class="holo-layer"></span>',
     "        </span>",
     "      </span>",
-    '      <span class="name-ring name-ring-front" aria-hidden="true">',
-    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="left"></span><span class="name-ring-text" data-wheel-ring-front-clone="left"></span></span>',
+    '      <span class="name-ring name-ring-bottom" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-bottom="left"></span><span class="name-ring-text" data-wheel-ring-bottom-clone="left"></span></span>',
     "      </span>",
     '    </div>',
     '  </div>',
@@ -798,6 +801,9 @@ function initializeSideCharacters() {
     '<aside class="selector-wheel wheel-right" data-wheel="right" aria-label="Right character wheel">',
     '  <div class="wheel-row">',
     '    <div class="selector-card" data-wheel-card="right">',
+    '      <span class="name-ring name-ring-top" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-top="right"></span><span class="name-ring-text" data-wheel-ring-top-clone="right"></span></span>',
+    "      </span>",
     '      <span class="popcorn-entry" data-wheel-entry="right" aria-hidden="true">',
     '        <span class="popcorn-plane" data-wheel-plane="right">',
     '          <img class="silhouette" alt="" />',
@@ -807,8 +813,8 @@ function initializeSideCharacters() {
     '          <span class="holo-layer"></span>',
     "        </span>",
     "      </span>",
-    '      <span class="name-ring name-ring-front" aria-hidden="true">',
-    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="right"></span><span class="name-ring-text" data-wheel-ring-front-clone="right"></span></span>',
+    '      <span class="name-ring name-ring-bottom" aria-hidden="true">',
+    '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-bottom="right"></span><span class="name-ring-text" data-wheel-ring-bottom-clone="right"></span></span>',
     "      </span>",
     '    </div>',
     '  </div>',
@@ -831,8 +837,10 @@ function initializeSideCharacters() {
       screen: hud.querySelector('[data-wheel-screen="left"]'),
       metaGame: hud.querySelector('[data-wheel-meta-game="left"]'),
       metaScore: hud.querySelector('[data-wheel-meta-score="left"]'),
-      ringFront: hud.querySelector('[data-wheel-ring-front="left"]'),
-      ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="left"]'),
+      ringTop: hud.querySelector('[data-wheel-ring-top="left"]'),
+      ringTopClone: hud.querySelector('[data-wheel-ring-top-clone="left"]'),
+      ringBottom: hud.querySelector('[data-wheel-ring-bottom="left"]'),
+      ringBottomClone: hud.querySelector('[data-wheel-ring-bottom-clone="left"]'),
       holo: hud.querySelector('[data-wheel-card="left"] .holo-layer'),
     },
     right: {
@@ -844,8 +852,10 @@ function initializeSideCharacters() {
       screen: hud.querySelector('[data-wheel-screen="right"]'),
       metaGame: hud.querySelector('[data-wheel-meta-game="right"]'),
       metaScore: hud.querySelector('[data-wheel-meta-score="right"]'),
-      ringFront: hud.querySelector('[data-wheel-ring-front="right"]'),
-      ringFrontClone: hud.querySelector('[data-wheel-ring-front-clone="right"]'),
+      ringTop: hud.querySelector('[data-wheel-ring-top="right"]'),
+      ringTopClone: hud.querySelector('[data-wheel-ring-top-clone="right"]'),
+      ringBottom: hud.querySelector('[data-wheel-ring-bottom="right"]'),
+      ringBottomClone: hud.querySelector('[data-wheel-ring-bottom-clone="right"]'),
       holo: hud.querySelector('[data-wheel-card="right"] .holo-layer'),
     },
   };
@@ -869,10 +879,14 @@ function initializeSideCharacters() {
     !(wheelSlots.right.screen instanceof HTMLImageElement) ||
     !(wheelSlots.right.metaGame instanceof HTMLElement) ||
     !(wheelSlots.right.metaScore instanceof HTMLElement) ||
-    !(wheelSlots.left.ringFront instanceof Element) ||
-    !(wheelSlots.left.ringFrontClone instanceof Element) ||
-    !(wheelSlots.right.ringFront instanceof Element) ||
-    !(wheelSlots.right.ringFrontClone instanceof Element) ||
+    !(wheelSlots.left.ringTop instanceof Element) ||
+    !(wheelSlots.left.ringTopClone instanceof Element) ||
+    !(wheelSlots.left.ringBottom instanceof Element) ||
+    !(wheelSlots.left.ringBottomClone instanceof Element) ||
+    !(wheelSlots.right.ringTop instanceof Element) ||
+    !(wheelSlots.right.ringTopClone instanceof Element) ||
+    !(wheelSlots.right.ringBottom instanceof Element) ||
+    !(wheelSlots.right.ringBottomClone instanceof Element) ||
     !(wheelSlots.left.holo instanceof HTMLElement) ||
     !(wheelSlots.right.holo instanceof HTMLElement)
   ) {
@@ -942,16 +956,22 @@ function initializeSideCharacters() {
     const player = (asset.player || "Top Player").toUpperCase();
     const score = asset.score || "TOP SCORE";
     const location = (asset.location || "ARCADE").toUpperCase();
-    slot.metaGame.textContent = ringLabelEn;
-    slot.metaScore.textContent = `${player}  ${score}`;
+    slot.metaGame.textContent = "";
+    slot.metaScore.textContent = "";
 
-    const ringText = ` ${ringLabelEn} :: ${player} :: ${score} :: ${ringLabelJp} :: ${location} :: `;
-    slot.ringFront.textContent = ringText;
-    slot.ringFrontClone.textContent = ringText;
-    const ringSpeed = `${28 + Math.floor(Math.random() * 9)}s`;
-    const ringDelay = `-${Math.floor(Math.random() * 6)}s`;
-    slot.card.style.setProperty("--ring-speed", ringSpeed);
-    slot.card.style.setProperty("--ring-delay", ringDelay);
+    const topText = ` ${ringLabelEn} :: HIGH SCORE ${score} :: ${ringLabelJp} :: ${score} :: `;
+    const bottomText = ` ${ringLabelEn} :: PLAYER ${player} :: ${location} :: ${player} :: `;
+    slot.ringTop.textContent = topText;
+    slot.ringTopClone.textContent = topText;
+    slot.ringBottom.textContent = bottomText;
+    slot.ringBottomClone.textContent = bottomText;
+    const baseSpeed = 30 + Math.floor(Math.random() * 8);
+    const topDelay = Math.floor(Math.random() * 6);
+    const bottomDelay = topDelay + 3;
+    slot.card.style.setProperty("--ring-speed-top", `${baseSpeed}s`);
+    slot.card.style.setProperty("--ring-speed-bottom", `${baseSpeed + 4}s`);
+    slot.card.style.setProperty("--ring-delay-top", `-${topDelay}s`);
+    slot.card.style.setProperty("--ring-delay-bottom", `-${bottomDelay}s`);
     pulseCard(slot.card);
   }
 
