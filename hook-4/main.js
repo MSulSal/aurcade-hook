@@ -17,7 +17,7 @@ const sideCharacterAssets = {
     name: "MS. PAC-MAN / GALAGA CLASS OF 1981",
   },
   mspacman: {
-    screen: "https://www.aurcade.com/games/screens/00000011.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
     screenFallback: "https://www.aurcade.com/games/screens/00000011m.jpg",
     screenPosition: "50% 22%",
     screenScale: 1.26,
@@ -1027,18 +1027,24 @@ function initializeSideCharacters() {
   }
 
   function stepCharacter(side, direction) {
-    transitionCharacter(side, state[side] + direction);
-  }
+    const roster = side === "left" ? leftRoster : rightRoster;
+    if (roster.length <= 1) {
+      transitionCharacter(side, state[side]);
+      return;
+    }
 
-  function randomNextIndex(rosterLength, currentIndex) {
-    if (rosterLength <= 1) {
-      return currentIndex;
+    const currentIndex = normalizeIndex(state[side], roster.length);
+    const currentKey = roster[currentIndex];
+    let candidateIndex = currentIndex;
+    let guard = 0;
+    while (guard < roster.length) {
+      candidateIndex = normalizeIndex(candidateIndex + direction, roster.length);
+      if (roster[candidateIndex] !== currentKey) {
+        break;
+      }
+      guard += 1;
     }
-    let next = currentIndex;
-    while (next === currentIndex) {
-      next = Math.floor(Math.random() * rosterLength);
-    }
-    return next;
+    transitionCharacter(side, candidateIndex);
   }
 
   window.addEventListener("keydown", (event) => {
@@ -1064,7 +1070,8 @@ function initializeSideCharacters() {
     }
   });
 
-  const initialLeft = Math.floor(Math.random() * leftRoster.length);
+  const mspacmanIndex = leftRoster.indexOf("mspacman");
+  const initialLeft = mspacmanIndex >= 0 ? mspacmanIndex : Math.floor(Math.random() * leftRoster.length);
   let initialRight = Math.floor(Math.random() * rightRoster.length);
   if (leftRoster.length > 0 && rightRoster.length > 0) {
     let guard = 0;
@@ -1078,13 +1085,12 @@ function initializeSideCharacters() {
   renderCharacter("right", initialRight);
 
   if (!reduceMotion) {
-    const randomWheelLoopMs = 11000;
+    const cycleLoopMs = 8500;
+    let sideToggle = "left";
     window.setInterval(() => {
-      const side = Math.random() < 0.5 ? "left" : "right";
-      const rosterLength = side === "left" ? leftRoster.length : rightRoster.length;
-      const next = randomNextIndex(rosterLength, state[side]);
-      transitionCharacter(side, next);
-    }, randomWheelLoopMs);
+      stepCharacter(sideToggle, 1);
+      sideToggle = sideToggle === "left" ? "right" : "left";
+    }, cycleLoopMs);
   }
 }
 
