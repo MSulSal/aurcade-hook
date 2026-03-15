@@ -6,10 +6,10 @@ const siteData = window.AURCADE_DATA || {};
 const groupState = new Map();
 const sideCharacterAssets = {
   class1981: {
-    screen: "https://www.aurcade.com/games/screens/00000496.jpg",
-    screenFallback: "https://www.aurcade.com/games/screens/00000496m.jpg",
-    screenPosition: "50% 28%",
-    screenScale: 1.18,
+    screen: "https://www.aurcade.com/games/screens/00000011.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screenPosition: "50% 24%",
+    screenScale: 1.2,
     player: "Andrew Iwaszko",
     score: "2,946,700",
     location: "Galloping Ghost Arcade",
@@ -17,10 +17,10 @@ const sideCharacterAssets = {
     name: "MS. PAC-MAN / GALAGA CLASS OF 1981",
   },
   mspacman: {
-    screen: "https://www.aurcade.com/games/screens/00000496.jpg",
-    screenFallback: "https://www.aurcade.com/games/screens/00000496m.jpg",
-    screenPosition: "50% 30%",
-    screenScale: 1.12,
+    screen: "https://www.aurcade.com/games/screens/00000011.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screenPosition: "50% 22%",
+    screenScale: 1.26,
     player: "GBU",
     score: "1,290,022",
     location: "Galloping Ghost Arcade",
