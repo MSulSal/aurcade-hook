@@ -254,17 +254,32 @@ img {
   height: 88%;
   transform: translate(-50%, -50%);
   z-index: 6;
-  clip-path: inset(0 round 14px);
-  border-radius: 14px;
+  clip-path: none;
+  border-radius: 0;
   overflow: hidden;
   border: 0;
   box-shadow:
-    0 0 22px rgba(95, 212, 255, 0.82),
-    inset 0 0 30px rgba(75, 209, 255, 0.34);
+    0 0 26px rgba(112, 224, 255, 0.64),
+    inset 0 0 34px rgba(86, 223, 255, 0.24);
   background: rgba(2, 10, 24, 0.72);
-  -webkit-mask-image: radial-gradient(circle at center, #000 52%, rgba(0, 0, 0, 0.84) 69%, transparent 100%);
-  mask-image: radial-gradient(circle at center, #000 52%, rgba(0, 0, 0, 0.84) 69%, transparent 100%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 34%,
+    rgba(0, 0, 0, 0.9) 52%,
+    rgba(0, 0, 0, 0.56) 72%,
+    rgba(0, 0, 0, 0.18) 88%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 34%,
+    rgba(0, 0, 0, 0.9) 52%,
+    rgba(0, 0, 0, 0.56) 72%,
+    rgba(0, 0, 0, 0.18) 88%,
+    transparent 100%
+  );
   mix-blend-mode: screen;
+  opacity: 0.94;
 }
 
 .cabinet-screen::after {
@@ -307,6 +322,22 @@ img {
     contrast(1.24)
     brightness(1.14)
     hue-rotate(-8deg);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.92) 58%,
+    rgba(0, 0, 0, 0.54) 76%,
+    rgba(0, 0, 0, 0.15) 90%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.92) 58%,
+    rgba(0, 0, 0, 0.54) 76%,
+    rgba(0, 0, 0, 0.15) 90%,
+    transparent 100%
+  );
   animation: hologram-flicker 3.2s steps(14, end) infinite;
 }
 
@@ -395,12 +426,12 @@ img {
 
 .name-ring-top,
 .retro-marquee-band--top {
-  top: 1%;
+  top: -10%;
 }
 
 .name-ring-bottom,
 .retro-marquee-band--bottom {
-  top: 89%;
+  top: 109%;
 }
 
 .wheel-left .name-ring,
