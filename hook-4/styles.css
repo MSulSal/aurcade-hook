@@ -18,6 +18,8 @@
   --warn: #ffd676;
   --shell: min(1000px, 96vw);
   --shadow: rgba(0, 0, 0, 0.5);
+  --utility-strip-height: 0px;
+  --sticky-nav-top: 0px;
 }
 
 *,
@@ -713,6 +715,14 @@ a:focus-visible {
   gap: 0.32rem;
   flex-wrap: wrap;
   border-color: #5ebded;
+}
+
+.utility-strip,
+.main-nav {
+  transition:
+    transform 240ms ease,
+    opacity 220ms ease,
+    max-height 240ms ease;
 }
 
 .nav-toggle {
@@ -1819,6 +1829,48 @@ tr[data-game-id].is-selected td {
 }
 
 @media (max-width: 731px) {
+  .utility-strip {
+    position: sticky;
+    top: 0;
+    z-index: 48;
+  }
+
+  .main-nav {
+    position: sticky;
+    top: var(--utility-strip-height, 0px);
+    z-index: 47;
+    max-height: 680px;
+    overflow: hidden;
+  }
+
+  .utility-strip .global-search {
+    max-height: 180px;
+    overflow: hidden;
+    transform: translateY(0);
+    opacity: 1;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease,
+      max-height 220ms ease,
+      margin 220ms ease;
+  }
+
+  body.mobile-scroll-ui-hidden .main-nav {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  body.mobile-scroll-ui-hidden .utility-strip .global-search {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   .main-nav.is-collapsed {
     display: block;
   }
@@ -1840,6 +1892,20 @@ tr[data-game-id].is-selected td {
 
   .main-nav.is-collapsed.is-open a + a {
     margin-top: 0.26rem;
+  }
+}
+
+@media (min-width: 732px) {
+  .utility-strip {
+    position: sticky;
+    top: 0;
+    z-index: 48;
+  }
+
+  .main-nav {
+    position: sticky;
+    top: var(--sticky-nav-top, 0px);
+    z-index: 47;
   }
 }
 
