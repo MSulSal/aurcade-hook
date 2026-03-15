@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Map Radar">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="62%">
+      <stop offset="0%" stop-color="#dcfff1" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#23a58a" stop-opacity="0.18"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#80ffc7"/>
+      <stop offset="100%" stop-color="#23a58a"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="22" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#glow)">
+    <circle cx="512" cy="512" r="338" fill="url(#bg)" opacity="0.82"/>
+    <path d="M512 150l214 124v248L512 646 298 522V274z" fill="none" stroke="url(#ring)" stroke-width="20"/>
+    <circle cx="512" cy="512" r="250" fill="none" stroke="url(#ring)" stroke-width="10" opacity="0.88"/>
+    <circle cx="512" cy="512" r="198" fill="none" stroke="#80ffc7" stroke-opacity="0.35" stroke-width="6" stroke-dasharray="16 20"/>
+  </g>
+
+  <g fill="#80ffc7">
+    <path d="M512 370c-62 0-106 42-106 100 0 84 106 202 106 202s106-118 106-202c0-58-44-100-106-100zm0 144a44 44 0 1 1 0-88 44 44 0 0 1 0 88z"/>
+  </g>
+
+  <g opacity="0.42" fill="#dcfff1">
+    <circle cx="250" cy="300" r="14"/>
+    <circle cx="768" cy="278" r="10"/>
+    <circle cx="782" cy="722" r="12"/>
+    <circle cx="260" cy="742" r="9"/>
+  </g>
+</svg>

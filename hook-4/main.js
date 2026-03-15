@@ -5,110 +5,86 @@ const siteData = window.AURCADE_DATA || {};
 
 const groupState = new Map();
 const sideCharacterAssets = {
-  ryu: {
-    src: "assets/fighters/mvc/ryu.png",
-    scale: 1.02,
-    name: "Ryu",
+  mazegrid: {
+    src: "assets/fighters/aurcade-emblems/mazegrid.svg",
+    scale: 1.03,
+    name: "Maze Grid",
   },
-  chunli: {
-    src: "assets/fighters/mvc/chunli.png",
-    scale: 1.02,
-    name: "Chun-Li",
-  },
-  dante: {
-    src: "assets/fighters/mvc/dante.png",
+  comboburst: {
+    src: "assets/fighters/aurcade-emblems/comboburst.svg",
     scale: 1.04,
-    name: "Dante",
+    name: "Combo Burst",
   },
-  morrigan: {
-    src: "assets/fighters/mvc/morrigan.png",
+  speedlane: {
+    src: "assets/fighters/aurcade-emblems/speedlane.svg",
     scale: 1.03,
-    name: "Morrigan",
+    name: "Speed Lane",
   },
-  zero: {
-    src: "assets/fighters/mvc/zero.png",
-    scale: 1.03,
-    name: "Zero",
-  },
-  x: {
-    src: "assets/fighters/mvc/x.png",
+  pinballorbit: {
+    src: "assets/fighters/aurcade-emblems/pinballorbit.svg",
     scale: 1.04,
-    name: "X",
+    name: "Pinball Orbit",
   },
-  striderhiryu: {
-    src: "assets/fighters/mvc/striderhiryu.png",
-    scale: 1.02,
-    name: "Strider Hiryu",
-  },
-  monsterhunter: {
-    src: "assets/fighters/mvc/monsterhunter.png",
+  cabinetcore: {
+    src: "assets/fighters/aurcade-emblems/cabinetcore.svg",
     scale: 1.03,
-    name: "Monster Hunter",
+    name: "Cabinet Core",
   },
-  captainamerica: {
-    src: "assets/fighters/mvc/captainamerica.png",
-    scale: 1.02,
-    name: "Captain America",
-  },
-  spiderman: {
-    src: "assets/fighters/mvc/spiderman.png",
+  mapradar: {
+    src: "assets/fighters/aurcade-emblems/mapradar.svg",
     scale: 1.03,
-    name: "Spider-Man",
+    name: "Map Radar",
   },
-  ironman: {
-    src: "assets/fighters/mvc/ironman.png",
-    scale: 1.02,
-    name: "Iron Man",
+  wrcrown: {
+    src: "assets/fighters/aurcade-emblems/wrcrown.svg",
+    scale: 1.04,
+    name: "WR Crown",
   },
-  hulk: {
-    src: "assets/fighters/mvc/hulk.png",
+  bracketgrid: {
+    src: "assets/fighters/aurcade-emblems/bracketgrid.svg",
+    scale: 1.03,
+    name: "Bracket Grid",
+  },
+  tokenspark: {
+    src: "assets/fighters/aurcade-emblems/tokenspark.svg",
+    scale: 1.03,
+    name: "Token Spark",
+  },
+  leaderpulse: {
+    src: "assets/fighters/aurcade-emblems/leaderpulse.svg",
+    scale: 1.03,
+    name: "Leader Pulse",
+  },
+  eventbeacon: {
+    src: "assets/fighters/aurcade-emblems/eventbeacon.svg",
+    scale: 1.03,
+    name: "Event Beacon",
+  },
+  neondojo: {
+    src: "assets/fighters/aurcade-emblems/neondojo.svg",
     scale: 1.05,
-    name: "Hulk",
-  },
-  doctorstrange: {
-    src: "assets/fighters/mvc/doctorstrange.png",
-    scale: 1.03,
-    name: "Doctor Strange",
-  },
-  thanos: {
-    src: "assets/fighters/mvc/thanos.png",
-    scale: 1.05,
-    name: "Thanos",
-  },
-  venom: {
-    src: "assets/fighters/mvc/venom.png",
-    scale: 1.04,
-    name: "Venom",
-  },
-  blackpanther: {
-    src: "assets/fighters/mvc/blackpanther.png",
-    scale: 1.03,
-    name: "Black Panther",
+    name: "Neon Dojo",
   },
 };
 
 const sideCharacterWheels = {
-  left: ["ryu", "chunli", "dante", "morrigan", "zero", "x", "striderhiryu", "monsterhunter"],
-  right: ["captainamerica", "spiderman", "ironman", "hulk", "doctorstrange", "thanos", "venom", "blackpanther"],
+  left: ["mazegrid", "comboburst", "speedlane", "pinballorbit", "cabinetcore", "mapradar"],
+  right: ["wrcrown", "bracketgrid", "tokenspark", "leaderpulse", "eventbeacon", "neondojo"],
 };
 
 const sideCharacterJapanese = {
-  ryu: "\u30ea\u30e5\u30a6",
-  chunli: "\u6625\u9e97",
-  dante: "\u30c0\u30f3\u30c6",
-  morrigan: "\u30e2\u30ea\u30ac\u30f3",
-  zero: "\u30bc\u30ed",
-  x: "\u30a8\u30c3\u30af\u30b9",
-  striderhiryu: "\u30b9\u30c8\u30e9\u30a4\u30c0\u30fc\u98db\u7adc",
-  monsterhunter: "\u30e2\u30f3\u30b9\u30bf\u30fc\u30cf\u30f3\u30bf\u30fc",
-  captainamerica: "\u30ad\u30e3\u30d7\u30c6\u30f3\u30fb\u30a2\u30e1\u30ea\u30ab",
-  spiderman: "\u30b9\u30d1\u30a4\u30c0\u30fc\u30de\u30f3",
-  ironman: "\u30a2\u30a4\u30a2\u30f3\u30de\u30f3",
-  hulk: "\u30cf\u30eb\u30af",
-  doctorstrange: "\u30c9\u30af\u30bf\u30fc\u30fb\u30b9\u30c8\u30ec\u30f3\u30b8",
-  thanos: "\u30b5\u30ce\u30b9",
-  venom: "\u30f4\u30a7\u30ce\u30e0",
-  blackpanther: "\u30d6\u30e9\u30c3\u30af\u30d1\u30f3\u30b5\u30fc",
+  mazegrid: "\u30e1\u30a4\u30ba\u30b0\u30ea\u30c3\u30c9",
+  comboburst: "\u30b3\u30f3\u30dc\u30d0\u30fc\u30b9\u30c8",
+  speedlane: "\u30b9\u30d4\u30fc\u30c9\u30ec\u30fc\u30f3",
+  pinballorbit: "\u30d4\u30f3\u30dc\u30fc\u30eb\u30aa\u30fc\u30d3\u30c3\u30c8",
+  cabinetcore: "\u30ad\u30e3\u30d3\u30cd\u30c3\u30c8\u30b3\u30a2",
+  mapradar: "\u30de\u30c3\u30d7\u30ec\u30fc\u30c0\u30fc",
+  wrcrown: "\u30ef\u30fc\u30eb\u30c9\u30ec\u30b3\u30fc\u30c9\u30af\u30e9\u30a6\u30f3",
+  bracketgrid: "\u30d6\u30e9\u30b1\u30c3\u30c8\u30b0\u30ea\u30c3\u30c9",
+  tokenspark: "\u30c8\u30fc\u30af\u30f3\u30b9\u30d1\u30fc\u30af",
+  leaderpulse: "\u30ea\u30fc\u30c0\u30fc\u30d1\u30eb\u30b9",
+  eventbeacon: "\u30a4\u30d9\u30f3\u30c8\u30d3\u30fc\u30b3\u30f3",
+  neondojo: "\u30cd\u30aa\u30f3\u30c9\u30fc\u30b8\u30e7\u30fc",
 };
 
 function pad(value) {
