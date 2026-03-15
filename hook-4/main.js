@@ -7,6 +7,8 @@ const groupState = new Map();
 const sideCharacterAssets = {
   class1981: {
     screen: "https://www.aurcade.com/games/screens/00000496m.jpg",
+    screenPosition: "50% 28%",
+    screenScale: 1.18,
     player: "Andrew Iwaszko",
     score: "2,946,700",
     location: "Galloping Ghost Arcade",
@@ -15,6 +17,8 @@ const sideCharacterAssets = {
   },
   mspacman: {
     screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screenPosition: "50% 24%",
+    screenScale: 1.24,
     player: "GBU",
     score: "1,290,022",
     location: "Galloping Ghost Arcade",
@@ -23,6 +27,8 @@ const sideCharacterAssets = {
   },
   galaga: {
     screen: "https://www.aurcade.com/games/screens/00000012m.jpg",
+    screenPosition: "50% 8%",
+    screenScale: 1.75,
     player: "KEV",
     score: "156,934",
     location: "Ground Kontrol",
@@ -31,6 +37,8 @@ const sideCharacterAssets = {
   },
   pacman: {
     screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screenPosition: "50% 22%",
+    screenScale: 1.3,
     player: "GUN",
     score: "900,000",
     location: "Galloping Ghost Arcade",
@@ -39,6 +47,8 @@ const sideCharacterAssets = {
   },
   donkeykong: {
     screen: "https://www.aurcade.com/games/screens/00000009m.jpg",
+    screenPosition: "50% 18%",
+    screenScale: 1.4,
     player: "NAM",
     score: "500,000",
     location: "Ground Kontrol",
@@ -47,6 +57,8 @@ const sideCharacterAssets = {
   },
   sf2ww: {
     screen: "https://www.aurcade.com/games/screens/00001227m.jpg",
+    screenPosition: "50% 24%",
+    screenScale: 1.18,
     player: "Craig Roach",
     score: "5,004,780",
     location: "Galloping Ghost Arcade",
@@ -55,6 +67,8 @@ const sideCharacterAssets = {
   },
   sf3strike: {
     screen: "https://www.aurcade.com/games/screens/00000537m.jpg",
+    screenPosition: "50% 20%",
+    screenScale: 1.22,
     player: "Matty Thomas",
     score: "2,361,900",
     location: "Galloping Ghost Arcade",
@@ -63,6 +77,8 @@ const sideCharacterAssets = {
   },
   kof98: {
     screen: "https://www.aurcade.com/games/screens/00000675m.jpg",
+    screenPosition: "50% 22%",
+    screenScale: 1.2,
     player: "Colin C Brown",
     score: "1,882,400",
     location: "Ground Kontrol",
@@ -946,6 +962,8 @@ function initializeSideCharacters() {
     slot.silhouette.alt = "";
     slot.screen.src = asset.screen || "";
     slot.screen.alt = `${asset.name || characterKey} screenshot`;
+    slot.screen.style.objectPosition = asset.screenPosition || "50% 22%";
+    slot.screen.style.setProperty("--screen-scale", String(asset.screenScale || 1.18));
     slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.02));
     slot.card.style.setProperty("--fighter-image", `url("${asset.screen || ""}")`);
     const spinSpeed = `${52 + Math.floor(Math.random() * 14)}s`;
