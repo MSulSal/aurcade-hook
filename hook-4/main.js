@@ -6,62 +6,62 @@ const siteData = window.AURCADE_DATA || {};
 const groupState = new Map();
 const sideCharacterAssets = {
   mazegrid: {
-    src: "assets/fighters/aurcade-emblems/mazegrid.svg",
+    src: "assets/fighters/aurcade-sprites/mazegrid.png",
     scale: 1.03,
     name: "Maze Grid",
   },
   comboburst: {
-    src: "assets/fighters/aurcade-emblems/comboburst.svg",
+    src: "assets/fighters/aurcade-sprites/comboburst.png",
     scale: 1.04,
     name: "Combo Burst",
   },
   speedlane: {
-    src: "assets/fighters/aurcade-emblems/speedlane.svg",
+    src: "assets/fighters/aurcade-sprites/speedlane.png",
     scale: 1.03,
     name: "Speed Lane",
   },
   pinballorbit: {
-    src: "assets/fighters/aurcade-emblems/pinballorbit.svg",
+    src: "assets/fighters/aurcade-sprites/pinballorbit.png",
     scale: 1.04,
     name: "Pinball Orbit",
   },
   cabinetcore: {
-    src: "assets/fighters/aurcade-emblems/cabinetcore.svg",
+    src: "assets/fighters/aurcade-sprites/cabinetcore.png",
     scale: 1.03,
     name: "Cabinet Core",
   },
   mapradar: {
-    src: "assets/fighters/aurcade-emblems/mapradar.svg",
+    src: "assets/fighters/aurcade-sprites/mapradar.png",
     scale: 1.03,
     name: "Map Radar",
   },
   wrcrown: {
-    src: "assets/fighters/aurcade-emblems/wrcrown.svg",
+    src: "assets/fighters/aurcade-sprites/wrcrown.png",
     scale: 1.04,
     name: "WR Crown",
   },
   bracketgrid: {
-    src: "assets/fighters/aurcade-emblems/bracketgrid.svg",
+    src: "assets/fighters/aurcade-sprites/bracketgrid.png",
     scale: 1.03,
     name: "Bracket Grid",
   },
   tokenspark: {
-    src: "assets/fighters/aurcade-emblems/tokenspark.svg",
+    src: "assets/fighters/aurcade-sprites/tokenspark.png",
     scale: 1.03,
     name: "Token Spark",
   },
   leaderpulse: {
-    src: "assets/fighters/aurcade-emblems/leaderpulse.svg",
+    src: "assets/fighters/aurcade-sprites/leaderpulse.png",
     scale: 1.03,
     name: "Leader Pulse",
   },
   eventbeacon: {
-    src: "assets/fighters/aurcade-emblems/eventbeacon.svg",
+    src: "assets/fighters/aurcade-sprites/eventbeacon.png",
     scale: 1.03,
     name: "Event Beacon",
   },
   neondojo: {
-    src: "assets/fighters/aurcade-emblems/neondojo.svg",
+    src: "assets/fighters/aurcade-sprites/neondojo.png",
     scale: 1.05,
     name: "Neon Dojo",
   },
