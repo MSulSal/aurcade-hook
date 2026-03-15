@@ -60,10 +60,10 @@ img {
 }
 
 .selector-wheel {
-  --wheel-size: clamp(170px, 14vw, 300px);
+  --wheel-size: clamp(240px, 19vw, 420px);
   position: fixed;
   top: auto;
-  bottom: clamp(26px, 6vh, 74px);
+  bottom: clamp(96px, 13vh, 190px);
   width: var(--wheel-size);
   transform-origin: center bottom;
   pointer-events: none;
@@ -250,8 +250,8 @@ img {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 68%;
-  height: 74%;
+  width: 76%;
+  height: 84%;
   transform: translate(-50%, -50%);
   z-index: 6;
   clip-path: inset(0 round 14px);
