@@ -2,7 +2,7 @@ const yearNodes = document.querySelectorAll("[data-year]");
 const updatedNodes = document.querySelectorAll("[data-last-updated]");
 const navNodes = document.querySelectorAll("[data-page]");
 const siteData = window.AURCADE_DATA || {};
-const sideCabinetBaseSprite = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Arcade_Cabinet.png";
+const sideCabinetBaseSprite = "https://upload.wikimedia.org/wikipedia/commons/2/24/Simple_arcade_cabinet.png";
 
 const groupState = new Map();
 const sideCharacterAssets = {
