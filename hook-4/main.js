@@ -6,7 +6,8 @@ const siteData = window.AURCADE_DATA || {};
 const groupState = new Map();
 const sideCharacterAssets = {
   class1981: {
-    screen: "https://www.aurcade.com/games/screens/00000496m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000496.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000496m.jpg",
     screenPosition: "50% 28%",
     screenScale: 1.18,
     player: "Andrew Iwaszko",
@@ -16,7 +17,8 @@ const sideCharacterAssets = {
     name: "MS. PAC-MAN / GALAGA CLASS OF 1981",
   },
   mspacman: {
-    screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000011.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000011m.jpg",
     screenPosition: "50% 24%",
     screenScale: 1.24,
     player: "GBU",
@@ -26,9 +28,11 @@ const sideCharacterAssets = {
     name: "MS. PAC-MAN",
   },
   galaga: {
-    screen: "https://www.aurcade.com/games/screens/00000012m.jpg",
-    screenPosition: "50% 8%",
-    screenScale: 1.75,
+    screen: "https://www.aurcade.com/games/screens/00000012.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000012m.jpg",
+    screenPosition: "50% 12%",
+    screenScale: 1.14,
+    screenFit: "contain",
     player: "KEV",
     score: "156,934",
     location: "Ground Kontrol",
@@ -36,7 +40,8 @@ const sideCharacterAssets = {
     name: "GALAGA",
   },
   pacman: {
-    screen: "https://www.aurcade.com/games/screens/00000011m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000011.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000011m.jpg",
     screenPosition: "50% 22%",
     screenScale: 1.3,
     player: "GUN",
@@ -46,7 +51,8 @@ const sideCharacterAssets = {
     name: "PAC-MAN",
   },
   donkeykong: {
-    screen: "https://www.aurcade.com/games/screens/00000009m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000009.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000009m.jpg",
     screenPosition: "50% 18%",
     screenScale: 1.4,
     player: "NAM",
@@ -56,7 +62,8 @@ const sideCharacterAssets = {
     name: "DONKEY KONG",
   },
   sf2ww: {
-    screen: "https://www.aurcade.com/games/screens/00001227m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00001227.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00001227m.jpg",
     screenPosition: "50% 24%",
     screenScale: 1.18,
     player: "Craig Roach",
@@ -66,7 +73,8 @@ const sideCharacterAssets = {
     name: "STREET FIGHTER II: THE WORLD WARRIOR",
   },
   sf3strike: {
-    screen: "https://www.aurcade.com/games/screens/00000537m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000537.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000537m.jpg",
     screenPosition: "50% 20%",
     screenScale: 1.22,
     player: "Matty Thomas",
@@ -76,7 +84,8 @@ const sideCharacterAssets = {
     name: "STREET FIGHTER III: 3RD STRIKE",
   },
   kof98: {
-    screen: "https://www.aurcade.com/games/screens/00000675m.jpg",
+    screen: "https://www.aurcade.com/games/screens/00000675.jpg",
+    screenFallback: "https://www.aurcade.com/games/screens/00000675m.jpg",
     screenPosition: "50% 22%",
     screenScale: 1.2,
     player: "Colin C Brown",
@@ -960,9 +969,19 @@ function initializeSideCharacters() {
     slot.sprite.alt = `${asset.name || characterKey} thumbnail`;
     slot.silhouette.src = asset.screen || "";
     slot.silhouette.alt = "";
-    slot.screen.src = asset.screen || "";
+    const primaryScreen = asset.screen || "";
+    const fallbackScreen = asset.screenFallback || "";
+    slot.screen.onerror = null;
+    if (fallbackScreen !== "") {
+      slot.screen.onerror = () => {
+        slot.screen.onerror = null;
+        slot.screen.src = fallbackScreen;
+      };
+    }
+    slot.screen.src = primaryScreen || fallbackScreen;
     slot.screen.alt = `${asset.name || characterKey} screenshot`;
     slot.screen.style.objectPosition = asset.screenPosition || "50% 22%";
+    slot.screen.style.objectFit = asset.screenFit || "cover";
     slot.screen.style.setProperty("--screen-scale", String(asset.screenScale || 1.18));
     slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.02));
     slot.card.style.setProperty("--fighter-image", `url("${asset.screen || ""}")`);

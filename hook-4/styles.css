@@ -256,39 +256,37 @@ img {
   z-index: 6;
   clip-path: none;
   border-radius: 0;
-  overflow: hidden;
+  overflow: visible;
   border: 0;
   box-shadow: none;
-  background: rgba(2, 10, 24, 0.56);
+  background: transparent;
   -webkit-mask-image: radial-gradient(
     ellipse at center,
-    #000 18%,
-    rgba(0, 0, 0, 0.96) 36%,
-    rgba(0, 0, 0, 0.68) 54%,
-    rgba(0, 0, 0, 0.36) 72%,
-    rgba(0, 0, 0, 0.12) 86%,
+    #000 56%,
+    rgba(0, 0, 0, 0.92) 72%,
+    rgba(0, 0, 0, 0.58) 84%,
+    rgba(0, 0, 0, 0.2) 93%,
     transparent 100%
   );
   mask-image: radial-gradient(
     ellipse at center,
-    #000 18%,
-    rgba(0, 0, 0, 0.96) 36%,
-    rgba(0, 0, 0, 0.68) 54%,
-    rgba(0, 0, 0, 0.36) 72%,
-    rgba(0, 0, 0, 0.12) 86%,
+    #000 56%,
+    rgba(0, 0, 0, 0.92) 72%,
+    rgba(0, 0, 0, 0.58) 84%,
+    rgba(0, 0, 0, 0.2) 93%,
     transparent 100%
   );
   mix-blend-mode: screen;
-  opacity: 0.9;
+  opacity: 0.93;
   filter:
-    drop-shadow(0 0 14px rgba(116, 236, 255, 0.44))
-    drop-shadow(0 0 30px rgba(88, 165, 255, 0.24));
+    drop-shadow(0 0 10px rgba(116, 236, 255, 0.24))
+    drop-shadow(0 0 24px rgba(88, 165, 255, 0.14));
 }
 
 .cabinet-screen::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -10%;
   background:
     repeating-linear-gradient(
       to top,
@@ -296,7 +294,8 @@ img {
       rgba(158, 240, 255, 0) 2px 10px
     );
   mix-blend-mode: screen;
-  opacity: 0.34;
+  opacity: 0.28;
+  filter: blur(1.8px);
   pointer-events: none;
   animation: band-up 2.8s linear infinite;
 }
@@ -304,21 +303,21 @@ img {
 .cabinet-screen::before {
   content: "";
   position: absolute;
-  inset: -20%;
+  inset: -18%;
   background:
     radial-gradient(
       ellipse at center,
-      rgba(0, 0, 0, 0) 42%,
-      rgba(41, 95, 148, 0.16) 58%,
-      rgba(14, 37, 73, 0.38) 72%,
-      rgba(3, 12, 30, 0.72) 88%,
-      rgba(0, 0, 0, 0.92) 100%
+      rgba(0, 0, 0, 0) 60%,
+      rgba(41, 95, 148, 0.08) 74%,
+      rgba(14, 37, 73, 0.22) 86%,
+      rgba(3, 12, 30, 0.46) 96%,
+      rgba(0, 0, 0, 0.7) 100%
     ),
     radial-gradient(circle at 36% 24%, rgba(180, 250, 255, 0.24), transparent 46%),
     radial-gradient(circle at 70% 78%, rgba(96, 181, 255, 0.2), transparent 54%);
   mix-blend-mode: normal;
-  opacity: 0.86;
-  filter: blur(13px);
+  opacity: 0.74;
+  filter: blur(16px);
   pointer-events: none;
   animation: holo-sheen 5.4s ease-in-out infinite;
 }
@@ -335,24 +334,24 @@ img {
     contrast(1.3)
     brightness(1.2)
     hue-rotate(-8deg)
-    blur(0.45px);
+    blur(0.7px);
   -webkit-mask-image: radial-gradient(
     ellipse at center,
-    #000 24%,
-    rgba(0, 0, 0, 0.94) 42%,
-    rgba(0, 0, 0, 0.62) 62%,
-    rgba(0, 0, 0, 0.24) 80%,
+    #000 60%,
+    rgba(0, 0, 0, 0.9) 76%,
+    rgba(0, 0, 0, 0.54) 88%,
+    rgba(0, 0, 0, 0.2) 95%,
     transparent 100%
   );
   mask-image: radial-gradient(
     ellipse at center,
-    #000 24%,
-    rgba(0, 0, 0, 0.94) 42%,
-    rgba(0, 0, 0, 0.62) 62%,
-    rgba(0, 0, 0, 0.24) 80%,
+    #000 60%,
+    rgba(0, 0, 0, 0.9) 76%,
+    rgba(0, 0, 0, 0.54) 88%,
+    rgba(0, 0, 0, 0.2) 95%,
     transparent 100%
   );
-  opacity: 0.94;
+  opacity: 0.96;
   mix-blend-mode: screen;
   animation: hologram-flicker 3.2s steps(14, end) infinite;
 }
