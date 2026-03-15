@@ -486,7 +486,7 @@ function initializeScrollChrome() {
     }
     const currentY = Math.max(0, window.scrollY || 0);
     const delta = currentY - lastScrollY;
-    if (Math.abs(delta) < 6) {
+    if (Math.abs(delta) < 2) {
       return;
     }
 

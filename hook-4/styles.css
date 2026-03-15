@@ -1858,8 +1858,9 @@ tr[data-game-id].is-selected td {
   body.mobile-scroll-ui-hidden .main-nav {
     max-height: 0;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(calc(-100% - 8px));
     pointer-events: none;
+    margin-top: 0;
   }
 
   body.mobile-scroll-ui-hidden .utility-strip .global-search {
