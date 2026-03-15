@@ -110,68 +110,153 @@ img {
   content: none;
 }
 
+.popcorn-entry {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform-origin: center bottom;
+  animation: beam-rise 980ms cubic-bezier(0.19, 1, 0.22, 1) both;
+  animation-delay: var(--beam-delay, 0s);
+}
+
+.popcorn-entry::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4%;
+  width: 48%;
+  height: 62%;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at center, rgba(164, 245, 255, 0.38), rgba(95, 202, 255, 0.18) 36%, rgba(65, 132, 255, 0) 74%);
+  filter: blur(1.4px);
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.popcorn-entry::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  width: 80%;
+  height: 20%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(99, 225, 255, 0.58), rgba(95, 212, 255, 0.06) 74%, transparent 82%);
+  filter: blur(3px);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.popcorn-plane {
+  position: absolute;
+  inset: 0;
+  transform-origin: center bottom;
+  animation: popcorn-spin var(--spin-speed, 58s) linear infinite;
+  filter:
+    drop-shadow(0 0 18px rgba(76, 198, 255, 0.58))
+    drop-shadow(0 0 34px rgba(45, 126, 255, 0.36));
+}
+
+.wheel-right .popcorn-plane {
+  animation-direction: reverse;
+}
+
+.popcorn-plane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  clip-path: polygon(27% 3%, 73% 3%, 92% 97%, 8% 97%);
+  background:
+    linear-gradient(90deg, rgba(129, 245, 255, 0.24), rgba(56, 211, 255, 0.12) 48%, rgba(129, 245, 255, 0.24)),
+    repeating-linear-gradient(
+      78deg,
+      rgba(148, 244, 255, 0.16) 0 16px,
+      rgba(120, 167, 255, 0.08) 16px 28px,
+      rgba(124, 255, 236, 0.14) 28px 45px
+    );
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.popcorn-plane::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  clip-path: polygon(27% 3%, 73% 3%, 92% 97%, 8% 97%);
+  border: 2px solid rgba(145, 233, 255, 0.88);
+  border-radius: 7px;
+  box-shadow:
+    inset 0 0 28px rgba(88, 202, 255, 0.26),
+    0 0 24px rgba(88, 202, 255, 0.44);
+  pointer-events: none;
+}
+
 .selector-card .silhouette,
-.selector-card .sprite {
+.selector-card .sprite,
+.selector-card .holo-layer {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: cover;
+  object-position: center center;
   transform-origin: center bottom;
+  clip-path: polygon(27% 3%, 73% 3%, 92% 97%, 8% 97%);
   transition: opacity 420ms ease;
 }
 
 .selector-card .silhouette {
-  position: absolute;
-  inset: 0;
   z-index: 0;
   image-rendering: pixelated;
-  opacity: 0.36;
+  opacity: 0.24;
   filter:
     brightness(0)
-    contrast(1.45)
-    drop-shadow(0 0 22px rgba(54, 185, 255, 0.6));
-  transform: translate(14px, 4px) scale(var(--fighter-scale, 1));
+    contrast(1.5)
+    blur(1px)
+    drop-shadow(0 0 20px rgba(54, 185, 255, 0.54));
+  transform: translate(18px, 10px) scale(var(--fighter-scale, 1));
 }
 
 .selector-card .sprite {
-  position: relative;
-  z-index: 3;
+  z-index: 2;
   image-rendering: auto;
-  transform: translateY(3%) scale(var(--fighter-scale, 1));
-  opacity: 0.82;
+  transform: scale(var(--fighter-scale, 1));
+  opacity: 0.72;
   mix-blend-mode: screen;
   filter:
-    saturate(1.16)
-    contrast(1.1)
+    saturate(1.3)
+    contrast(1.12)
     drop-shadow(0 0 2px rgba(224, 250, 255, 0.8))
-    drop-shadow(0 0 16px rgba(101, 231, 255, 0.72))
-    drop-shadow(0 0 30px rgba(67, 154, 255, 0.5));
+    drop-shadow(0 0 14px rgba(101, 231, 255, 0.68))
+    drop-shadow(0 0 26px rgba(67, 154, 255, 0.46));
   animation: holo-drift 4.8s ease-in-out infinite;
 }
 
 .selector-card .holo-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
+  z-index: 7;
   pointer-events: none;
-  transform: translateY(3%) scale(var(--fighter-scale, 1));
+  transform: scale(var(--fighter-scale, 1));
   -webkit-mask-image: var(--fighter-image);
   mask-image: var(--fighter-image);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center bottom;
-  mask-position: center bottom;
-  opacity: 0.44;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  opacity: 0.38;
   background:
-    radial-gradient(circle at 38% 28%, rgba(119, 238, 255, 0.24), transparent 48%),
-    radial-gradient(circle at 72% 72%, rgba(70, 153, 255, 0.2), transparent 52%),
+    radial-gradient(circle at 38% 28%, rgba(119, 238, 255, 0.28), transparent 52%),
+    radial-gradient(circle at 72% 72%, rgba(70, 153, 255, 0.22), transparent 56%),
     repeating-linear-gradient(
       to bottom,
-      rgba(163, 240, 255, 0.06),
-      rgba(163, 240, 255, 0.06) 1px,
+      rgba(163, 240, 255, 0.09),
+      rgba(163, 240, 255, 0.09) 1px,
       transparent 1px,
       transparent 4px
     );
@@ -183,36 +268,39 @@ img {
 
 .selector-card.is-fading .silhouette,
 .selector-card.is-fading .sprite,
-.selector-card.is-fading .holo-layer {
+.selector-card.is-fading .holo-layer,
+.selector-card.is-fading .cabinet-screen,
+.selector-card.is-fading .cabinet-meta {
   opacity: 0.03;
 }
 
 .wheel-right .selector-card .silhouette {
-  transform: translate(-14px, 4px) scale(var(--fighter-scale, 1));
+  transform: translate(-18px, 10px) scale(var(--fighter-scale, 1));
 }
 
 .wheel-right .selector-card .sprite {
-  transform: translateY(3%) scale(var(--fighter-scale, 1));
+  transform: scale(var(--fighter-scale, 1));
 }
 
 .wheel-right .selector-card .holo-layer {
-  transform: translateY(3%) scale(var(--fighter-scale, 1));
+  transform: scale(var(--fighter-scale, 1));
 }
 
 .cabinet-screen {
   position: absolute;
   left: 50%;
-  top: 37%;
-  width: 34%;
-  height: 23%;
-  transform: translate(-50%, -50%) perspective(420px) rotateX(11deg);
+  top: 34%;
+  width: 42%;
+  height: 41%;
+  transform: translate(-50%, -50%);
   z-index: 6;
-  border-radius: 6px;
+  clip-path: polygon(7% 3%, 93% 3%, 86% 97%, 14% 97%);
+  border-radius: 5px;
   overflow: hidden;
-  border: 2px solid rgba(157, 247, 255, 0.9);
+  border: 2px solid rgba(157, 247, 255, 0.84);
   box-shadow:
-    0 0 16px rgba(95, 212, 255, 0.72),
-    inset 0 0 22px rgba(75, 209, 255, 0.35);
+    0 0 16px rgba(95, 212, 255, 0.68),
+    inset 0 0 22px rgba(75, 209, 255, 0.42);
   background: rgba(2, 10, 24, 0.72);
 }
 
@@ -222,7 +310,7 @@ img {
   object-fit: cover;
   display: block;
   filter:
-    saturate(1.35)
+    saturate(1.42)
     contrast(1.15)
     brightness(1.06);
 }
@@ -230,14 +318,14 @@ img {
 .cabinet-meta {
   position: absolute;
   left: 50%;
-  top: 13%;
-  transform: translate(-50%, 0);
+  top: 70%;
+  transform: translate(-50%, -50%);
   z-index: 7;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.18rem;
-  min-width: min(95%, 36rem);
+  gap: 0.22rem;
+  min-width: 58%;
   pointer-events: none;
 }
 
@@ -246,10 +334,12 @@ img {
   background: linear-gradient(90deg, rgba(8, 18, 40, 0.18), rgba(63, 178, 255, 0.2), rgba(8, 18, 40, 0.18));
   color: #cbf7ff;
   border: 1px solid rgba(124, 234, 255, 0.68);
-  border-radius: 999px;
-  padding: 0.2rem 0.72rem 0.18rem;
+  border-radius: 0.55rem;
+  padding: 0.16rem 0.44rem 0.14rem;
+  width: 100%;
+  text-align: center;
   font-family: "VT323", "Consolas", monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -262,11 +352,11 @@ img {
 }
 
 .cabinet-meta-game {
-  font-size: clamp(0.88rem, 1vw, 1.12rem);
+  font-size: clamp(0.82rem, 0.94vw, 1.04rem);
 }
 
 .cabinet-meta-score {
-  font-size: clamp(0.82rem, 0.92vw, 1.02rem);
+  font-size: clamp(0.78rem, 0.84vw, 0.95rem);
   color: #b2ffe5;
   border-color: rgba(110, 255, 218, 0.72);
   box-shadow:
@@ -1426,6 +1516,33 @@ tr[data-game-id].is-selected td {
   }
 }
 
+@keyframes beam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(170px) scale(0.58);
+    filter: blur(7px) saturate(1.2);
+  }
+  58% {
+    opacity: 0.96;
+    transform: translateY(-12px) scale(1.02);
+    filter: blur(0.8px) saturate(1.24);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) saturate(1);
+  }
+}
+
+@keyframes popcorn-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes holo-interference {
   0% {
     opacity: 0.38;
@@ -1905,6 +2022,8 @@ tr[data-game-id].is-selected td {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .popcorn-entry,
+  .popcorn-plane,
   .selector-card.is-entering,
   .name-ring-track,
   .selector-card .sprite,

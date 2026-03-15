@@ -2,7 +2,6 @@ const yearNodes = document.querySelectorAll("[data-year]");
 const updatedNodes = document.querySelectorAll("[data-last-updated]");
 const navNodes = document.querySelectorAll("[data-page]");
 const siteData = window.AURCADE_DATA || {};
-const sideCabinetBaseSprite = "https://upload.wikimedia.org/wikipedia/commons/2/24/Simple_arcade_cabinet.png";
 
 const groupState = new Map();
 const sideCharacterAssets = {
@@ -781,28 +780,36 @@ function initializeSideCharacters() {
     '<aside class="selector-wheel wheel-left" data-wheel="left" aria-label="Left character wheel">',
     '  <div class="wheel-row">',
     '    <div class="selector-card" data-wheel-card="left">',
-    '      <img class="silhouette" alt="" />',
-    '      <img class="sprite" alt="" />',
-    '      <span class="cabinet-screen" aria-hidden="true"><img class="cabinet-screen-image" data-wheel-screen="left" alt="" /></span>',
-    '      <span class="cabinet-meta" aria-hidden="true"><span class="cabinet-meta-game" data-wheel-meta-game="left"></span><span class="cabinet-meta-score" data-wheel-meta-score="left"></span></span>',
+    '      <span class="popcorn-entry" data-wheel-entry="left" aria-hidden="true">',
+    '        <span class="popcorn-plane" data-wheel-plane="left">',
+    '          <img class="silhouette" alt="" />',
+    '          <img class="sprite" alt="" />',
+    '          <span class="cabinet-screen"><img class="cabinet-screen-image" data-wheel-screen="left" alt="" /></span>',
+    '          <span class="cabinet-meta"><span class="cabinet-meta-game" data-wheel-meta-game="left"></span><span class="cabinet-meta-score" data-wheel-meta-score="left"></span></span>',
+    '          <span class="holo-layer"></span>',
+    "        </span>",
+    "      </span>",
     '      <span class="name-ring name-ring-front" aria-hidden="true">',
     '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="left"></span><span class="name-ring-text" data-wheel-ring-front-clone="left"></span></span>',
     "      </span>",
-    '      <span class="holo-layer" aria-hidden="true"></span>',
     '    </div>',
     '  </div>',
     '</aside>',
     '<aside class="selector-wheel wheel-right" data-wheel="right" aria-label="Right character wheel">',
     '  <div class="wheel-row">',
     '    <div class="selector-card" data-wheel-card="right">',
-    '      <img class="silhouette" alt="" />',
-    '      <img class="sprite" alt="" />',
-    '      <span class="cabinet-screen" aria-hidden="true"><img class="cabinet-screen-image" data-wheel-screen="right" alt="" /></span>',
-    '      <span class="cabinet-meta" aria-hidden="true"><span class="cabinet-meta-game" data-wheel-meta-game="right"></span><span class="cabinet-meta-score" data-wheel-meta-score="right"></span></span>',
+    '      <span class="popcorn-entry" data-wheel-entry="right" aria-hidden="true">',
+    '        <span class="popcorn-plane" data-wheel-plane="right">',
+    '          <img class="silhouette" alt="" />',
+    '          <img class="sprite" alt="" />',
+    '          <span class="cabinet-screen"><img class="cabinet-screen-image" data-wheel-screen="right" alt="" /></span>',
+    '          <span class="cabinet-meta"><span class="cabinet-meta-game" data-wheel-meta-game="right"></span><span class="cabinet-meta-score" data-wheel-meta-score="right"></span></span>',
+    '          <span class="holo-layer"></span>',
+    "        </span>",
+    "      </span>",
     '      <span class="name-ring name-ring-front" aria-hidden="true">',
     '        <span class="name-ring-track"><span class="name-ring-text" data-wheel-ring-front="right"></span><span class="name-ring-text" data-wheel-ring-front-clone="right"></span></span>',
     "      </span>",
-    '      <span class="holo-layer" aria-hidden="true"></span>',
     '    </div>',
     '  </div>',
     '</aside>',
@@ -817,6 +824,8 @@ function initializeSideCharacters() {
   const wheelSlots = {
     left: {
       card: hud.querySelector('[data-wheel-card="left"]'),
+      entry: hud.querySelector('[data-wheel-entry="left"]'),
+      plane: hud.querySelector('[data-wheel-plane="left"]'),
       sprite: hud.querySelector('[data-wheel-card="left"] .sprite'),
       silhouette: hud.querySelector('[data-wheel-card="left"] .silhouette'),
       screen: hud.querySelector('[data-wheel-screen="left"]'),
@@ -828,6 +837,8 @@ function initializeSideCharacters() {
     },
     right: {
       card: hud.querySelector('[data-wheel-card="right"]'),
+      entry: hud.querySelector('[data-wheel-entry="right"]'),
+      plane: hud.querySelector('[data-wheel-plane="right"]'),
       sprite: hud.querySelector('[data-wheel-card="right"] .sprite'),
       silhouette: hud.querySelector('[data-wheel-card="right"] .silhouette'),
       screen: hud.querySelector('[data-wheel-screen="right"]'),
@@ -844,6 +855,10 @@ function initializeSideCharacters() {
     !(wheelNodes.right instanceof HTMLElement) ||
     !(wheelSlots.left.card instanceof HTMLElement) ||
     !(wheelSlots.right.card instanceof HTMLElement) ||
+    !(wheelSlots.left.entry instanceof HTMLElement) ||
+    !(wheelSlots.right.entry instanceof HTMLElement) ||
+    !(wheelSlots.left.plane instanceof HTMLElement) ||
+    !(wheelSlots.right.plane instanceof HTMLElement) ||
     !(wheelSlots.left.sprite instanceof HTMLImageElement) ||
     !(wheelSlots.left.silhouette instanceof HTMLImageElement) ||
     !(wheelSlots.left.screen instanceof HTMLImageElement) ||
@@ -874,12 +889,13 @@ function initializeSideCharacters() {
     image.src = url;
   }
 
-  preloadUrl(sideCabinetBaseSprite);
   Object.values(sideCharacterAssets).forEach((asset) => preloadUrl(asset?.screen));
   const state = {
     left: 0,
     right: 0,
   };
+  wheelSlots.left.entry.style.setProperty("--beam-delay", "0.04s");
+  wheelSlots.right.entry.style.setProperty("--beam-delay", "0.22s");
 
   function normalizeIndex(index, length) {
     return ((index % length) + length) % length;
@@ -912,14 +928,16 @@ function initializeSideCharacters() {
       return;
     }
 
-    slot.sprite.src = sideCabinetBaseSprite;
-    slot.sprite.alt = `${asset.name || characterKey} cabinet`;
-    slot.silhouette.src = sideCabinetBaseSprite;
+    slot.sprite.src = asset.screen || "";
+    slot.sprite.alt = `${asset.name || characterKey} thumbnail`;
+    slot.silhouette.src = asset.screen || "";
     slot.silhouette.alt = "";
     slot.screen.src = asset.screen || "";
     slot.screen.alt = `${asset.name || characterKey} screenshot`;
-    slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.04));
-    slot.card.style.setProperty("--fighter-image", `url("${sideCabinetBaseSprite}")`);
+    slot.card.style.setProperty("--fighter-scale", String((asset.scale || 1) * 1.02));
+    slot.card.style.setProperty("--fighter-image", `url("${asset.screen || ""}")`);
+    const spinSpeed = `${52 + Math.floor(Math.random() * 14)}s`;
+    slot.plane.style.setProperty("--spin-speed", spinSpeed);
 
     const ringLabelEn = (asset.name || characterKey).toUpperCase();
     const ringLabelJp = sideCharacterJapanese[characterKey] || ringLabelEn;
